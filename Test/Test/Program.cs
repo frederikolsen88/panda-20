@@ -15,8 +15,9 @@ namespace Test
             Console.WriteLine("Test-commit //Fuck it");
             for (int i = 0; i < 16; i++)
             {
-                Console.WriteLine("Na");
+                Console.WriteLine("BaNaNa");
             }
+
             Console.WriteLine("Batman");
             
             Console.ReadLine();

@@ -12,7 +12,7 @@ namespace Test
         {
             Console.WriteLine("Hello, World!");
             Console.WriteLine("Push med Git plugin til VS 12");
-            Console.WriteLine("Test-commit //Frederik");
+            Console.WriteLine("Test-commit //Fuck it");
             Console.ReadLine();
         }
     }

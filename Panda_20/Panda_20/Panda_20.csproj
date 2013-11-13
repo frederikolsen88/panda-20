@@ -103,7 +103,9 @@
     <Folder Include="model\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Login.html" />
+    <Content Include="Login.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="service\AppValues.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

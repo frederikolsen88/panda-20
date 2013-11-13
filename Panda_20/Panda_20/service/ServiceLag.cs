@@ -2,6 +2,7 @@
 using System.Runtime.Remoting.Channels;
 using System.Windows;
 using System.Xml.Linq;
+using Facebook;
 
 namespace Panda_20
 {
@@ -17,7 +18,10 @@ namespace Panda_20
 
         private static readonly Service ServiceInstance = new Service();
 
-        private Service() { } 
+        private Service()
+        {
+            
+        } 
 
         public static Service Instance
         {
@@ -44,8 +48,6 @@ namespace Panda_20
                 
             return element.Value;
         }
-
-
     }
 
 }

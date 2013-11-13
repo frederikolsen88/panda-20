@@ -68,6 +68,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="model\ModelLag.cs" />
     <Compile Include="PageList.xaml.cs">
       <DependentUpon>PageList.xaml</DependentUpon>
     </Compile>
@@ -113,9 +114,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="AppValues.xml">
       <SubType>Designer</SubType>

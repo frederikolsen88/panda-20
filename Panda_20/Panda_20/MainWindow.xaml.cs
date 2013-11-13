@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace Panda_20
         public MainWindow()
         {
             InitializeComponent();
+
+            string currentDir = Directory.GetCurrentDirectory();
+            Uri loginUri = new Uri(String.Format("file:///{0}/Login.html", currentDir));
+            Browser.Navigate(loginUri);
         }
     }
 }

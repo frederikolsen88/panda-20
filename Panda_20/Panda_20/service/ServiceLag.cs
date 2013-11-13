@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Runtime.Remoting.Channels;
 using System.Windows;
 using System.Xml.Linq;
 
@@ -38,7 +33,8 @@ namespace Panda_20
 
         public String GetXmlElement(String elementName)
         {
-            XDocument document = XDocument.Load(@".\service\AppValues.xml");
+
+            XDocument document = XDocument.Load(@"AppValues.xml");
             XElement element = document.Root.Element("values").Element(elementName);
 
             if (element == null)

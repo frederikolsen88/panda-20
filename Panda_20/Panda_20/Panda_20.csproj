@@ -117,8 +117,9 @@
     <Folder Include="model\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="service\AppValues.xml">
+    <Resource Include="AppValues.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>

@@ -103,7 +103,9 @@
     <Folder Include="model\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Login.html" />
+    <Content Include="Login.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,30 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Panda_20
 {
-    class Service
+
+    /// <summary>
+    /// Service-klasse der tillader adgang mellem GUI og model-lag jævnført Model/View/Controller-modellen.
+    /// 
+    /// Implementeret som Singleton-pattern med 'Static Implementation' - se http://goo.gl/Yu5med
+    /// </summary>
+    public sealed class Service
     {
+        
+        //---------------SINGLETON--------------------
 
-        private Service serviceInstance = null;
+        private static readonly Service serviceInstance = new Service();
 
-        private Service()
+        private Service() { } 
+
+        public static Service GetInstance
         {
-        }
-
-        public Service GetInstance()
-        {
-            if (serviceInstance == null)
+            get
             {
-                this.serviceInstance = new Service();
+                return serviceInstance;
             }
-
-            return serviceInstance;
         }
 
-        //Here be methods soon @author Roland
-        // TEST 2
+        //--------------END SINGLETON--------------------
+        
+
     }
 }

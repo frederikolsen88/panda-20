@@ -14,8 +14,8 @@ namespace Panda_20.gui
 
         public static void InitBrowser(WebBrowser browser)
         {
-            // TODO URL fra AppValues
-            browser.Navigate("http://www.google.com");
+            // TODO URL skal komme fra AppValues
+            browser.Navigate("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token");
         }
 
         

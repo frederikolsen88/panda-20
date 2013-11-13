@@ -16,7 +16,7 @@ namespace PandaTests
 
 
             String value = service.GetXmlElement("test");
-            Assert.Equals("it seems to work", value);
+            Assert.AreEqual("it seems to work", value);
 
 
 

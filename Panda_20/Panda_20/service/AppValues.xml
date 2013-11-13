@@ -2,5 +2,7 @@
 <values>
   <version>2.0</version>
   <test>it seems to work</test>
-  <fbUrl>https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token</fbUrl>
+  <fbUrl>
+    <![CDATA[https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token]]>
+  </fbUrl>
 </values>

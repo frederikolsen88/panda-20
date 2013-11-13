@@ -36,8 +36,8 @@ namespace Panda_20
         public String GetXmlElement(String elementName)
         {
 
-            XDocument document = XDocument.Load(@"service\AppValues.xml"); //HVORFOR HELVEDE KAN MAN IKKE DET HER
-            XElement element = document.Root.Element("values").Element(elementName);
+            XDocument document = XDocument.Load(@"service\AppValues.xml");
+            XElement element = document.Element("values").Element(elementName);
 
             if (element == null)
             {

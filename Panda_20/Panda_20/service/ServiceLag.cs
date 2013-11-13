@@ -16,7 +16,7 @@ namespace Panda_20
     public sealed class Service
     {
         
-        //---------------SINGLETON--------------------
+        //---------------<SINGLETON>-------------------- Author: Tobias R.
 
         private static readonly Service serviceInstance = new Service();
 
@@ -30,7 +30,7 @@ namespace Panda_20
             }
         }
 
-        //--------------END SINGLETON--------------------
+        //--------------</SINGLETON>--------------------
         
 
     }

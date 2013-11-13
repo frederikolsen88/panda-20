@@ -22,14 +22,16 @@ namespace Panda_20.gui
             browser.Navigate(CurrentUri);
         }
 
-        public static void FetchToken()
+        public static bool FetchToken()
         {
             string uriString = CurrentUri.ToString();
+            bool hasToken = false;
 
             if (uriString.Contains("access_token"))
             {
                 int tokenStart = uriString.IndexOf('#') + 1;
                 int expiresInStart = uriString.LastIndexOf('=') + 1;
+                hasToken = true;
 
                 string token = uriString.Substring(tokenStart, uriString.IndexOf('&') - tokenStart);
 
@@ -40,6 +42,13 @@ namespace Panda_20.gui
                 Debug.WriteLine(token);
                 Debug.WriteLine(expiresIn);
             }
+
+            return hasToken;
+        }
+
+        public static void Close(WebBrowser browser)
+        {
+            browser = null;
         }
 
         

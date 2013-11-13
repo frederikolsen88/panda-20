@@ -68,12 +68,19 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageList.xaml.cs">
+      <DependentUpon>PageList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="service\ServiceLag.cs" />
     <Compile Include="BrowserWindow.xaml.cs">
       <DependentUpon>BrowserWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,7 +117,9 @@
     <Folder Include="model\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="service\AppValues.xml" />
+    <Resource Include="service\AppValues.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\pandaIcon.ico" />

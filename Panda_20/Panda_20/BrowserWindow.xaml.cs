@@ -33,7 +33,14 @@ namespace Panda_20
             if (e.Uri != BrowserHelper.CurrentUri)
             {
                 BrowserHelper.CurrentUri = e.Uri;
-                BrowserHelper.FetchToken();
+
+                if (BrowserHelper.FetchToken())
+                {
+                    BrowserHelper.Close(Browser);
+                    this.Hide();
+                    PageList pageList = new PageList();
+                    pageList.Show();
+                }
             }
         }
     }

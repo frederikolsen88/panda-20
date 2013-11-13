@@ -7,21 +7,5 @@ using Facebook;
 
 namespace Panda_20.model
 {
-    public sealed class Model
-    {
-        private static readonly Model ModelInstance = new Model();
-
-        private Model()
-        {
-            
-        } 
-
-        public static Model Instance
-        {
-            get
-            {
-                return ModelInstance;
-            }
-        } 
-    }
+    // Model lag indeholder klasser, der modellerer - jeg ved ikke helt hvad vi skulle med den klasse, der hed "model" :P
 }

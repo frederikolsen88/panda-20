@@ -25,9 +25,8 @@ namespace Panda_20
         {
             InitializeComponent();
 
-            string currentDir = Directory.GetCurrentDirectory();
-            Uri loginUri = new Uri(String.Format("file:///{0}/Login.html", currentDir));
-            Browser.Navigate(loginUri);
+            string curDir = Directory.GetCurrentDirectory();
+            Browser.Navigate(new Uri(String.Format("file:///{0}/Login.html", curDir)));
         }
     }
 }

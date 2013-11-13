@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Panda_20.gui;
 
 namespace Panda_20
 {
@@ -24,8 +25,16 @@ namespace Panda_20
         public MainWindow()
         {
             InitializeComponent();
+            BrowserHelper.InitBrowser(Browser);
+        }
 
-            Browser.Navigate("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token");
+        private void Browser_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.Uri != BrowserHelper.CurrentUri)
+            {
+                BrowserHelper.CurrentUri = e.Uri;
+                BrowserHelper.FetchToken();
+            }
         }
     }
 }

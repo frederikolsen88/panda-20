@@ -45,12 +45,5 @@ namespace Panda_20.gui
 
             return hasToken;
         }
-
-        public static void Close(WebBrowser browser)
-        {
-            browser = null;
-        }
-
-        
     }
 }

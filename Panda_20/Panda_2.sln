@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panda_20", "Panda_20\Panda_20.csproj", "{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaTests", "PandaTests\PandaTests.csproj", "{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

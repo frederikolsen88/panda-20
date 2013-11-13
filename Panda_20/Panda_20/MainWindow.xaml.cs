@@ -25,8 +25,7 @@ namespace Panda_20
         {
             InitializeComponent();
 
-            string curDir = Directory.GetCurrentDirectory();
-            Browser.Navigate(new Uri(String.Format("file:///{0}/Login.html", curDir)));
+            Browser.Navigate("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token");
         }
     }
 }

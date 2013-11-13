@@ -25,7 +25,7 @@ namespace Panda_20
 
         private Service()
         {
-            FacebookClient fbClient = new FacebookClient();
+            
         } 
 
         public static Service Instance

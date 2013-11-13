@@ -24,6 +24,8 @@ namespace Panda_20
         public MainWindow()
         {
             InitializeComponent();
+
+            Browser.Navigate("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token");
         }
     }
 }

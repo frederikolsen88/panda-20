@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
+using Facebook;
 
 namespace Panda_20
 {
@@ -22,7 +23,10 @@ namespace Panda_20
 
         private static readonly Service ServiceInstance = new Service();
 
-        private Service() { } 
+        private Service()
+        {
+            FacebookClient fbClient = new FacebookClient();
+        } 
 
         public static Service Instance
         {
@@ -48,8 +52,6 @@ namespace Panda_20
                 
             return element.Value;
         }
-
-
     }
 
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Facebook-sider" Height="300" Width="300">
     <Grid>
-        <ListBox HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,0,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <ListBox HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto"/>
 
     </Grid>
 </Window>

@@ -21,6 +21,7 @@ namespace Panda_20
     {
         public MainWindow()
         {
+            // THOR IS HERE!
             InitializeComponent();
             this.Hide();
             BrowserWindow browserWindow = new BrowserWindow();

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Runtime.Remoting.Channels;
-using System.Windows;
 using System.Xml.Linq;
-using Facebook;
+
 
 namespace Panda_20
 {
@@ -38,7 +36,7 @@ namespace Panda_20
         public String GetXmlElement(String elementName)
         {
 
-            XDocument document = XDocument.Load(@"AppValues.xml");
+            XDocument document = XDocument.Load(@"AppValues.xml"); //HVORFOR HELVEDE KAN MAN IKKE DET HER
             XElement element = document.Root.Element("values").Element(elementName);
 
             if (element == null)
@@ -48,6 +46,7 @@ namespace Panda_20
                 
             return element.Value;
         }
+
     }
 
 }

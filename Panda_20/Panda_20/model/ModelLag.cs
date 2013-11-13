@@ -7,8 +7,21 @@ using Facebook;
 
 namespace Panda_20.model
 {
-    class ModelLag
+    public sealed class Model
     {
-        
+        private static readonly Model ModelInstance = new Model();
+
+        private Model()
+        {
+            
+        } 
+
+        public static Model Instance
+        {
+            get
+            {
+                return ModelInstance;
+            }
+        } 
     }
 }

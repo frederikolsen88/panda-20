@@ -30,7 +30,11 @@ namespace Panda_20
 
         private void Browser_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-            
+            if (e.Uri != BrowserHelper.CurrentUri)
+            {
+                BrowserHelper.CurrentUri = e.Uri;
+                BrowserHelper.FetchToken();
+            }
         }
     }
 }

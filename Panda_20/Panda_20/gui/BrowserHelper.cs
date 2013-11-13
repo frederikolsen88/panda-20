@@ -28,10 +28,17 @@ namespace Panda_20.gui
 
             if (uriString.Contains("access_token"))
             {
-                int start = uriString.IndexOf('=', 0);
-                int end = uriString.IndexOf('&', start);
-                string accessToken = uriString.Substring(start + 1, end - start);
-                Debug.WriteLine(accessToken);
+                int tokenStart = uriString.IndexOf('#') + 1;
+                int expiresInStart = uriString.LastIndexOf('=') + 1;
+
+                string token = uriString.Substring(tokenStart, uriString.IndexOf('&') - tokenStart);
+
+                token = token.Substring(token.IndexOf('=') + 1);
+
+                string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
+
+                Debug.WriteLine(token);
+                Debug.WriteLine(expiresIn);
             }
         }
 

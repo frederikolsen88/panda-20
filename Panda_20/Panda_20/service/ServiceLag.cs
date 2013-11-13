@@ -8,14 +8,21 @@ namespace Panda_20
 {
     class Service
     {
-        Service()
+
+        private Service serviceInstance = null;
+
+        private Service()
         {
-            this.GetInstance();
         }
 
-        private void GetInstance()
+        public Service GetInstance()
         {
-            throw new NotImplementedException();
+            if (serviceInstance == null)
+            {
+                this.serviceInstance = new Service();
+            }
+
+            return serviceInstance;
         }
 
         //Here be methods soon @author Roland

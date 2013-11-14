@@ -37,7 +37,7 @@ namespace Panda_20
         {
 
             XDocument document = XDocument.Load(@"service\AppValues.xml");
-            XElement element = document.Element("values").Element(elementName);
+            XElement element = document.Root.Element(elementName);
 
             if (element == null)
             {

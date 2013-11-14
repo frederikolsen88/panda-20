@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Xml.Linq;
@@ -21,14 +22,15 @@ namespace Panda_20
 
         // TODO Redundans; vi skal bruge XML'en alligevel
         public string[] TokenAndExpiresIn { get; set; }
-        private readonly ObservableCollection<string> _pages;
+        private readonly Dictionary<string, JsonObject> _pages;
         private FacebookClient _client;
-        
+
+        public JsonObject SelectedPage { get; set; }
 
         private Service()
         {
             TokenAndExpiresIn = new string[2];
-            _pages = new ObservableCollection<string>();
+            _pages = new Dictionary<string, JsonObject>();
         } 
 
         public static Service Instance
@@ -70,7 +72,7 @@ namespace Panda_20
         //----------<FETCH USER'S PAGES>---------------- Author: FOL 
         //-----------------------------------------------------------
 
-        public ObservableCollection<string> GetPages()
+        public Dictionary<string, JsonObject> GetPages()
         {
             JsonObject response = GetClient(TokenAndExpiresIn[0]).Get("me/accounts") as JsonObject;
 
@@ -78,8 +80,9 @@ namespace Panda_20
             {
                 foreach (var account in (JsonArray) response["data"])
                 {
-                    string name = (string)(((JsonObject)account)["name"]);
-                    _pages.Add(name);
+                    JsonObject jsonAccount = ((JsonObject)account);
+                    string name = (string) jsonAccount["name"];
+                    _pages.Add(name, jsonAccount);
                 }
             }
 

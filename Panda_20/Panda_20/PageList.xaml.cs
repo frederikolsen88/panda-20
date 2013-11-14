@@ -23,14 +23,16 @@ namespace Panda_20
         public PageList()
         {
             InitializeComponent();
-            PagesListBox.ItemsSource = Service.Instance.GetPages();
+            PagesListBox.ItemsSource = Service.Instance.GetPages().Keys;
 
         }
 
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // TODO Man skal kunne vælge en side
-            Debug.WriteLine("Valgt " + ((ListBox) sender).SelectedItem.ToString());
+            Service.Instance.SelectedPage = Service.Instance.GetPages()[PagesListBox.SelectedItem.ToString()];
+            this.Hide();
+
+            // TODO ... og så sker der ellers ting og sager.
         }
     }
 }

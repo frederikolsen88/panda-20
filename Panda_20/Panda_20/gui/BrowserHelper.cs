@@ -42,9 +42,8 @@ namespace Panda_20.gui
 
                 string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
 
-                // TODO token og expiresIn skal lagres i XML'en
-                Debug.WriteLine(token);
-                Debug.WriteLine(expiresIn);
+                Service.Instance.TokenAndExpiresIn[0] = token;
+                Service.Instance.TokenAndExpiresIn[1] = expiresIn;
             }
 
             return hasToken;

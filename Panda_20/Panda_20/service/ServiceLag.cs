@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Xml.Linq;
+using Facebook;
 
 
 namespace Panda_20
@@ -15,6 +17,8 @@ namespace Panda_20
         //-----------------------------------------------------------
 
         private static readonly Service ServiceInstance = new Service();
+
+        public string[] TokenAndExpiresIn { get; set; }
 
         private Service()
         {
@@ -45,8 +49,6 @@ namespace Panda_20
             } 
                 
             return element.Value;
-        }
-
+        } 
     }
-
 }

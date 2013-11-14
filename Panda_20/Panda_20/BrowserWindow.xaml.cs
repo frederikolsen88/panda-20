@@ -18,7 +18,9 @@ using Panda_20.gui;
 namespace Panda_20
 {
     /// <summary>
-    /// Interaction logic for BrowserWindow.xaml
+    /// Logik til Web Browseren, der bruges til FB login.
+    /// 
+    /// Author: Frederik Olsen
     /// </summary>
     public partial class BrowserWindow : Window
     {
@@ -36,6 +38,7 @@ namespace Panda_20
 
                 if (BrowserHelper.FetchToken())
                 {
+                    // TODO Revideres?
                     this.Close();
                     PageList pageList = new PageList();
                     pageList.Show();

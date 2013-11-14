@@ -9,6 +9,11 @@ using System.Windows.Controls;
 
 namespace Panda_20.gui
 {
+    /// <summary>
+    /// Hjælpeklasse til FB login browser.
+    /// 
+    /// Author: Frederik Olsen
+    /// </summary>
     class BrowserHelper
     {
 
@@ -16,9 +21,7 @@ namespace Panda_20.gui
 
         public static void InitBrowser(WebBrowser browser)
         {
-            // TODO URL skal komme fra AppValues
-
-            CurrentUri = new Uri("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,read_page_mailboxes,offline_access&response_type=token");
+            CurrentUri = new Uri(Service.Instance.GetXmlElement("fbUrl"));
             browser.Navigate(CurrentUri);
         }
 
@@ -39,6 +42,7 @@ namespace Panda_20.gui
 
                 string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
 
+                // TODO token og expiresIn skal lagres i XML'en
                 Debug.WriteLine(token);
                 Debug.WriteLine(expiresIn);
             }

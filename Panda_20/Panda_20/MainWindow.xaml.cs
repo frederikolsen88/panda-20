@@ -15,7 +15,9 @@ using System.Windows.Shapes;
 namespace Panda_20
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Hoved- og konfigurationsvinduelogik.
+    /// 
+    /// Author: Frederik Olsen (nej, ikke Thor)
     /// </summary>
     public partial class MainWindow : Window
     {

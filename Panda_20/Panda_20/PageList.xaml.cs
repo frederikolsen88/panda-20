@@ -22,6 +22,7 @@ namespace Panda_20
         public PageList()
         {
             InitializeComponent();
+            PagesListBox.ItemsSource = Service.Instance.GetPages();
 
         }
     }

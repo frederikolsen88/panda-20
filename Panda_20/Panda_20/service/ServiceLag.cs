@@ -20,11 +20,13 @@ namespace Panda_20
         private static readonly Service ServiceInstance = new Service();
 
         public string[] TokenAndExpiresIn { get; set; }
-        private ObservableCollection<string> Pages; 
+        private ObservableCollection<string> pages;
+        private FacebookClient client;
 
         private Service()
         {
             TokenAndExpiresIn = new string[2];
+            pages = new ObservableCollection<string>();
         } 
 
         public static Service Instance
@@ -48,9 +50,38 @@ namespace Panda_20
             if (element == null)
             {
                 throw new Exception("Element not found in XML-file!");
-            } 
-                
+            }
+
             return element.Value;
         }
+
+        //-----------------------------------------------------------
+        //--------------<GET FB CLIENT>----------------- Author: FOL 
+        //-----------------------------------------------------------
+
+        private FacebookClient GetClient(string token)
+        {
+            return client ?? (client = new FacebookClient(token));
+        }
+
+        //-----------------------------------------------------------
+        //----------<FETCH USER'S PAGES>---------------- Author: FOL 
+        //-----------------------------------------------------------
+
+        public ObservableCollection<string> GetPages()
+        {
+            JsonObject response = GetClient(TokenAndExpiresIn[0]).Get("me/accounts") as JsonObject;
+
+            if (pages.Count == 0)
+            {
+                foreach (var account in (JsonArray) response["data"])
+                {
+                    string name = (string)(((JsonObject)account)["name"]);
+                    pages.Add(name);
+                }
+            }
+
+            return pages;
+        } 
     }
 }

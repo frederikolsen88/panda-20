@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace Panda_20
 {
@@ -21,6 +22,7 @@ namespace Panda_20
     /// </summary>
     public partial class MainWindow : Window
     {
+        private NotifyIcon notifyIcon;
         public MainWindow()
         {
             // THOR IS HERE!

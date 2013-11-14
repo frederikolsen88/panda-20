@@ -30,6 +30,7 @@ namespace Panda_20.gui
         public static bool FetchToken()
         {
             string uriString = CurrentUri.ToString();
+            Debug.WriteLine(uriString);
             bool hasToken = false;
 
             if (uriString.Contains("access_token"))

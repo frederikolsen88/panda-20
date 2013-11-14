@@ -24,7 +24,7 @@ namespace Panda_20
 
         private Service()
         {
-            
+            TokenAndExpiresIn = new string[2];
         } 
 
         public static Service Instance

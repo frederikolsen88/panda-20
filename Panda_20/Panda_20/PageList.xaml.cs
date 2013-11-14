@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,16 @@ namespace Panda_20
         public PageList()
         {
             InitializeComponent();
+            PagesListBox.ItemsSource = Service.Instance.GetPages().Keys;
+
+        }
+
+        private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Service.Instance.SelectedPage = Service.Instance.GetPages()[PagesListBox.SelectedItem.ToString()];
+            this.Hide();
+
+            // TODO ... og så sker der ellers ting og sager.
         }
     }
 }

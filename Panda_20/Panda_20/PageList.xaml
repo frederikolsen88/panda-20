@@ -3,6 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Facebook-sider" Height="317" Width="300">
     <Grid HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
-        <ListBox Name="PagesListBox" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto"/>
+        <ListBox Name="PagesListBox" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" MouseDoubleClick="PagesListBox_MouseDoubleClick"/>
     </Grid>
 </Window>

@@ -19,14 +19,16 @@ namespace Panda_20
 
         private static readonly Service ServiceInstance = new Service();
 
+        // TODO Redundans; vi skal bruge XML'en alligevel
         public string[] TokenAndExpiresIn { get; set; }
-        private ObservableCollection<string> pages;
-        private FacebookClient client;
+        private readonly ObservableCollection<string> _pages;
+        private FacebookClient _client;
+        
 
         private Service()
         {
             TokenAndExpiresIn = new string[2];
-            pages = new ObservableCollection<string>();
+            _pages = new ObservableCollection<string>();
         } 
 
         public static Service Instance
@@ -61,7 +63,7 @@ namespace Panda_20
 
         private FacebookClient GetClient(string token)
         {
-            return client ?? (client = new FacebookClient(token));
+            return _client ?? (_client = new FacebookClient(token));
         }
 
         //-----------------------------------------------------------
@@ -72,16 +74,16 @@ namespace Panda_20
         {
             JsonObject response = GetClient(TokenAndExpiresIn[0]).Get("me/accounts") as JsonObject;
 
-            if (pages.Count == 0)
+            if (_pages.Count == 0)
             {
                 foreach (var account in (JsonArray) response["data"])
                 {
                     string name = (string)(((JsonObject)account)["name"]);
-                    pages.Add(name);
+                    _pages.Add(name);
                 }
             }
 
-            return pages;
+            return _pages;
         } 
     }
 }

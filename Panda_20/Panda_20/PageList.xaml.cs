@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,12 @@ namespace Panda_20
             InitializeComponent();
             PagesListBox.ItemsSource = Service.Instance.GetPages();
 
+        }
+
+        private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // TODO Man skal kunne vælge en side
+            Debug.WriteLine("Valgt " + ((ListBox) sender).SelectedItem.ToString());
         }
     }
 }

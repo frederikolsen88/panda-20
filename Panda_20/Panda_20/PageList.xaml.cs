@@ -79,7 +79,7 @@ namespace Panda_20
         {
             foreach (KeyValuePair<string, string> pair in Service.Instance.PagePictures)
             {
-                DisplayPage page = new DisplayPage(pair.Key, pair.Value);
+                DisplayPage page = new DisplayPage(pair.Key, Service.Instance.GetImageFromUrl(pair.Value));
                 PagesListBox.Items.Add(page);
             }
         }
@@ -108,15 +108,15 @@ namespace Panda_20
         // bruges til at få vist billede og navn i ListBox'en.
         private class DisplayPage
         {
-            public DisplayPage(string name, string picUrl)
+            public DisplayPage(string name, System.Drawing.Image image)
             {
                 Name = name;
-                PicUrl = picUrl;
+                Image = image;
             }
 
             public string Name { get; set; }
 
-            public string PicUrl { get; set; }
+            public System.Drawing.Image Image { get; set; }
         }
     }
 }

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Drawing;
+using System.Net;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using Facebook;
+using Image = System.Drawing.Image;
 
 
 namespace Panda_20
@@ -194,5 +197,20 @@ namespace Panda_20
                 }
             }
         }
-    }
+
+        // http://stackoverflow.com/questions/10077219/download-image-from-url-in-c-sharp
+
+        public Image GetImageFromUrl(string url)
+        {
+            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+
+                using (HttpWebResponse httpWebReponse = (HttpWebResponse)httpWebRequest.GetResponse())
+                {
+                    using (Stream stream = httpWebReponse.GetResponseStream())
+                    {
+                        return Image.FromStream(stream);
+                    }
+                }   
+            }
+        }
 }

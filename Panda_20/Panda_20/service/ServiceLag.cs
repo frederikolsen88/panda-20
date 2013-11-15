@@ -30,7 +30,10 @@ namespace Panda_20
             } 
         }
          // Her gemmes Token og en Unix Time for hvornår det token udløber i et string array.
-        public string[] TokenAndExpiresIn { get; set; } //TODO hvad er det her? Token expires in... hvad tæller den? Hvad gør den? Hvordan gør den det? Kommentér lige, når I laver noget... mærkeligt.
+
+        // Ovenstående kommentar forklarer det vist. Bemærk dog, at jeg hele tiden har haft XML'en
+        // in mente. Derfor er string[]'et bare en temp løsning for at få sendt dataene videre fra GUI-laget. -Frede
+        public string[] TokenAndExpiresIn { get; set; }
         private readonly Dictionary<string, JsonObject> _pages;
         private FacebookClient _client;
         private FacebookClient _pageClient;
@@ -51,9 +54,11 @@ namespace Panda_20
         }
 
         //-----------------------------------------------------------
-        //--------------<Set Page Access Token>---------------- Author: HJTH 
+        //--------------<Set Page Access Token>---------Author: HJTH 
         //-----------------------------------------------------------
-        // This FacebookClient is needed to get posts, private messages and more from the selected page
+        // This FacebookClient is needed to get posts, private messages
+        // and more from the selected page
+
         public FacebookClient SetPageFacebookClient(string pageAccessToken)
         {
             try
@@ -69,9 +74,11 @@ namespace Panda_20
         }
 
         //-----------------------------------------------------------
-        //--------------<Get Long Lived AccessToken>---------------- Author: HJTH 
+        //--------------<Get Long Lived AccessToken>----Author: HJTH 
         //-----------------------------------------------------------
-        // This method might not be necessary as the app is developed as an offline app (selected on Facebook), but I will leave it here for now.
+        // This method might not be necessary as the app is developed 
+        //as an offline app (selected on Facebook), but I will leave 
+        // it here for now.
 
         public String GetLongLivedAccessToken(string shortLivedAccessToken)
         {
@@ -110,7 +117,8 @@ namespace Panda_20
         //-----------------------------------------------------------
         //--------------<SET FACEBOOK TOKEN>--------------Author: TRR 
         //-----------------------------------------------------------
-        // Givet accesstoken'en, sætter den og opdaterer FacebookClient (og returner den)
+        // Givet accesstoken'en, sætter den og opdaterer FacebookClient
+        // (og returner den)
         
         public FacebookClient SetFacebookToken(String accessToken)
         {
@@ -137,10 +145,9 @@ namespace Panda_20
         //--------------<GET FB CLIENT>----------------- Author: FOL 
         //-----------------------------------------------------------
 
-        //TODO bør denne metode tage en parameter med? Burde den ikke bare hente tokenen fra den globale "_facebookToken"-variabel? Ellers skal vi til at håndtere om tokenen er lovlig her også... skal vi ikke? - TRR
-        private FacebookClient GetClient(string token) 
+        private FacebookClient GetClient(string accessToken) 
         {
-            return _client ?? (_client = new FacebookClient(token));
+            return _client ?? (_client = new FacebookClient(_facebookToken));
         }
 
 
@@ -150,10 +157,13 @@ namespace Panda_20
 
         public Dictionary<string, JsonObject> GetPages()
         {
-            //TODO For overskuelighed, omskriv det her, så den ikke henter token'en fra TokenExpiresIn[0], men i stedet bare bruger _client, hvor clienten er gemt.
-            SetFacebookToken(TokenAndExpiresIn[0]);
+            // Jeg kan ikke benytte _client.AccessToken i metodekaldet
+            // nedenfor, da _client er null på det tidspunkt. Men den
+            // bliver selvfølgelig brugt efterfølgende. -Frede
+            string accessToken = TokenAndExpiresIn[0];
+            SetFacebookToken(accessToken);
 
-            JsonObject response = GetClient(TokenAndExpiresIn[0]).Get("me/accounts") as JsonObject;
+            JsonObject response = GetClient(_client.AccessToken).Get("me/accounts") as JsonObject;
 
             if (_pages.Count == 0)
             {

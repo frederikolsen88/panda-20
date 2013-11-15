@@ -49,7 +49,7 @@ namespace Panda_20
             if (PagesListBox.Items.Count == 0)
             {
                 const string message = "Panda kræver, at du administrerer mindst én Facebook-side. Klik OK for at lukke programmet.";
-                const string caption = "Fejl";
+                const string caption = "Ingen sider fundet";
                 const MessageBoxButton button = MessageBoxButton.OK;
                 const MessageBoxImage image = MessageBoxImage.Warning;
 
@@ -57,7 +57,7 @@ namespace Panda_20
 
                 if (result == MessageBoxResult.OK)
                 {
-                    // Når brugeren lukker DialogBoxen, må vi godt lukke programmet.
+                    // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
                     Application.Current.Shutdown();
                 }
             }

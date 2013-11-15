@@ -15,14 +15,14 @@ namespace Panda_20
         {
             // THOR IS HERE!
             InitializeComponent();
-            this.notifyIcon = new NotifyIcon()
+            notifyIcon = new NotifyIcon()
             {
                 Icon = Properties.Resources.pandaIcon,
                 Visible = true,
             }; 
-            this.Hide();
-            this.WindowState = System.Windows.WindowState.Minimized;
-            this.notifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is currently running", ToolTipIcon.Info);
+            Hide();
+            WindowState = System.Windows.WindowState.Minimized;
+            notifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is currently running", ToolTipIcon.Info);
             BrowserWindow browserWindow = new BrowserWindow();
             browserWindow.Show();
         }

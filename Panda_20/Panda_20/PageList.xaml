@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Panda_20.PageList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Facebook-sider" Height="317" Width="300">
+        Title="Facebook-sider" Height="317" Width="300" Closed="Window_Closed">
     <Grid HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
         <ListBox Name="PagesListBox" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" MouseDoubleClick="PagesListBox_MouseDoubleClick"/>
     </Grid>

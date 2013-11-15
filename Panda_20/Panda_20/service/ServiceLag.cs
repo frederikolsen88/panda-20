@@ -35,7 +35,7 @@ namespace Panda_20
         // Ovenstående kommentar forklarer det vist. Bemærk dog, at jeg hele tiden har haft XML'en
         // in mente. Derfor er string[]'et bare en temp løsning for at få sendt dataene videre fra GUI-laget. -Frede
         public string[] TokenAndExpiresIn { get; set; }
-        private readonly Dictionary<string, JsonObject> _pages;
+        private Dictionary<string, JsonObject> _pages;
 
         public Dictionary<string, JsonObject> Pages
         {
@@ -170,7 +170,7 @@ namespace Panda_20
                 foreach (var account in (JsonArray) response["data"])
                 {
                     JsonObject jsonAccount = ((JsonObject)account);
-                    Console.WriteLine(jsonAccount);
+                    // Console.WriteLine(jsonAccount);
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
                 }

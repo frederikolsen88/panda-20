@@ -28,27 +28,19 @@ namespace Panda_20
         public PageList()
         {
             InitializeComponent();
-            InitPageList(); 
-        }
-
-        private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Service.Instance.SelectedPage = Service.Instance.Pages[PagesListBox.SelectedItem.ToString()];
-            Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
-            Hide();
-
-            // TODO ... og så sker der ellers ting og sager.
+            InitPageList();
         }
 
         private void InitPageList()
         {
+            Hide();
             Service.Instance.FetchPages();
 
             // TESTS
-            string firstKey = Service.Instance.Pages.Keys.First();
-            JsonObject firstValue = Service.Instance.Pages.Values.First();
-            Service.Instance.Pages.Clear();
-            Service.Instance.Pages.Add(firstKey, firstValue);
+            // string firstKey = Service.Instance.Pages.Keys.First();
+            // JsonObject firstValue = Service.Instance.Pages.Values.First();
+            // Service.Instance.Pages.Clear();
+            // Service.Instance.Pages.Add(firstKey, firstValue);
 
             PagesListBox.ItemsSource = Service.Instance.Pages.Keys;
 
@@ -73,15 +65,33 @@ namespace Panda_20
             // Brugeren har kun én Facebook-side, som vælges by default.
             else if (PagesListBox.Items.Count == 1)
             {
-                string key = Service.Instance.Pages.Keys.First();
+                string key = (string)PagesListBox.Items[0];
                 Service.Instance.SelectedPage = Service.Instance.Pages[key];
                 Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
-                Hide();
+                Close();
             }
-
             else
             {
-                
+                Show();
+            }
+        }
+
+        private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Service.Instance.SelectedPage = Service.Instance.Pages[PagesListBox.SelectedItem.ToString()];
+            Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
+            Close();
+
+            // TODO ... og så sker der ellers ting og sager.
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            // Hvis brugeren lukker pagelisten uden at have valgt
+            // en side, burde vi kunne lukke programmet.
+            if (Service.Instance.SelectedPage == null)
+            {
+                Application.Current.Shutdown();
             }
         }
     }

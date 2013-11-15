@@ -45,7 +45,6 @@ namespace Panda_20
                 if (BrowserHelper.FetchToken())
                 {
                     _pageList = new PageList();
-                    _pageList.Show();
                     Close();
                 }
             }

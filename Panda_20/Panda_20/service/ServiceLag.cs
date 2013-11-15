@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using Facebook;
 
@@ -25,13 +26,16 @@ namespace Panda_20
         private string GrantType { get; set; }
 
         private String _facebookToken;
-        public String FacebookToken {
+
+        public String FacebookToken
+        {
             get
             {
                 return _facebookToken;
-            } 
+            }
         }
-         // Her gemmes Token og en Unix Time for hvornår det token udløber i et string array.
+
+        // Her gemmes Token og en Unix Time for hvornår det token udløber i et string array.
 
         // Ovenstående kommentar forklarer det vist. Bemærk dog, at jeg hele tiden har haft XML'en
         // in mente. Derfor er string[]'et bare en temp løsning for at få sendt dataene videre fra GUI-laget. -Frede
@@ -46,7 +50,7 @@ namespace Panda_20
             }
         }
 
-        private Dictionary<string, string> _pagePictures; 
+        private Dictionary<string, string> _pagePictures;
 
         public Dictionary<string, string> PagePictures
         {
@@ -54,7 +58,7 @@ namespace Panda_20
             {
                 return _pagePictures;
             }
-        } 
+        }
 
         private FacebookClient _client;
         private FacebookClient _pageClient;
@@ -65,7 +69,7 @@ namespace Panda_20
             TokenAndExpiresIn = new string[2];
             _pages = new Dictionary<string, JsonObject>();
             _pagePictures = new Dictionary<string, string>();
-        } 
+        }
 
         public static Service Instance
         {
@@ -107,13 +111,13 @@ namespace Panda_20
             JsonObject appData = new JsonObject();
 
             appData.Add("grant_type", "fb_exchange_token");
-            appData.Add("client_id",AppID);
+            appData.Add("client_id", AppID);
             appData.Add("client_secret", AppSecret);
             appData.Add("fb_exchange_token", shortLivedAccessToken);
 
             JsonObject result = (JsonObject) _client.Get("/oauth/access_token", appData);
 
-            string extendedToken = (string)result["access_token"];
+            string extendedToken = (string) result["access_token"];
 
             return extendedToken;
         }
@@ -141,7 +145,7 @@ namespace Panda_20
         //-----------------------------------------------------------
         // Givet accesstoken'en, sætter den og opdaterer FacebookClient
         // (og returner den)
-        
+
         public FacebookClient SetFacebookToken(String accessToken)
         {
             try
@@ -181,21 +185,13 @@ namespace Panda_20
             {
                 foreach (var account in (JsonArray) response["data"])
                 {
-                    JsonObject jsonAccount = ((JsonObject)account);
+                    JsonObject jsonAccount = ((JsonObject) account);
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
 
                     string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture";
                     _pagePictures.Add((string) jsonAccount["name"], picUrl);
                 }
-            }
-        }
-
-        public void DownloadPictures()
-        {
-            foreach (string url in _pagePictures.Values)
-            {
-                
             }
         }
     }

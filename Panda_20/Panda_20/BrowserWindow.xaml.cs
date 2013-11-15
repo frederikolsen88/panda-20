@@ -8,12 +8,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Panda_20.gui;
+using Application = System.Windows.Application;
 
 namespace Panda_20
 {
@@ -26,6 +28,7 @@ namespace Panda_20
     {
 
         private PageList pageList;
+ 
 
         public BrowserWindow()
         {

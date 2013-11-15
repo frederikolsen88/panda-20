@@ -106,9 +106,9 @@ namespace Panda_20
 
         // Repræsentation af en Facebook-side som udelukkende skal
         // bruges til at få vist billede og navn i ListBox'en.
-        private class DisplayPage
+        public class DisplayPage
         {
-            public DisplayPage(string name, System.Drawing.Image image)
+            public DisplayPage(string name, System.Windows.Controls.Image image)
             {
                 Name = name;
                 Image = image;
@@ -116,7 +116,7 @@ namespace Panda_20
 
             public string Name { get; set; }
 
-            public System.Drawing.Image Image { get; set; }
+            public Image Image { get; set; }
         }
     }
 }

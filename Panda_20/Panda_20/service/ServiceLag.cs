@@ -200,7 +200,7 @@ namespace Panda_20
 
         // http://stackoverflow.com/questions/10077219/download-image-from-url-in-c-sharp
 
-        public Image GetImageFromUrl(string url)
+        public System.Windows.Controls.Image GetImageFromUrl(string url)
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
 
@@ -208,9 +208,32 @@ namespace Panda_20
                 {
                     using (Stream stream = httpWebReponse.GetResponseStream())
                     {
-                        return Image.FromStream(stream);
+                        return ConvertImage(Image.FromStream(stream));
                     }
                 }   
-            }
         }
+
+        // http://social.msdn.microsoft.com/Forums/vstudio/en-US/a6f74675-77f2-4dac-a7d9-971c77b0b5bf/convert-systemdrawingimage-to-systemwindowscontrolsimage
+
+        private System.Windows.Controls.Image ConvertImage(Image img)
+        {
+            System.Windows.Controls.Image convertedImage = null;
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    var decoder = BitmapDecoder.Create(ms, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    convertedImage = new System.Windows.Controls.Image { Source = decoder.Frames[0] };
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Konvertering fejlet!");
+            }
+
+            return convertedImage;
+        }
+    }
 }

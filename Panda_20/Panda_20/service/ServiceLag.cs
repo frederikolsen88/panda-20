@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Xml.Linq;
 using Facebook;
@@ -18,9 +19,9 @@ namespace Panda_20
         private static readonly Service ServiceInstance = new Service();
 
         // TODO Redundans; vi skal bruge XML'en alligevel
-        private String appID = "470029853116845";
-        private String appSecret = "5a62c1030284cbe12d06c79934fc7aea";
-        private string grant_type { get; set; }
+        private const String AppID = "470029853116845";
+        private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
+        private string GrantType { get; set; }
 
         private String _facebookToken;
         public String FacebookToken {
@@ -85,8 +86,8 @@ namespace Panda_20
             JsonObject appData = new JsonObject();
 
             appData.Add("grant_type", "fb_exchange_token");
-            appData.Add("client_id",appID);
-            appData.Add("client_secret", appSecret);
+            appData.Add("client_id",AppID);
+            appData.Add("client_secret", AppSecret);
             appData.Add("fb_exchange_token", shortLivedAccessToken);
 
             JsonObject result = (JsonObject) _client.Get("/oauth/access_token", appData);
@@ -151,8 +152,9 @@ namespace Panda_20
             // nedenfor, da _client er null på det tidspunkt. Men den
             // bliver selvfølgelig brugt efterfølgende. -Frede
             string accessToken = TokenAndExpiresIn[0];
+            SetFacebookToken(accessToken);
 
-            JsonObject response = SetFacebookToken(accessToken).Get("me/accounts") as JsonObject;
+            JsonObject response = _client.Get("me/accounts") as JsonObject;
 
             if (_pages.Count == 0)
             {

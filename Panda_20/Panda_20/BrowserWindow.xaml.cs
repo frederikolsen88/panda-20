@@ -24,6 +24,9 @@ namespace Panda_20
     /// </summary>
     public partial class BrowserWindow : Window
     {
+
+        private PageList pageList;
+
         public BrowserWindow()
         {
             InitializeComponent();
@@ -38,11 +41,22 @@ namespace Panda_20
 
                 if (BrowserHelper.FetchToken())
                 {
-                    // TODO Revideres?
-                    this.Close();
-                    PageList pageList = new PageList();
+                    pageList = new PageList();
                     pageList.Show();
+                    this.Close();
                 }
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            // Hvis pageListen ikke er spawned når browseren lukkes,
+            // er det brugeren, der har gjort det. Så må vi godt
+            // lukke alt ned. Det er ikke et kønt tjek, men det
+            // virker lige nu.
+            if (pageList == null)
+            {
+                Application.Current.Shutdown();
             }
         }
     }

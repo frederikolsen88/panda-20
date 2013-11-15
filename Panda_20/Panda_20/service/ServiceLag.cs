@@ -142,16 +142,6 @@ namespace Panda_20
         }
 
         //-----------------------------------------------------------
-        //--------------<GET FB CLIENT>----------------- Author: FOL 
-        //-----------------------------------------------------------
-
-        private FacebookClient GetClient(string accessToken) 
-        {
-            return _client ?? (_client = new FacebookClient(_facebookToken));
-        }
-
-
-        //-----------------------------------------------------------
         //----------<FETCH USER'S PAGES>---------------- Author: FOL 
         //-----------------------------------------------------------
 
@@ -161,9 +151,8 @@ namespace Panda_20
             // nedenfor, da _client er null på det tidspunkt. Men den
             // bliver selvfølgelig brugt efterfølgende. -Frede
             string accessToken = TokenAndExpiresIn[0];
-            SetFacebookToken(accessToken);
 
-            JsonObject response = GetClient(_client.AccessToken).Get("me/accounts") as JsonObject;
+            JsonObject response = SetFacebookToken(accessToken).Get("me/accounts") as JsonObject;
 
             if (_pages.Count == 0)
             {

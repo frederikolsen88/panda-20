@@ -155,7 +155,7 @@ namespace Panda_20
         //----------<FETCH USER'S PAGES>---------------- Author: FOL 
         //-----------------------------------------------------------
 
-        public Dictionary<string, JsonObject> FetchPages()
+        public void FetchPages()
         {
             // Jeg kan ikke benytte _client.AccessToken i metodekaldet
             // nedenfor, da _client er null på det tidspunkt. Men den
@@ -175,9 +175,6 @@ namespace Panda_20
                     _pages.Add(name, jsonAccount);
                 }
             }
-            return _pages;
         } 
-
-        
     }
 }

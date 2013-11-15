@@ -28,7 +28,7 @@ namespace Panda_20
         public PageList()
         {
             InitializeComponent();
-            PageListHelper.InitPageList(PagesListBox);
+            InitPageList(); 
         }
 
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -38,6 +38,48 @@ namespace Panda_20
             Hide();
 
             // TODO ... og så sker der ellers ting og sager.
+        }
+
+        private void InitPageList()
+        {
+            Service.Instance.FetchPages();
+
+            // TESTS
+            // string firstKey = Service.Instance.Pages.Keys.First();
+            // JsonObject firstValue = Service.Instance.Pages.Values.First();
+            // Service.Instance.Pages.Clear();
+            // Service.Instance.Pages.Add(firstKey, firstValue);
+
+            // Hvis brugeren ikke administrerer nogen pages, viser vi en
+            // popup om dette.
+            if (Service.Instance.Pages.Count == 0)
+            {
+                const string message = "Panda kræver, at du administrerer mindst én Facebook-side. Klik OK for at lukke programmet.";
+                const string caption = "Fejl";
+                const MessageBoxButton button = MessageBoxButton.OK;
+                const MessageBoxImage image = MessageBoxImage.Warning;
+
+                MessageBoxResult result = MessageBox.Show(message, caption, button, image);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    // Når brugeren lukker DialogBoxen, må vi godt lukke programmet.
+                    Application.Current.Shutdown();
+                }
+            }
+
+            // Brugeren har kun én Facebook-side, som vælges by default.
+            else if (Service.Instance.Pages.Count == 1)
+            {
+                string key = Service.Instance.Pages.Keys.First();
+                Service.Instance.SelectedPage = Service.Instance.Pages[key];
+                Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
+            }
+
+            else
+            {
+                PagesListBox.ItemsSource = Service.Instance.Pages.Keys;
+            }
         }
     }
 }

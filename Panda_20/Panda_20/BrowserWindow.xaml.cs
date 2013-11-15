@@ -27,7 +27,7 @@ namespace Panda_20
     public partial class BrowserWindow : Window
     {
 
-        private PageList pageList;
+        private PageList _pageList;
  
 
         public BrowserWindow()
@@ -44,9 +44,9 @@ namespace Panda_20
 
                 if (BrowserHelper.FetchToken())
                 {
-                    pageList = new PageList();
-                    pageList.Show();
-                    this.Close();
+                    _pageList = new PageList();
+                    _pageList.Show();
+                    Close();
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace Panda_20
             // er det brugeren, der har gjort det. Så må vi godt
             // lukke alt ned. Det er ikke et kønt tjek, men det
             // virker lige nu.
-            if (pageList == null)
+            if (_pageList == null)
             {
                 Application.Current.Shutdown();
             }

@@ -36,6 +36,15 @@ namespace Panda_20
         // in mente. Derfor er string[]'et bare en temp løsning for at få sendt dataene videre fra GUI-laget. -Frede
         public string[] TokenAndExpiresIn { get; set; }
         private readonly Dictionary<string, JsonObject> _pages;
+
+        public Dictionary<string, JsonObject> Pages
+        {
+            get
+            {
+                return _pages;
+            }
+        } 
+
         private FacebookClient _client;
         private FacebookClient _pageClient;
         public JsonObject SelectedPage { get; set; }
@@ -146,7 +155,7 @@ namespace Panda_20
         //----------<FETCH USER'S PAGES>---------------- Author: FOL 
         //-----------------------------------------------------------
 
-        public Dictionary<string, JsonObject> GetPages()
+        public Dictionary<string, JsonObject> FetchPages()
         {
             // Jeg kan ikke benytte _client.AccessToken i metodekaldet
             // nedenfor, da _client er null på det tidspunkt. Men den

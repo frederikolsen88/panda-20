@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Facebook;
+using Panda_20.gui;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -26,31 +28,12 @@ namespace Panda_20
         public PageList()
         {
             InitializeComponent();
-            PagesListBox.ItemsSource = Service.Instance.GetPages().Keys;
-
-            // Hvis brugeren ikke administrerer nogen pages, viser vi en
-            // popup om dette.
-            if (!PagesListBox.HasItems)
-            {
-                const string message = "Panda kræver, at du administrerer mindst én Facebook-side. Klik OK for at lukke programmet.";
-                const string caption = "Fejl";
-                const MessageBoxButton button = MessageBoxButton.OK;
-                const MessageBoxImage image = MessageBoxImage.Warning;
-
-                MessageBoxResult result = MessageBox.Show(message, caption, button, image);
-
-                if (result == MessageBoxResult.OK)
-                {
-                    // Når brugeren lukker DialogBoxen, må vi godt lukke programmet.
-                    Application.Current.Shutdown();
-                }
-            }
-
+            PageListHelper.InitPageList(PagesListBox);
         }
 
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service.Instance.SelectedPage = Service.Instance.GetPages()[PagesListBox.SelectedItem.ToString()];
+            Service.Instance.SelectedPage = Service.Instance.Pages[PagesListBox.SelectedItem.ToString()];
             Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
             Hide();
 

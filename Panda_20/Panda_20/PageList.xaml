@@ -1,8 +1,45 @@
-﻿<Window x:Class="Panda_20.PageList"
+﻿    <Window x:Class="Panda_20.PageList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:panda20="clr-namespace:Panda_20"
         Title="Facebook-sider" Height="317" Width="300" Closed="Window_Closed">
-    <Grid HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
-        <ListBox Name="PagesListBox" DisplayMemberPath="Name" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" MouseDoubleClick="PagesListBox_MouseDoubleClick"/>
-    </Grid>
+        
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ListBoxPage">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Margin="0,0,10,0">
+                        <Image Source="{Binding Path=Image}"
+                       Stretch="Fill"
+                       Height="40"
+                       Width="40"></Image>
+                    </Border>
+                    <TextBlock Text="{Binding Path=Name}"
+                       FontWeight="Bold"
+                       Grid.Column="1"
+                       Grid.Row="0"></TextBlock>
+                </Grid>
+            </DataTemplate>
+
+            <Style x:Key="StyleListBox" TargetType="{x:Type ListBox}">
+                <Setter Property="ItemTemplate" Value="{StaticResource ResourceKey=ListBoxPage}"></Setter>
+            </Style>
+        </ResourceDictionary>      
+    </Window.Resources>
+
+    <ListBox Name="PagesListBox" DisplayMemberPath="Name" HorizontalAlignment="Stretch" 
+             Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" 
+             MouseDoubleClick="PagesListBox_MouseDoubleClick" Style="{StaticResource StyleListBox}"></ListBox>
+
 </Window>

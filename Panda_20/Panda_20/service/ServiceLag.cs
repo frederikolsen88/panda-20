@@ -18,6 +18,9 @@ namespace Panda_20
         private static readonly Service ServiceInstance = new Service();
 
         // TODO Redundans; vi skal bruge XML'en alligevel
+        private String appID = "470029853116845";
+        private String appSecret = "5a62c1030284cbe12d06c79934fc7aea";
+        private string grant_type { get; set; }
 
         private String _facebookToken;
         public String FacebookToken {
@@ -26,7 +29,7 @@ namespace Panda_20
                 return _facebookToken;
             } 
         }
-
+         // Her gemmes Token og en Unix Time for hvornår det token udløber i et string array.
         public string[] TokenAndExpiresIn { get; set; } //TODO hvad er det her? Token expires in... hvad tæller den? Hvad gør den? Hvordan gør den det? Kommentér lige, når I laver noget... mærkeligt.
         private readonly Dictionary<string, JsonObject> _pages;
         private FacebookClient _client;
@@ -44,7 +47,28 @@ namespace Panda_20
             {
                 return ServiceInstance;
             }
-        } 
+        }
+
+        //-----------------------------------------------------------
+        //--------------<Get Long Lived AccessToken>---------------- Author: HJTH 
+        //-----------------------------------------------------------
+        // Er muligvis ikke nødvendig da vores app er sat til at være desktop på FB. Jeg lader den blive hvis den bliver nødvendig.
+
+        public String GetLongLivedAccessToken(string shortLivedAccessToken)
+        {
+            JsonObject appData = new JsonObject();
+
+            appData.Add("grant_type", "fb_exchange_token");
+            appData.Add("client_id",appID);
+            appData.Add("client_secret", appSecret);
+            appData.Add("fb_exchange_token", shortLivedAccessToken);
+
+            JsonObject result = (JsonObject) _client.Get("/oauth/access_token", appData);
+
+            string extendedToken = (string)result["access_token"];
+
+            return extendedToken;
+        }
 
         //-----------------------------------------------------------
         //--------------<READ XML VALUE>---------------- Author: TRR 
@@ -108,6 +132,8 @@ namespace Panda_20
         public Dictionary<string, JsonObject> GetPages()
         {
             //TODO For overskuelighed, omskriv det her, så den ikke henter token'en fra TokenExpiresIn[0], men i stedet bare bruger _client, hvor clienten er gemt.
+            SetFacebookToken(TokenAndExpiresIn[0]);
+            GetLongLivedAccessToken(TokenAndExpiresIn[0]);
 
             JsonObject response = GetClient(TokenAndExpiresIn[0]).Get("me/accounts") as JsonObject;
 
@@ -116,11 +142,11 @@ namespace Panda_20
                 foreach (var account in (JsonArray) response["data"])
                 {
                     JsonObject jsonAccount = ((JsonObject)account);
+                    Console.WriteLine(jsonAccount);
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
                 }
             }
-
             return _pages;
         } 
 

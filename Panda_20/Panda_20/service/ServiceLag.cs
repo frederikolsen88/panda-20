@@ -43,6 +43,16 @@ namespace Panda_20
             {
                 return _pages;
             }
+        }
+
+        private Dictionary<string, string> _pagePictures; 
+
+        public Dictionary<string, string> PagePictures
+        {
+            get
+            {
+                return _pagePictures;
+            }
         } 
 
         private FacebookClient _client;
@@ -53,6 +63,7 @@ namespace Panda_20
         {
             TokenAndExpiresIn = new string[2];
             _pages = new Dictionary<string, JsonObject>();
+            _pagePictures = new Dictionary<string, string>();
         } 
 
         public static Service Instance
@@ -170,9 +181,11 @@ namespace Panda_20
                 foreach (var account in (JsonArray) response["data"])
                 {
                     JsonObject jsonAccount = ((JsonObject)account);
-                    // Console.WriteLine(jsonAccount);
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
+
+                    string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture";
+                    _pagePictures.Add((string) jsonAccount["name"], picUrl);
                 }
             }
         } 

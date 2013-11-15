@@ -26,7 +26,7 @@ namespace Panda_20
     public partial class PageList : Window
     {
         public PageList()
-        {
+        {        
             InitializeComponent();
             InitPageList();
         }
@@ -35,14 +35,13 @@ namespace Panda_20
         {
             Hide();
             Service.Instance.FetchPages();
+            LoadPictures();
 
             // TESTS
             // string firstKey = Service.Instance.Pages.Keys.First();
             // JsonObject firstValue = Service.Instance.Pages.Values.First();
             // Service.Instance.Pages.Clear();
             // Service.Instance.Pages.Add(firstKey, firstValue);
-
-            PagesListBox.ItemsSource = Service.Instance.Pages.Keys;
 
             // Hvis brugeren ikke administrerer nogen pages, viser vi en
             // popup om dette.
@@ -76,9 +75,18 @@ namespace Panda_20
             }
         }
 
+        private void LoadPictures()
+        {
+            foreach (KeyValuePair<string, string> pair in Service.Instance.PagePictures)
+            {
+                DisplayPage page = new DisplayPage(pair.Key, pair.Value);
+                PagesListBox.Items.Add(page);
+            }
+        }
+
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service.Instance.SelectedPage = Service.Instance.Pages[PagesListBox.SelectedItem.ToString()];
+            Service.Instance.SelectedPage = Service.Instance.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
             Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
             Close();
 
@@ -93,6 +101,22 @@ namespace Panda_20
             {
                 Application.Current.Shutdown();
             }
+        }
+        
+
+        // Repræsentation af en Facebook-side som udelukkende skal
+        // bruges til at få vist billede og navn i ListBox'en.
+        private class DisplayPage
+        {
+            public DisplayPage(string name, string picUrl)
+            {
+                Name = name;
+                PicUrl = picUrl;
+            }
+
+            public string Name { get; set; }
+
+            public string PicUrl { get; set; }
         }
     }
 }

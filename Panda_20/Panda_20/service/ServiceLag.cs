@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Controls;
 using System.Xml.Linq;
 using Facebook;
@@ -188,6 +189,14 @@ namespace Panda_20
                     _pagePictures.Add((string) jsonAccount["name"], picUrl);
                 }
             }
-        } 
+        }
+
+        public void DownloadPictures()
+        {
+            foreach (string url in _pagePictures.Values)
+            {
+                
+            }
+        }
     }
 }

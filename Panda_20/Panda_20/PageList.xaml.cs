@@ -45,14 +45,16 @@ namespace Panda_20
             Service.Instance.FetchPages();
 
             // TESTS
-            // string firstKey = Service.Instance.Pages.Keys.First();
-            // JsonObject firstValue = Service.Instance.Pages.Values.First();
-            // Service.Instance.Pages.Clear();
-            // Service.Instance.Pages.Add(firstKey, firstValue);
+            string firstKey = Service.Instance.Pages.Keys.First();
+            JsonObject firstValue = Service.Instance.Pages.Values.First();
+            Service.Instance.Pages.Clear();
+            Service.Instance.Pages.Add(firstKey, firstValue);
+
+            PagesListBox.ItemsSource = Service.Instance.Pages.Keys;
 
             // Hvis brugeren ikke administrerer nogen pages, viser vi en
             // popup om dette.
-            if (Service.Instance.Pages.Count == 0)
+            if (PagesListBox.Items.Count == 0)
             {
                 const string message = "Panda kræver, at du administrerer mindst én Facebook-side. Klik OK for at lukke programmet.";
                 const string caption = "Fejl";
@@ -69,16 +71,17 @@ namespace Panda_20
             }
 
             // Brugeren har kun én Facebook-side, som vælges by default.
-            else if (Service.Instance.Pages.Count == 1)
+            else if (PagesListBox.Items.Count == 1)
             {
                 string key = Service.Instance.Pages.Keys.First();
                 Service.Instance.SelectedPage = Service.Instance.Pages[key];
                 Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
+                Hide();
             }
 
             else
             {
-                PagesListBox.ItemsSource = Service.Instance.Pages.Keys;
+                
             }
         }
     }

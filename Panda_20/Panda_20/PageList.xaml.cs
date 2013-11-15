@@ -108,7 +108,7 @@ namespace Panda_20
         // bruges til at få vist billede og navn i ListBox'en.
         public class DisplayPage
         {
-            public DisplayPage(string name, System.Windows.Controls.Image image)
+            public DisplayPage(string name, Image image)
             {
                 Name = name;
                 Image = image;

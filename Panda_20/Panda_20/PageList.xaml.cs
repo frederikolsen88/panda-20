@@ -30,6 +30,7 @@ namespace Panda_20
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Service.Instance.SelectedPage = Service.Instance.GetPages()[PagesListBox.SelectedItem.ToString()];
+            Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
             this.Hide();
 
             // TODO ... og så sker der ellers ting og sager.

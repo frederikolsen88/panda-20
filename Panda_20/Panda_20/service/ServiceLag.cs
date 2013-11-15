@@ -33,6 +33,7 @@ namespace Panda_20
         public string[] TokenAndExpiresIn { get; set; } //TODO hvad er det her? Token expires in... hvad tæller den? Hvad gør den? Hvordan gør den det? Kommentér lige, når I laver noget... mærkeligt.
         private readonly Dictionary<string, JsonObject> _pages;
         private FacebookClient _client;
+        private FacebookClient _pageClient;
         public JsonObject SelectedPage { get; set; }
 
         private Service()
@@ -50,9 +51,27 @@ namespace Panda_20
         }
 
         //-----------------------------------------------------------
+        //--------------<Set Page Access Token>---------------- Author: HJTH 
+        //-----------------------------------------------------------
+        // This FacebookClient is needed to get posts, private messages and more from the selected page
+        public FacebookClient SetPageFacebookClient(string pageAccessToken)
+        {
+            try
+            {
+                FacebookClient pageFacebookClient = new FacebookClient(pageAccessToken);
+                this._pageClient = pageFacebookClient;
+            }
+            catch (FacebookOAuthException)
+            {
+                //TODO Håndter fejl
+            }
+            return this._pageClient;
+        }
+
+        //-----------------------------------------------------------
         //--------------<Get Long Lived AccessToken>---------------- Author: HJTH 
         //-----------------------------------------------------------
-        // Er muligvis ikke nødvendig da vores app er sat til at være desktop på FB. Jeg lader den blive hvis den bliver nødvendig.
+        // This method might not be necessary as the app is developed as an offline app (selected on Facebook), but I will leave it here for now.
 
         public String GetLongLivedAccessToken(string shortLivedAccessToken)
         {
@@ -133,7 +152,6 @@ namespace Panda_20
         {
             //TODO For overskuelighed, omskriv det her, så den ikke henter token'en fra TokenExpiresIn[0], men i stedet bare bruger _client, hvor clienten er gemt.
             SetFacebookToken(TokenAndExpiresIn[0]);
-            GetLongLivedAccessToken(TokenAndExpiresIn[0]);
 
             JsonObject response = GetClient(TokenAndExpiresIn[0]).Get("me/accounts") as JsonObject;
 

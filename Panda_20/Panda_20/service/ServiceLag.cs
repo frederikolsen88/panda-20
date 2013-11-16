@@ -11,7 +11,6 @@ using System.Xml.Linq;
 using Facebook;
 using Panda_20.service;
 using Image = System.Drawing.Image;
-using Panda_20.service.Misc;
 
 
 namespace Panda_20
@@ -68,6 +67,7 @@ namespace Panda_20
         private FacebookClient _client;
         private FacebookClient _pageClient;
         public JsonObject SelectedPage { get; set; }
+        private long lastSuccessfullFacebookUpdate;
 
         private Service()
         {
@@ -93,23 +93,48 @@ namespace Panda_20
         {
             Console.WriteLine("UpdateFBMethod");
 
-            long unix_timeBefore = Misc.UnixTimeNow();
+            // This is simply for monitoring how long this runs
+            long unix_time = Misc.UnixTimeNow(0);
+            Console.WriteLine("unix before: " + unix_time);
 
-            Console.WriteLine("unix: " + unix_timeBefore);
+            bool successfullconnect = true;
 
-            var result = await _pageClient.GetTaskAsync("fql", 
-                new {
-                q = new
-                {
-                    comments = "SELECT fromid, text, time, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" + SelectedPage["id"] + "') AND time > 1384370684",
-                    posts = "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" + SelectedPage["id"] + "' AND created_time > 1384370684",
-                    private_messages = "SELECT sender, recipients, body FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND timestamp > 1384370684"
-                }
+            // Collecting the data. I still need to get comment_authors in the same way I did post_authors.
+            try
+            {
+                var result = await _pageClient.GetTaskAsync("fql",
+                    new
+                    {
+                        q = new
+                        {
+                            comments =
+                                "SELECT fromid, text, time, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
+                                SelectedPage["id"] + "') AND time > " + this.lastSuccessfullFacebookUpdate,
+                            posts =
+                                "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" +
+                                SelectedPage["id"] + "' AND created_time > " + this.lastSuccessfullFacebookUpdate,
+                            post_authors = "SELECT uid, name, nblsfada FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
+                            private_messages =
+                                "SELECT sender, recipients, body FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND timestamp > " +
+                                this.lastSuccessfullFacebookUpdate
+                        }
                     });
+            }
+            catch (FacebookOAuthException)
+            {
+                // TODO Håndter fejl
+                successfullconnect = false;
+
+            }
+
+            // Here we save the current unix time BEFORE working with the data. This might be enough to ensure that we will never miss anything? Probably not though...
+            long unix_timeAfter = Misc.UnixTimeNow(0);
+            if (successfullconnect)
+            {
+                this.lastSuccessfullFacebookUpdate = unix_timeAfter;
+            }
 
             //Console.WriteLine("FQL result: " + result.ToString());
-
-            long unix_timeAfter = Misc.UnixTimeNow();
 
             Console.WriteLine("unix: " + unix_timeAfter);
         }

@@ -5,8 +5,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Drawing;
 using System.Net;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using System.Xml.Linq;
 using Facebook;
 using Panda_20.service;
@@ -84,6 +86,8 @@ namespace Panda_20
             }
         }
 
+
+
         //-----------------------------------------------------------
         //--------------<Super Duper 1 Minute Method>---------Author: HJTH 
         //-----------------------------------------------------------
@@ -97,26 +101,34 @@ namespace Panda_20
             long unix_time = Misc.UnixTimeNow(0);
             Console.WriteLine("unix before: " + unix_time);
 
+            if (this.lastSuccessfullFacebookUpdate == 0)
+            {
+                this.lastSuccessfullFacebookUpdate = unix_time;
+            }
+
             bool successfullconnect = true;
+            // To test this, add "-60" to the below timestamp so that you have time to add a message somewhere. This is not needed once we get this method to run once a minute.
+            long timestamp = this.lastSuccessfullFacebookUpdate;
+            var result = new object();
 
             // Collecting the data. I still need to get comment_authors in the same way I did post_authors.
             try
             {
-                var result = await _pageClient.GetTaskAsync("fql",
+                result = await _pageClient.GetTaskAsync("fql",
                     new
                     {
                         q = new
                         {
                             comments =
                                 "SELECT fromid, text, time, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
-                                SelectedPage["id"] + "') AND time > " + this.lastSuccessfullFacebookUpdate,
+                                SelectedPage["id"] + "') AND time > " + timestamp,
                             posts =
                                 "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" +
-                                SelectedPage["id"] + "' AND created_time > " + this.lastSuccessfullFacebookUpdate,
-                            post_authors = "SELECT uid, name, nblsfada FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
+                                SelectedPage["id"] + "' AND created_time > " + timestamp,
+                            post_authors = "SELECT uid, name FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
                             private_messages =
-                                "SELECT sender, recipients, body FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND timestamp > " +
-                                this.lastSuccessfullFacebookUpdate
+                                "SELECT sender, recipients, body, timestamp FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND (timestamp/1000) > " +
+                                timestamp
                         }
                     });
             }
@@ -134,7 +146,7 @@ namespace Panda_20
                 this.lastSuccessfullFacebookUpdate = unix_timeAfter;
             }
 
-            //Console.WriteLine("FQL result: " + result.ToString());
+            Console.WriteLine("FQL result: " + result.ToString());
 
             Console.WriteLine("unix: " + unix_timeAfter);
         }

@@ -9,7 +9,9 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using Facebook;
+using Panda_20.service;
 using Image = System.Drawing.Image;
+using Panda_20.service.Misc;
 
 
 namespace Panda_20
@@ -83,6 +85,37 @@ namespace Panda_20
         }
 
         //-----------------------------------------------------------
+        //--------------<Super Duper 1 Minute Method>---------Author: HJTH 
+        //-----------------------------------------------------------
+        // Ask Facebook what's up! Method needs to run asynchronously to work.
+
+        public async void GetFacebookUpdates()
+        {
+            Console.WriteLine("UpdateFBMethod");
+
+            long unix_timeBefore = Misc.UnixTimeNow();
+
+            Console.WriteLine("unix: " + unix_timeBefore);
+
+            var result = await _pageClient.GetTaskAsync("fql", 
+                new {
+                q = new
+                {
+                    comments = "SELECT fromid, text, time, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" + SelectedPage["id"] + "') AND time > 1384370684",
+                    posts = "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" + SelectedPage["id"] + "' AND created_time > 1384370684",
+                    private_messages = "SELECT sender, recipients, body FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND timestamp > 1384370684"
+                }
+                    });
+
+            //Console.WriteLine("FQL result: " + result.ToString());
+
+            long unix_timeAfter = Misc.UnixTimeNow();
+
+            Console.WriteLine("unix: " + unix_timeAfter);
+        }
+
+
+        //-----------------------------------------------------------
         //--------------<Set Page Access Token>---------Author: HJTH 
         //-----------------------------------------------------------
         // This FacebookClient is needed to get posts, private messages
@@ -92,8 +125,11 @@ namespace Panda_20
         {
             try
             {
+                Console.WriteLine(SelectedPage["id"]);
+                Console.WriteLine("page access token: " + pageAccessToken);
                 FacebookClient pageFacebookClient = new FacebookClient(pageAccessToken);
                 this._pageClient = pageFacebookClient;
+                GetFacebookUpdates();
             }
             catch (FacebookOAuthException)
             {

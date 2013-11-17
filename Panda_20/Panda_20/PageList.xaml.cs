@@ -34,7 +34,7 @@ namespace Panda_20
         private void InitPageList()
         {
             Hide();
-            Service.Instance.FetchPages();
+            Service.FetchPages();
             LoadPictures();
 
             // TESTS
@@ -65,8 +65,8 @@ namespace Panda_20
             else if (PagesListBox.Items.Count == 1)
             {
                 string key = (string)PagesListBox.Items[0];
-                Service.Instance.SelectedPage = Service.Instance.Pages[key];
-                Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
+                Service.SelectedPage = Service.Pages[key];
+                Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
                 Close();
             }
             else
@@ -77,17 +77,17 @@ namespace Panda_20
 
         private void LoadPictures()
         {
-            foreach (KeyValuePair<string, string> pair in Service.Instance.PagePictures)
+            foreach (KeyValuePair<string, string> pair in Service.PagePictures)
             {
-                DisplayPage page = new DisplayPage(pair.Key, Service.Instance.GetImageFromUrl(pair.Value));
+                DisplayPage page = new DisplayPage(pair.Key, Service.GetImageFromUrl(pair.Value));
                 PagesListBox.Items.Add(page);
             }
         }
 
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service.Instance.SelectedPage = Service.Instance.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
-            Service.Instance.SetPageFacebookClient((string)Service.Instance.SelectedPage["access_token"]);
+            Service.SelectedPage = Service.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
+            Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
             Close();
 
             // TODO ... og så sker der ellers ting og sager.
@@ -97,7 +97,7 @@ namespace Panda_20
         {
             // Hvis brugeren lukker pagelisten uden at have valgt
             // en side, burde vi kunne lukke programmet.
-            if (Service.Instance.SelectedPage == null)
+            if (Service.SelectedPage == null)
             {
                 Application.Current.Shutdown();
             }

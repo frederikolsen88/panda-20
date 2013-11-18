@@ -67,6 +67,7 @@ namespace Panda_20
                 string key = ((DisplayPage)PagesListBox.Items[0]).Name;
                 Service.SelectedPage = Service.Pages[key];
                 Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
+                Close();
             }
             else
             {

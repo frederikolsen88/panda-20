@@ -68,7 +68,7 @@ namespace Panda_20.gui
             if (result == MessageBoxResult.OK)
             {
                 // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
-                Application.Current.MainWindow.Close();
+                Application.Current.Shutdown();
             }
 
             if (result == MessageBoxResult.Cancel)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Facebook;
+using Panda_20.model;
 
 namespace Panda_20.service
 {
@@ -82,7 +83,14 @@ namespace Panda_20.service
             {
                 if (data["name"].Equals("comments"))
                 {
-                    // TODO Håndter én eller flere kommentarer
+                    foreach (JsonObject comment in (JsonArray)data["fql_result_set"])
+                    {
+                        string fromid = (string) comment["fromid"];
+                        string time = (string) comment["time"];
+                        string text = (string) comment["text"];
+                        string post_id = (string) comment["post_id"];
+                        PandaComment pc = new PandaComment(fromid, time, text, post_id);
+                    }
                 }
             }
         }

@@ -71,6 +71,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="model\ModelLag.cs" />
+    <Compile Include="model\PandaComment.cs" />
+    <Compile Include="model\PandaUser.cs" />
     <Compile Include="PageList.xaml.cs">
       <DependentUpon>PageList.xaml</DependentUpon>
     </Compile>

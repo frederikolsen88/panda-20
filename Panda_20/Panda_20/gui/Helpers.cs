@@ -64,7 +64,6 @@ namespace Panda_20.gui
 
             if (!_closing)
             {
-                _closing = true;
                 const string message = "Vil du afslutte Panda?";
                 const string caption = "Panda";
                 const MessageBoxButton buttons = MessageBoxButton.OKCancel;
@@ -76,6 +75,7 @@ namespace Panda_20.gui
                 if (result == MessageBoxResult.OK)
                 {
                     // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
+                    _closing = true;
                     Application.Current.Shutdown();
                 }
 

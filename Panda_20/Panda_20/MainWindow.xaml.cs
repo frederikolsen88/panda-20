@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Forms;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
@@ -73,6 +74,11 @@ namespace Panda_20
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
             // Option Logic ToDo
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            Window_Closing(this, e);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

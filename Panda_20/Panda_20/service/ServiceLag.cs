@@ -223,42 +223,40 @@ namespace Panda_20
             }
         }
 
-        // http://stackoverflow.com/questions/10077219/download-image-from-url-in-c-sharp
-
-        public static System.Windows.Controls.Image GetImageFromUrl(string url)
+        public static string getPictureURL(string req)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+            Uri reqAsUri;
 
-                using (HttpWebResponse httpWebReponse = (HttpWebResponse)httpWebRequest.GetResponse())
-                {
-                    using (Stream stream = httpWebReponse.GetResponseStream())
-                    {
-                        return ConvertImage(Image.FromStream(stream));
-                    }
-                }   
-        }
+            bool reqIsValid = Uri.TryCreate(req, UriKind.Absolute, out reqAsUri) && reqAsUri.Scheme == Uri.UriSchemeHttp;
 
-        // http://social.msdn.microsoft.com/Forums/vstudio/en-US/a6f74675-77f2-4dac-a7d9-971c77b0b5bf/convert-systemdrawingimage-to-systemwindowscontrolsimage
-
-        private static System.Windows.Controls.Image ConvertImage(Image img)
-        {
-            System.Windows.Controls.Image convertedImage = null;
-            try
+            if (reqIsValid)
             {
-                using (MemoryStream ms = new MemoryStream())
+                WebRequest request = WebRequest.Create(reqAsUri);
+                request.ContentType = "application/json; charset=utf-8";
+                var response = (HttpWebResponse) request.GetResponse();
+
+                string responseString;
+
+                using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
                 {
-                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                    ms.Seek(0, SeekOrigin.Begin);
-                    var decoder = BitmapDecoder.Create(ms, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                    convertedImage = new System.Windows.Controls.Image { Source = decoder.Frames[0] };
+                    responseString = streamReader.ReadToEnd();
+                }
+
+                if (responseString.Length > 0)
+                {
+                    
                 }
             }
-            catch (Exception)
+
+            else
             {
-                Debug.WriteLine("Konvertering fejlet!");
+                throw new Exception(req + " is not a valid HTTP URL.");
             }
 
-            return convertedImage;
+            
+
+            return "";
         }
+
     }
 }

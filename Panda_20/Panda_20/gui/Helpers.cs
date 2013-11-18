@@ -61,8 +61,12 @@ namespace Panda_20.gui
 
         public static void Close(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
-            if (!_closing)
+            
+            // Closing-flagget indikerer hvorvidt nedlukningen er i gang. Hvis ikke, viser vi en bekræftelses-popup.
+            // PageListen lukker når der er valgt en Facebook-side. Ergo skal vi sørge for, den KUN tager hele programmet
+            // med ned, hvis der IKKE er valgt en side.
+            // typeof(MainWindow) sørger for, nedlukning håndteres korrekt ift. notifyIcon'ets højrekliks-menu.
+            if ((!_closing) && (Service.SelectedPage == null) || (sender.GetType() == typeof(MainWindow)))
             {
                 const string message = "Do you want to close Panda?";
                 const string caption = "Panda";
@@ -85,7 +89,7 @@ namespace Panda_20.gui
                 }
             }
 
-            else
+            else if (sender.GetType() != typeof(PageList))
             {
                 Application.Current.Shutdown();
             }

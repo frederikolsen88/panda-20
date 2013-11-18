@@ -45,6 +45,7 @@ namespace Panda_20
 
             // Hvis brugeren ikke administrerer nogen pages, viser vi en
             // popup om dette.
+
             if (PagesListBox.Items.Count == 0)
             {
                 const string message = "Panda requires that you are an administrator of at least one Facebook page. Click OK to close the program.";
@@ -84,7 +85,7 @@ namespace Panda_20
         {
             foreach (KeyValuePair<string, string> pair in Service.PagePictures)
             {
-                DisplayPage page = new DisplayPage(pair.Key, Service.GetImageFromUrl(pair.Value));
+                DisplayPage page = new DisplayPage(pair.Key, Service.DownloadImage(pair.Value));
                 PagesListBox.Items.Add(page);
             }
         }
@@ -102,7 +103,7 @@ namespace Panda_20
         // bruges til at få vist billede og navn i ListBox'en.
         public class DisplayPage
         {
-            public DisplayPage(string name, Image image)
+            public DisplayPage(string name, BitmapImage image)
             {
                 Name = name;
                 Image = image;
@@ -110,7 +111,7 @@ namespace Panda_20
 
             public string Name { get; set; }
 
-            public Image Image { get; set; }
+            public BitmapImage Image { get; set; }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing;
+using System.Linq;
 using System.Net;
 using System.Runtime.Remoting.Messaging;
 using System.Threading;
@@ -12,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Xml.Linq;
 using Facebook;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Panda_20.service;
 using Image = System.Drawing.Image;
@@ -251,12 +253,17 @@ namespace Panda_20
 
         private static string GetPictureUrl(string req)
         {
-            if (_client == null) 
+            string pictureUrl = "";
+
+            if (_webClient == null) 
                 _webClient = new WebClient();
 
-            var response = _webClient.DownloadString(req);
-            JObject jsonResponse = JObject.Parse(response);
-            string pictureUrl = (string) jsonResponse["url"];
+            string response = _webClient.DownloadString(req);
+
+            // Jeg har haft problemer med at arbejde med Json'en, der kommer tilbage.
+            // Ergo denne workaround.
+
+            pictureUrl = response.Split('"')[5].Replace(@"\", "");
 
             return pictureUrl;
         }

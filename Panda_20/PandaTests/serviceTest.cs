@@ -17,9 +17,8 @@ namespace PandaTests
 
             String value = service.GetXmlElement("test");
             Assert.AreEqual("it seems to work", value);
-
-
-
         }
+
+
     }
 }

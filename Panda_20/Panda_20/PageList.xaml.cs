@@ -74,6 +74,11 @@ namespace Panda_20
             }
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MiscHelper.Close(this, e);
+        }
+
         private void LoadPictures()
         {
             foreach (KeyValuePair<string, string> pair in Service.PagePictures)
@@ -90,13 +95,7 @@ namespace Panda_20
             Close();
 
             // TODO ... og så sker der ellers ting og sager.
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            MiscHelper.Close(this, e);
-        }
-        
+        }        
 
         // Repræsentation af en Facebook-side som udelukkende skal
         // bruges til at få vist billede og navn i ListBox'en.

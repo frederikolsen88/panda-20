@@ -47,8 +47,8 @@ namespace Panda_20
             // popup om dette.
             if (PagesListBox.Items.Count == 0)
             {
-                const string message = "Panda kræver, at du administrerer mindst én Facebook-side. Klik OK for at lukke programmet.";
-                const string caption = "Ingen sider fundet";
+                const string message = "Panda requires that you are an administrator of at least one Facebook page. Click OK to close the program.";
+                const string caption = "No pages found";
                 const MessageBoxButton button = MessageBoxButton.OK;
                 const MessageBoxImage image = MessageBoxImage.Warning;
 

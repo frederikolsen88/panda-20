@@ -64,7 +64,7 @@ namespace Panda_20.gui
 
             if (!_closing)
             {
-                const string message = "Vil du afslutte Panda?";
+                const string message = "Do you want to close Panda?";
                 const string caption = "Panda";
                 const MessageBoxButton buttons = MessageBoxButton.OKCancel;
                 const MessageBoxImage image = MessageBoxImage.Question;

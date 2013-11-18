@@ -56,13 +56,15 @@ namespace Panda_20.gui
 
     class MiscHelper
     {
+
+        private static bool _closing = false;
+
         public static void Close(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            bool closing = false;
 
-            if (!closing)
+            if (!_closing)
             {
-                closing = true;
+                _closing = true;
                 const string message = "Vil du afslutte Panda?";
                 const string caption = "Panda";
                 const MessageBoxButton buttons = MessageBoxButton.OKCancel;

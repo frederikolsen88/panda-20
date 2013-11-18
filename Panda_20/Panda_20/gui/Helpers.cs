@@ -68,7 +68,7 @@ namespace Panda_20.gui
             // typeof(MainWindow) sørger for, nedlukning håndteres korrekt ift. notifyIcon'ets højrekliks-menu.
             if (!_closing)
             {
-                if (Service.SelectedPage == null || sender.GetType() == typeof (MainWindow) || Service.FacebookToken == null)
+                if (Service.SelectedPage == null || sender.GetType() == typeof (MainWindow) || Service.FacebookToken == "")
                 {
                         const string message = "Do you want to close Panda?";
                         const string caption = "Panda";

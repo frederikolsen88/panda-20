@@ -14,7 +14,15 @@ namespace Panda_20
     /// </summary>
     public partial class MainWindow : Window
     {
-        private NotifyIcon notifyIcon;
+        private static NotifyIcon _notifyIcon;
+
+        public static NotifyIcon NotifyIcon
+        {
+            get
+            {
+                return _notifyIcon;
+            }
+        }
         private ContextMenu contextMenu;
         private MenuItem menuItemExit;
         private MenuItem menuItemOptions;
@@ -23,14 +31,14 @@ namespace Panda_20
         {
             // THOR IS HERE!
             InitializeComponent();
-            notifyIcon = new NotifyIcon();
-            notifyIcon.Icon =  Properties.Resources.pandaIcon;
+            _notifyIcon = new NotifyIcon();
+            _notifyIcon.Icon =  Properties.Resources.pandaIcon;
 
             contextMenuSetup();
             Hide();
 
             WindowState = System.Windows.WindowState.Minimized;
-            notifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is currently running", ToolTipIcon.Info);
+            _notifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is currently running", ToolTipIcon.Info);
             BrowserWindow browserWindow = new BrowserWindow();
             browserWindow.Show();
         }
@@ -59,12 +67,12 @@ namespace Panda_20
 
             // The ContextMenu property sets the menu that will 
             // appear when the systray icon is right clicked.
-            notifyIcon.ContextMenu = this.contextMenu;
+            _notifyIcon.ContextMenu = this.contextMenu;
 
             // The Text property sets the text that will be displayed, 
             // in a tooltip, when the mouse hovers over the systray icon.
-            notifyIcon.Text = "Panda";
-            notifyIcon.Visible = true;
+            _notifyIcon.Text = "Panda";
+            _notifyIcon.Visible = true;
         }
     
         private void menuItemExit_Click(object Sender, System.EventArgs e)

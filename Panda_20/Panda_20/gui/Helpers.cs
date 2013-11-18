@@ -59,6 +59,7 @@ namespace Panda_20.gui
 
                 if (result == MessageBoxResult.OK)
                 {
+                   MainWindow.NotifyIcon.Dispose();
                    System.Environment.Exit(0);
                 }
 

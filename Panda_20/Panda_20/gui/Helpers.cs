@@ -61,6 +61,7 @@ namespace Panda_20.gui
 
         public static void Close(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // fix, således der kommer popup ved lukning af browser, men kun uden login.
             
             // Closing-flagget indikerer hvorvidt nedlukningen er i gang. Hvis ikke, viser vi en bekræftelses-popup.
             // PageListen lukker når der er valgt en Facebook-side. Ergo skal vi sørge for, den KUN tager hele programmet

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Panda_20
 {
@@ -71,6 +73,28 @@ namespace Panda_20
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
             // Option Logic ToDo
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            const string message = "Vil du afslutte Panda?";
+            const string caption = "Panda";
+            const MessageBoxButton button = MessageBoxButton.OKCancel;
+            const MessageBoxImage image = MessageBoxImage.Question;
+
+            MessageBoxResult result = MessageBox.Show(message, caption, button, image);
+
+            if (result == MessageBoxResult.OK)
+            {
+                // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
+                Application.Current.Shutdown();
+            }
+
+            if (result == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+
         }
     }
 }

@@ -239,12 +239,23 @@ namespace Panda_20
 
         public static BitmapImage DownloadImage(string fullUrl)
         {
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(fullUrl, UriKind.Absolute);
-            bitmap.EndInit();
+            Uri urlAsUri;
+            bool urlIsValid = Uri.TryCreate(fullUrl, UriKind.Absolute, out urlAsUri);
 
-            return bitmap;
+            if (urlIsValid)
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = urlAsUri;
+                bitmap.EndInit();
+
+                return bitmap;
+            }
+
+            else
+            {
+                throw new UriFormatException(fullUrl + " could not be parsed as an Uri!");
+            }
         }
 
         /**
@@ -258,12 +269,20 @@ namespace Panda_20
             if (_webClient == null) 
                 _webClient = new WebClient();
 
-            string response = _webClient.DownloadString(req);
+            try
+            {
+                string response = _webClient.DownloadString(req);
 
-            // Jeg har haft problemer med at arbejde med Json'en, der kommer tilbage.
-            // Ergo denne workaround.
+                // Jeg har haft problemer med at arbejde med Json'en, der kommer tilbage.
+                // Ergo denne workaround.
 
-            pictureUrl = response.Split('"')[5].Replace(@"\", "");
+                pictureUrl = response.Split('"')[5].Replace(@"\", "");
+            }
+
+            catch (WebException)
+            {
+                pictureUrl = @"\resources\placeholder.gif";
+            }
 
             return pictureUrl;
         }

@@ -58,22 +58,34 @@ namespace Panda_20.gui
     {
         public static void Close(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            const string message = "Vil du afslutte Panda?";
-            const string caption = "Panda";
-            const MessageBoxButton buttons = MessageBoxButton.OKCancel;
-            const MessageBoxImage image = MessageBoxImage.Question;
+            bool closing = false;
 
-            MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, buttons, image);
-
-            if (result == MessageBoxResult.OK)
+            if (!closing)
             {
-                // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
-                Application.Current.Shutdown();
+                closing = true;
+                const string message = "Vil du afslutte Panda?";
+                const string caption = "Panda";
+                const MessageBoxButton buttons = MessageBoxButton.OKCancel;
+                const MessageBoxImage image = MessageBoxImage.Question;
+
+                MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, buttons,
+                    image);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
+                    Application.Current.Shutdown();
+                }
+
+                if (result == MessageBoxResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
             }
 
-            if (result == MessageBoxResult.Cancel)
+            else
             {
-                e.Cancel = true;
+                Application.Current.Shutdown();
             }
         }
     }

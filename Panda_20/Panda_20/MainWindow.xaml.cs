@@ -44,7 +44,7 @@ namespace Panda_20
 
             // Initialize contextMenu
             this.contextMenu.MenuItems.AddRange(
-                    new System.Windows.Forms.MenuItem[] { this.menuItemExit , this.menuItemOptions});
+                    new System.Windows.Forms.MenuItem[] { this.menuItemOptions, this.menuItemExit });
 
             // Initialize menuItemEixt 
             this.menuItemExit.Index = 1;

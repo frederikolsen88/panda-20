@@ -67,7 +67,6 @@ namespace Panda_20
                 string key = (string)PagesListBox.Items[0];
                 Service.SelectedPage = Service.Pages[key];
                 Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
-                Close();
             }
             else
             {
@@ -95,12 +94,7 @@ namespace Panda_20
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            // Hvis brugeren lukker pagelisten uden at have valgt
-            // en side, burde vi kunne lukke programmet.
-            if (Service.SelectedPage == null)
-            {
-                Application.Current.Shutdown();
-            }
+            MiscHelper.Close(this, e);
         }
         
 

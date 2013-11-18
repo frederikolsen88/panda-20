@@ -45,21 +45,14 @@ namespace Panda_20
                 if (BrowserHelper.FetchToken())
                 {
                     _pageList = new PageList();
-                    Close();
+                    Hide();
                 }
             }
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Hvis pageListen ikke er spawned når browseren lukkes,
-            // er det brugeren, der har gjort det. Så må vi godt
-            // lukke alt ned. Det er ikke et kønt tjek, men det
-            // virker lige nu.
-            if (_pageList == null)
-            {
-                Application.Current.Shutdown();
-            }
+            MiscHelper.Close(sender, e);
         }
     }
 }

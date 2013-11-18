@@ -53,4 +53,28 @@ namespace Panda_20.gui
             return hasToken;
         }
     }
+
+    class MiscHelper
+    {
+        public static void Close(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            const string message = "Vil du afslutte Panda?";
+            const string caption = "Panda";
+            const MessageBoxButton buttons = MessageBoxButton.OKCancel;
+            const MessageBoxImage image = MessageBoxImage.Question;
+
+            MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, buttons, image);
+
+            if (result == MessageBoxResult.OK)
+            {
+                // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
+                Application.Current.MainWindow.Close();
+            }
+
+            if (result == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
+    }
 }

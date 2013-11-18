@@ -79,6 +79,7 @@ namespace Panda_20.service
 
         public static void createModelObjects(JsonObject fqlresult)
         {
+            // COMMIT FOR SCIENCE
             ArrayList newNotifications = new ArrayList();
 
             foreach (JsonObject data in (JsonArray)fqlresult["data"])

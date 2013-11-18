@@ -20,6 +20,7 @@ namespace Panda_20
             // THOR IS HERE!
             InitializeComponent();
             notifyIcon = new NotifyIcon();
+
             contextMenuSetup();
             Hide();
 
@@ -32,6 +33,11 @@ namespace Panda_20
         // Handles the Menu
         public void contextMenuSetup()
         {
+            contextMenu = new ContextMenu();
+            menuItemExit = new MenuItem();
+            menuItemOptions = new MenuItem();
+            
+
             // Initialize contextMenu
             this.contextMenu.MenuItems.AddRange(
                     new System.Windows.Forms.MenuItem[] { this.menuItemExit , this.menuItemOptions});

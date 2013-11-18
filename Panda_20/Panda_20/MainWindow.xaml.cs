@@ -16,8 +16,8 @@ namespace Panda_20
     {
         private NotifyIcon notifyIcon;
         private ContextMenu contextMenu;
-        private MenuItem menuItemExit;
         private MenuItem menuItemOptions;
+        private MenuItem menuItemExit;
 
         public MainWindow()
         {
@@ -39,23 +39,28 @@ namespace Panda_20
         public void contextMenuSetup()
         {
             contextMenu = new ContextMenu();
-            menuItemExit = new MenuItem();
             menuItemOptions = new MenuItem();
+            menuItemExit = new MenuItem();
             
 
             // Initialize contextMenu
-            this.contextMenu.MenuItems.AddRange(
-                    new System.Windows.Forms.MenuItem[] { this.menuItemOptions, this.menuItemExit });
+
+
+            this.contextMenu.MenuItems.Add(1,this.menuItemExit);
+            this.contextMenu.MenuItems.Add(0,this.menuItemOptions);
+
+
+            // Initialize menuItemOption 
+            this.menuItemOptions.Index = 0;
+            this.menuItemOptions.Text = "O&ption";
+            this.menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
 
             // Initialize menuItemEixt 
             this.menuItemExit.Index = 1;
             this.menuItemExit.Text = "E&xit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
 
-            // Initialize menuItemEixt 
-            this.menuItemOptions.Index = 0;
-            this.menuItemOptions.Text = "O&ption";
-            this.menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
+            
 
             // The ContextMenu property sets the menu that will 
             // appear when the systray icon is right clicked.

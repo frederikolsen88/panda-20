@@ -74,16 +74,16 @@ namespace Panda_20.service
 
             Console.WriteLine("unix: " + unix_timeAfter);
 
-            createNotifications(result);
+            createModelObjects(result);
         }
 
-        public static void createNotifications(JsonObject fqlresult)
+        public static void createModelObjects(JsonObject fqlresult)
         {
             foreach (JsonObject data in (JsonArray)fqlresult["data"])
             {
                 if (data["name"].Equals("comments"))
                 {
-                    foreach (JsonObject comment in (JsonArray)data["fql_result_set"])
+                    foreach(JsonObject comment in (JsonArray)data["fql_result_set"])
                     {
                         string fromid = (string) comment["fromid"];
                         string time = (string) comment["time"];
@@ -91,6 +91,17 @@ namespace Panda_20.service
                         string post_id = (string) comment["post_id"];
                         PandaComment pc = new PandaComment(fromid, time, text, post_id);
                     }
+                }
+                else if (data["name"].Equals("posts"))
+                {
+                    foreach (JsonObject post in (JsonArray) data["fql_result_set"])
+                    {
+                        
+                    }
+                }
+                else if (data["name"].Equals("private_messages"))
+                {
+                    
                 }
             }
         }

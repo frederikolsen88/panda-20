@@ -72,6 +72,8 @@
     </Compile>
     <Compile Include="model\ModelLag.cs" />
     <Compile Include="model\PandaComment.cs" />
+    <Compile Include="model\PandaPost.cs" />
+    <Compile Include="model\PandaPrivateMessage.cs" />
     <Compile Include="model\PandaUser.cs" />
     <Compile Include="PageList.xaml.cs">
       <DependentUpon>PageList.xaml</DependentUpon>

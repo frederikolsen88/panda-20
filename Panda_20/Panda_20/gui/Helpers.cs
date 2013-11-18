@@ -24,7 +24,7 @@ namespace Panda_20.gui
 
         public static void InitBrowser(WebBrowser browser)
         {
-            CurrentUri = new Uri(Service.Instance.GetXmlElement("fbUrl"));
+            CurrentUri = new Uri(Service.GetXmlElement("fbUrl"));
             browser.Navigate(CurrentUri);
         }
 
@@ -46,11 +46,58 @@ namespace Panda_20.gui
 
                 string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
 
-                Service.Instance.TokenAndExpiresIn[0] = token;
-                Service.Instance.TokenAndExpiresIn[1] = expiresIn;
+                Service.TokenAndExpiresIn[0] = token;
+                Service.TokenAndExpiresIn[1] = expiresIn;
             }
 
             return hasToken;
+        }
+    }
+
+    class MiscHelper
+    {
+
+        private static bool _closing = false;
+
+        public static void Close(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // fix, således der kommer popup ved lukning af browser, men kun uden login.
+            
+            // Closing-flagget indikerer hvorvidt nedlukningen er i gang. Hvis ikke, viser vi en bekræftelses-popup.
+            // PageListen lukker når der er valgt en Facebook-side. Ergo skal vi sørge for, den KUN tager hele programmet
+            // med ned, hvis der IKKE er valgt en side.
+            // typeof(MainWindow) sørger for, nedlukning håndteres korrekt ift. notifyIcon'ets højrekliks-menu.
+            if (!_closing)
+            {
+                if (sender.GetType() == typeof(MainWindow) || Service.TokenAndExpiresIn[0] == "" || (Service.SelectedPage == null && sender.GetType() == typeof(PageList)))
+                {
+                        const string message = "Do you want to close Panda?";
+                        const string caption = "Panda";
+                        const MessageBoxButton buttons = MessageBoxButton.OKCancel;
+                        const MessageBoxImage image = MessageBoxImage.Question;
+
+                        MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, buttons,
+                            image);
+
+                        if (result == MessageBoxResult.OK)
+                        {
+                            // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
+                            _closing = true;
+                            Application.Current.Shutdown();
+                        }
+
+                        if (result == MessageBoxResult.Cancel)
+                        {
+                            e.Cancel = true;
+                        }
+                    }
+                }
+                
+
+            else if (sender.GetType() != typeof(PageList))
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }

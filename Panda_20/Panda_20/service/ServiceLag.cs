@@ -21,19 +21,17 @@ namespace Panda_20
     /// <summary>
     /// Service-klasse der tillader adgang mellem GUI og model-lag jævnført Model/View/Controller-modellen.
     /// </summary>
-    public sealed class Service
+    public static class Service
     {
-
-        private static readonly Service ServiceInstance = new Service();
 
         // TODO Redundans; vi skal bruge XML'en alligevel
         private const String AppID = "470029853116845";
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
-        private string GrantType { get; set; }
+        private static string GrantType { get; set; }
 
-        private String _facebookToken;
+        private static String _facebookToken;
 
-        public String FacebookToken
+        public static String FacebookToken
         {
             get
             {
@@ -45,10 +43,11 @@ namespace Panda_20
 
         // Ovenstående kommentar forklarer det vist. Bemærk dog, at jeg hele tiden har haft XML'en
         // in mente. Derfor er string[]'et bare en temp løsning for at få sendt dataene videre fra GUI-laget. -Frede
-        public string[] TokenAndExpiresIn { get; set; }
-        private Dictionary<string, JsonObject> _pages;
+        private static string[] tokenAndExpiresIn = new string[2];
 
-        public Dictionary<string, JsonObject> Pages
+        private static Dictionary<string, JsonObject> _pages = new Dictionary<string, JsonObject>();
+
+        public static Dictionary<string, JsonObject> Pages
         {
             get
             {
@@ -56,9 +55,9 @@ namespace Panda_20
             }
         }
 
-        private Dictionary<string, string> _pagePictures;
+        private static Dictionary<string, string> _pagePictures = new Dictionary<string, string>();
 
-        public Dictionary<string, string> PagePictures
+        public static Dictionary<string, string> PagePictures
         {
             get
             {
@@ -66,89 +65,42 @@ namespace Panda_20
             }
         }
 
-        private FacebookClient _client;
-        private FacebookClient _pageClient;
-        public JsonObject SelectedPage { get; set; }
-        private long lastSuccessfullFacebookUpdate;
+        private static FacebookClient _client;
+        private static FacebookClient _pageClient;
+        public static JsonObject SelectedPage { get; set; }
+        private static long lastSuccessfullFacebookUpdate;
 
-        private Service()
+        //private Service()
+        //{
+        //    TokenAndExpiresIn = new string[2];
+        //    _pages = new Dictionary<string, JsonObject>();
+        //    _pagePictures = new Dictionary<string, string>();
+        //}
+
+        //public static Service Instance
+        //{
+        //    get
+        //    {
+        //        return ServiceInstance;
+        //    }
+        //}
+
+        public static long LastSuccessfullFacebookUpdate
         {
-            TokenAndExpiresIn = new string[2];
-            _pages = new Dictionary<string, JsonObject>();
-            _pagePictures = new Dictionary<string, string>();
+            get { return lastSuccessfullFacebookUpdate; }
+            set { lastSuccessfullFacebookUpdate = value; }
         }
 
-        public static Service Instance
+        public static FacebookClient PageClient
         {
-            get
-            {
-                return ServiceInstance;
-            }
+            get { return _pageClient; }
+            set { _pageClient = value; }
         }
 
-
-
-        //-----------------------------------------------------------
-        //--------------<Super Duper 1 Minute Method>---------Author: HJTH 
-        //-----------------------------------------------------------
-        // Ask Facebook what's up! Method needs to run asynchronously to work.
-
-        public async void GetFacebookUpdates()
+        public static string[] TokenAndExpiresIn
         {
-            Console.WriteLine("UpdateFBMethod");
-
-            // This is simply for monitoring how long this runs
-            long unix_time = Misc.UnixTimeNow(0);
-            Console.WriteLine("unix before: " + unix_time);
-
-            if (this.lastSuccessfullFacebookUpdate == 0)
-            {
-                this.lastSuccessfullFacebookUpdate = unix_time;
-            }
-
-            bool successfullconnect = true;
-            // To test this, add "-60" to the below timestamp so that you have time to add a message somewhere. This is not needed once we get this method to run once a minute.
-            long timestamp = this.lastSuccessfullFacebookUpdate;
-            var result = new object();
-
-            // Collecting the data. I still need to get comment_authors in the same way I did post_authors.
-            try
-            {
-                result = await _pageClient.GetTaskAsync("fql",
-                    new
-                    {
-                        q = new
-                        {
-                            comments =
-                                "SELECT fromid, text, time, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
-                                SelectedPage["id"] + "') AND time > " + timestamp,
-                            posts =
-                                "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" +
-                                SelectedPage["id"] + "' AND created_time > " + timestamp,
-                            post_authors = "SELECT uid, name FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
-                            private_messages =
-                                "SELECT sender, recipients, body, timestamp FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND (timestamp/1000) > " +
-                                timestamp
-                        }
-                    });
-            }
-            catch (FacebookOAuthException)
-            {
-                // TODO Håndter fejl
-                successfullconnect = false;
-
-            }
-
-            // Here we save the current unix time BEFORE working with the data. This might be enough to ensure that we will never miss anything? Probably not though...
-            long unix_timeAfter = Misc.UnixTimeNow(0);
-            if (successfullconnect)
-            {
-                this.lastSuccessfullFacebookUpdate = unix_timeAfter;
-            }
-
-            Console.WriteLine("FQL result: " + result.ToString());
-
-            Console.WriteLine("unix: " + unix_timeAfter);
+            get { return tokenAndExpiresIn; }
+            set { tokenAndExpiresIn = value; }
         }
 
 
@@ -158,21 +110,21 @@ namespace Panda_20
         // This FacebookClient is needed to get posts, private messages
         // and more from the selected page
 
-        public FacebookClient SetPageFacebookClient(string pageAccessToken)
+        public static FacebookClient SetPageFacebookClient(string pageAccessToken)
         {
             try
             {
                 Console.WriteLine(SelectedPage["id"]);
                 Console.WriteLine("page access token: " + pageAccessToken);
                 FacebookClient pageFacebookClient = new FacebookClient(pageAccessToken);
-                this._pageClient = pageFacebookClient;
-                GetFacebookUpdates();
+                PageClient = pageFacebookClient;
+                FBConnect.GetFacebookUpdates();
             }
             catch (FacebookOAuthException)
             {
                 //TODO Håndter fejl
             }
-            return this._pageClient;
+            return PageClient;
         }
 
         //-----------------------------------------------------------
@@ -182,7 +134,7 @@ namespace Panda_20
         //as an offline app (selected on Facebook), but I will leave 
         // it here for now.
 
-        public String GetLongLivedAccessToken(string shortLivedAccessToken)
+        public static String GetLongLivedAccessToken(string shortLivedAccessToken)
         {
             JsonObject appData = new JsonObject();
 
@@ -201,7 +153,7 @@ namespace Panda_20
         //-----------------------------------------------------------
         //--------------<READ XML VALUE>---------------- Author: TRR 
         //-----------------------------------------------------------
-        public String GetXmlElement(String elementName)
+        public static String GetXmlElement(String elementName)
         {
 
             XDocument document = XDocument.Load(@"service\AppValues.xml");
@@ -222,13 +174,13 @@ namespace Panda_20
         // Givet accesstoken'en, sætter den og opdaterer FacebookClient
         // (og returner den)
 
-        public FacebookClient SetFacebookToken(String accessToken)
+        public static FacebookClient SetFacebookToken(String accessToken)
         {
             try
             {
-                this._facebookToken = accessToken;
+                _facebookToken = accessToken;
                 FacebookClient newClient = new FacebookClient(accessToken);
-                this._client = newClient;
+                _client = newClient;
             }
             catch (FacebookOAuthException)
             {
@@ -239,7 +191,7 @@ namespace Panda_20
 
             }
 
-            return this._client;
+            return _client;
 
         }
 
@@ -247,7 +199,7 @@ namespace Panda_20
         //----------<FETCH USER'S PAGES>---------------- Author: FOL 
         //-----------------------------------------------------------
 
-        public void FetchPages()
+        public static void FetchPages()
         {
             // Jeg kan ikke benytte _client.AccessToken i metodekaldet
             // nedenfor, da _client er null på det tidspunkt. Men den
@@ -273,7 +225,7 @@ namespace Panda_20
 
         // http://stackoverflow.com/questions/10077219/download-image-from-url-in-c-sharp
 
-        public System.Windows.Controls.Image GetImageFromUrl(string url)
+        public static System.Windows.Controls.Image GetImageFromUrl(string url)
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
 
@@ -288,7 +240,7 @@ namespace Panda_20
 
         // http://social.msdn.microsoft.com/Forums/vstudio/en-US/a6f74675-77f2-4dac-a7d9-971c77b0b5bf/convert-systemdrawingimage-to-systemwindowscontrolsimage
 
-        private System.Windows.Controls.Image ConvertImage(Image img)
+        private static System.Windows.Controls.Image ConvertImage(Image img)
         {
             System.Windows.Controls.Image convertedImage = null;
             try

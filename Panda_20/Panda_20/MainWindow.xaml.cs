@@ -20,6 +20,7 @@ namespace Panda_20
             // THOR IS HERE!
             InitializeComponent();
             notifyIcon = new NotifyIcon();
+            notifyIcon.Icon =  Properties.Resources.pandaIcon;
 
             contextMenuSetup();
             Hide();

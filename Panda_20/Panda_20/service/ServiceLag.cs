@@ -5,12 +5,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Drawing;
 using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Xml.Linq;
 using Facebook;
+using Newtonsoft.Json.Linq;
 using Panda_20.service;
 using Image = System.Drawing.Image;
 
@@ -217,46 +219,42 @@ namespace Panda_20
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
 
-                    string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture";
-                    _pagePictures.Add((string) jsonAccount["name"], picUrl);
+                    // TODO picUrl kan omnavngives for bedre forståelse. Se getPictureURL(..)
+
+                    string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
+                    _pagePictures.Add((string) jsonAccount["name"], GetPictureUrl(picUrl));
                 }
             }
         }
 
-        public static string getPictureURL(string req)
+        // TODO Fejlhåndtering på de to nedenstående metoder
+
+        /**
+         * Streamer et bitmap-billede fra et URL.
+         */
+
+        public static BitmapImage DownloadImage(string fullUrl)
         {
-            Uri reqAsUri;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullUrl), UriKind.Absolute);
+            bitmap.EndInit();
 
-            bool reqIsValid = Uri.TryCreate(req, UriKind.Absolute, out reqAsUri) && reqAsUri.Scheme == Uri.UriSchemeHttp;
-
-            if (reqIsValid)
-            {
-                WebRequest request = WebRequest.Create(reqAsUri);
-                request.ContentType = "application/json; charset=utf-8";
-                var response = (HttpWebResponse) request.GetResponse();
-
-                string responseString;
-
-                using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
-                {
-                    responseString = streamReader.ReadToEnd();
-                }
-
-                if (responseString.Length > 0)
-                {
-                    
-                }
-            }
-
-            else
-            {
-                throw new Exception(req + " is not a valid HTTP URL.");
-            }
-
-            
-
-            return "";
+            return bitmap;
         }
 
+        /**
+         * Finder det korrekte URL til et Facebookbillede via Graph API'et.
+         */
+
+        private static string GetPictureUrl(string req)
+        {
+            WebClient client = new WebClient();
+            var response = client.DownloadString(req);
+            JObject jsonResponse = JObject.Parse(response);
+            string pictureUrl = (string) jsonResponse["url"];
+
+            return pictureUrl;
+        }
     }
 }

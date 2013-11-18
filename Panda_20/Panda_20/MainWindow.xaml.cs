@@ -46,12 +46,12 @@ namespace Panda_20
                     new System.Windows.Forms.MenuItem[] { this.menuItemExit , this.menuItemOptions});
 
             // Initialize menuItemEixt 
-            this.menuItemExit.Index = 0;
+            this.menuItemExit.Index = 1;
             this.menuItemExit.Text = "E&xit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
 
             // Initialize menuItemEixt 
-            this.menuItemOptions.Index = 1;
+            this.menuItemOptions.Index = 0;
             this.menuItemOptions.Text = "O&ption";
             this.menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
 

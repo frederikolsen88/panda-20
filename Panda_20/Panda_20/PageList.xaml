@@ -29,6 +29,9 @@
                        FontWeight="Bold"
                        Grid.Column="1"
                        Grid.Row="0"></TextBlock>
+                    <TextBlock Text="{Binding Path=Likes}"
+                       Grid.Column="1"
+                       Grid.Row="1"></TextBlock>
                 </Grid>
             </DataTemplate>
 

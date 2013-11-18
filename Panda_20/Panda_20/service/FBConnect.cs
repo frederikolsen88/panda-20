@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,9 +51,8 @@ namespace Panda_20.service
                                 "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" +
                                 Service.SelectedPage["id"] + "' AND created_time > " + timestamp,
                             posts_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
-                            private_messages =
-                                "SELECT sender, recipients, body, timestamp FROM unified_message WHERE thread_id IN (SELECT thread_id FROM unified_thread WHERE folder = 'inbox') AND (timestamp/1000) > " +
-                                timestamp
+                            private_messages = "SELECT author_id, body, created_time FROM message WHERE thread_id IN (SELECT thread_id FROM thread WHERE folder_id = '0') AND created_time > " + timestamp,
+                            private_messages_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT author_id FROM #private_messages)"
                         }
                     }) as JsonObject;
             }
@@ -79,31 +79,47 @@ namespace Panda_20.service
 
         public static void createModelObjects(JsonObject fqlresult)
         {
+            ArrayList newNotifications = new ArrayList();
+
             foreach (JsonObject data in (JsonArray)fqlresult["data"])
             {
                 if (data["name"].Equals("comments"))
                 {
                     foreach(JsonObject comment in (JsonArray)data["fql_result_set"])
                     {
-                        string fromid = (string) comment["fromid"];
-                        string time = (string) comment["time"];
-                        string text = (string) comment["text"];
-                        string post_id = (string) comment["post_id"];
+                        string fromid = Convert.ToString(comment["fromid"]);
+                        string time = Convert.ToString(comment["time"]);
+                        string text = Convert.ToString(comment["text"]);
+                        string post_id = Convert.ToString(comment["post_id"]);
                         PandaComment pc = new PandaComment(fromid, time, text, post_id);
+                        newNotifications.Add(pc);
                     }
                 }
                 else if (data["name"].Equals("posts"))
                 {
-                    foreach (JsonObject post in (JsonArray) data["fql_result_set"])
+                    foreach (JsonObject post in (JsonArray)data["fql_result_set"])
                     {
-                        
+                        string actor_id = Convert.ToString(post["actor_id"]);
+                        string created_time = Convert.ToString(post["created_time"]);
+                        string message = Convert.ToString(post["message"]);
+                        string type = Convert.ToString(post["type"]);
+                        PandaPost pp = new PandaPost(actor_id, created_time, message, type);
+                        newNotifications.Add(pp);
                     }
                 }
                 else if (data["name"].Equals("private_messages"))
                 {
-                    
+                    foreach (JsonObject private_message in (JsonArray) data["fql_result_set"])
+                    {
+                        string author_id = Convert.ToString(private_message["author_id"]);
+                        string created_time = Convert.ToString(private_message["created_time"]);
+                        string body = Convert.ToString(private_message["body"]);
+                        PandaPrivateMessage ppm = new PandaPrivateMessage(author_id, created_time, body);
+                        newNotifications.Add(ppm);
+                    }
                 }
             }
+            Console.WriteLine(newNotifications);
         }
 
     }

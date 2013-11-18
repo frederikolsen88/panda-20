@@ -69,6 +69,8 @@ namespace Panda_20
 
         private static FacebookClient _client;
         private static FacebookClient _pageClient;
+
+        private static WebClient _webClient;
         public static JsonObject SelectedPage { get; set; }
         private static long lastSuccessfullFacebookUpdate;
 
@@ -237,7 +239,7 @@ namespace Panda_20
         {
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri(fullUrl), UriKind.Absolute);
+            bitmap.UriSource = new Uri(fullUrl, UriKind.Absolute);
             bitmap.EndInit();
 
             return bitmap;
@@ -249,8 +251,10 @@ namespace Panda_20
 
         private static string GetPictureUrl(string req)
         {
-            WebClient client = new WebClient();
-            var response = client.DownloadString(req);
+            if (_client == null) 
+                _webClient = new WebClient();
+
+            var response = _webClient.DownloadString(req);
             JObject jsonResponse = JObject.Parse(response);
             string pictureUrl = (string) jsonResponse["url"];
 

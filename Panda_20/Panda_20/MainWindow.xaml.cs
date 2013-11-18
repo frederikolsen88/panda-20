@@ -52,9 +52,9 @@ namespace Panda_20
             this.menuItemExit.Text = "E&xit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
 
-            // Initialize menuItemEixt 
+            // Initialize menuItemOptions 
             this.menuItemOptions.Index = 0;
-            this.menuItemOptions.Text = "O&ption";
+            this.menuItemOptions.Text = "O&ptions";
             this.menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
 
             // The ContextMenu property sets the menu that will 

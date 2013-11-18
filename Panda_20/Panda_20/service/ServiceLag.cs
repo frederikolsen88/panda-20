@@ -226,7 +226,7 @@ namespace Panda_20
                     // TODO picUrl kan omnavngives for bedre forståelse. Se getPictureURL(..)
 
                     string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
-                    _pagePictures.Add((string) jsonAccount["name"], GetPictureUrl(picUrl));
+                    _pagePictures.Add((string) jsonAccount["name"], GetPagePictureUrl(picUrl));
                 }
             }
         }
@@ -262,7 +262,7 @@ namespace Panda_20
          * Finder det korrekte URL til et Facebookbillede via Graph API'et.
          */
 
-        private static string GetPictureUrl(string req)
+        private static string GetPagePictureUrl(string req)
         {
             string pictureUrl = "";
 

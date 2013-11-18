@@ -52,7 +52,8 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MiscHelper.Close(sender, e);
+            if (Service.TokenAndExpiresIn[0] == null)
+            MiscHelper.ShowClosingPopUp(this, e);
         }
     }
 }

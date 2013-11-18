@@ -78,7 +78,8 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MiscHelper.Close(this, e);
+            if (Service.SelectedPage == null)
+                MiscHelper.ShowClosingPopUp(this, e);
         }
 
         private void LoadPictures()

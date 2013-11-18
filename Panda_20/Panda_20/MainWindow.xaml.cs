@@ -44,18 +44,18 @@ namespace Panda_20
             
 
             // Initialize contextMenu
-            this.contextMenu.MenuItems.AddRange(
+            contextMenu.MenuItems.AddRange(
                     new System.Windows.Forms.MenuItem[] { this.menuItemOptions, this.menuItemExit });
 
             // Initialize menuItemEixt 
-            this.menuItemExit.Index = 1;
-            this.menuItemExit.Text = "E&xit";
-            this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
+            menuItemExit.Index = 1;
+            menuItemExit.Text = "E&xit";
+            menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
 
             // Initialize menuItemOptions 
-            this.menuItemOptions.Index = 0;
-            this.menuItemOptions.Text = "O&ptions";
-            this.menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
+            menuItemOptions.Index = 0;
+            menuItemOptions.Text = "O&ptions";
+            menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
 
             // The ContextMenu property sets the menu that will 
             // appear when the systray icon is right clicked.
@@ -66,17 +66,11 @@ namespace Panda_20
             notifyIcon.Text = "Panda";
             notifyIcon.Visible = true;
         }
-
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            base.OnClosing(e);
-            this.notifyIcon.Dispose();
-        }
     
         private void menuItemExit_Click(object Sender, System.EventArgs e)
         {
             // Close the form, which closes the application. 
-            this.Close();
+            Close();
         }
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
@@ -85,7 +79,7 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MiscHelper.Close(sender, e);
+           MiscHelper.ShowClosingPopUp(this, e);
         }
     }
 }

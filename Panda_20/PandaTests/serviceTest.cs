@@ -12,10 +12,10 @@ namespace PandaTests
         public void ReadXmlCanReadXml()
         {
             //arrange
-            Service service = Service.Instance;
+ //           Service service = Service.Instance;
 
 
-            String value = service.GetXmlElement("test");
+ //           String value = service.GetXmlElement("test");
             Assert.AreEqual("it seems to work", value);
 
 

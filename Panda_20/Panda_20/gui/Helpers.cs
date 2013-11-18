@@ -66,28 +66,32 @@ namespace Panda_20.gui
             // PageListen lukker når der er valgt en Facebook-side. Ergo skal vi sørge for, den KUN tager hele programmet
             // med ned, hvis der IKKE er valgt en side.
             // typeof(MainWindow) sørger for, nedlukning håndteres korrekt ift. notifyIcon'ets højrekliks-menu.
-            if ((!_closing) && (Service.SelectedPage == null) || (sender.GetType() == typeof(MainWindow)))
+            if (!_closing)
             {
-                const string message = "Do you want to close Panda?";
-                const string caption = "Panda";
-                const MessageBoxButton buttons = MessageBoxButton.OKCancel;
-                const MessageBoxImage image = MessageBoxImage.Question;
-
-                MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, buttons,
-                    image);
-
-                if (result == MessageBoxResult.OK)
+                if (Service.SelectedPage == null || sender.GetType() == typeof (MainWindow) || Service.TokenAndExpiresIn[0] == "")
                 {
-                    // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
-                    _closing = true;
-                    Application.Current.Shutdown();
-                }
+                        const string message = "Do you want to close Panda?";
+                        const string caption = "Panda";
+                        const MessageBoxButton buttons = MessageBoxButton.OKCancel;
+                        const MessageBoxImage image = MessageBoxImage.Question;
 
-                if (result == MessageBoxResult.Cancel)
-                {
-                    e.Cancel = true;
+                        MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, buttons,
+                            image);
+
+                        if (result == MessageBoxResult.OK)
+                        {
+                            // Når brugeren lukker MessageBoxen, må vi godt lukke programmet.
+                            _closing = true;
+                            Application.Current.Shutdown();
+                        }
+
+                        if (result == MessageBoxResult.Cancel)
+                        {
+                            e.Cancel = true;
+                        }
+                    }
                 }
-            }
+                
 
             else if (sender.GetType() != typeof(PageList))
             {

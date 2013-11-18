@@ -66,6 +66,12 @@ namespace Panda_20
             notifyIcon.Text = "Panda";
             notifyIcon.Visible = true;
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            this.notifyIcon.Dispose();
+        }
     
         private void menuItemExit_Click(object Sender, System.EventArgs e)
         {

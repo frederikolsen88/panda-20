@@ -64,9 +64,10 @@ namespace Panda_20
             // Brugeren har kun én Facebook-side, som vælges by default.
             else if (PagesListBox.Items.Count == 1)
             {
-                string key = (string)PagesListBox.Items[0];
+                string key = ((DisplayPage)PagesListBox.Items[0]).Name;
                 Service.SelectedPage = Service.Pages[key];
                 Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
+                Close();
             }
             else
             {

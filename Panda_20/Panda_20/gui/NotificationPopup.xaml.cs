@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Panda_20.model;
 using Panda_20.service;
 
 namespace Panda_20.gui
@@ -50,13 +51,22 @@ namespace Panda_20.gui
 
         private double GetTopOffset()
         {
-            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight() - ((10 + this.Height) * 1) ; //1 skal være størrelsen af notification arrayet.
+            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight()+5 - ((5 + this.Height) * (service.Queue.DisplayedNotifications.Count+1)) ; //1 skal være størrelsen af notification arrayet.
         }
 
 
         private void DismissButton_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+            PandaNotification thisNotification = null;
+            foreach (PandaNotification pd in service.Queue.DisplayedNotifications)
+            {
+                if (pd.Nid == this.Nid)
+                {
+                    thisNotification = pd;
+                }
+            }
+            service.Queue.RemoveNotification(thisNotification);
         }
 
         private void FacebookButton_OnClick(object sender, RoutedEventArgs e)

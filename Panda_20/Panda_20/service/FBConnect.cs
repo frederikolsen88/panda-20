@@ -155,6 +155,7 @@ namespace Panda_20.service
             foreach (PandaNotification pn in newNotifications)
             {
                 Service.CreateNotification(pn);
+                Queue.AddNotification(pn);
             }
         }
 

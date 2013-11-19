@@ -244,8 +244,7 @@ namespace Panda_20
         //--------------<GENERAL READ XML VALUE>---------------- Author: TRR 
         //-------------------------------------------------------------------
         
-        // Siden i insisterer på at have MISC-klassen, så brug de specifikke access-metoder dér i stedet. 
-        // De refererer hertil - det her er "hovedmetoden".
+        // Please use specific read-methods instead of this one. They are on the Misc class.. for some reason.
         public static String ReadXmlValue(string elementName, string filePath)
         {   
             XDocument document = XDocument.Load(filePath);
@@ -262,17 +261,17 @@ namespace Panda_20
         //-------------------------------------------------------------------
         //--------------<GENERAL WRITE XML VALUE>--------------- Author: TRR 
         //-------------------------------------------------------------------
-        // Note - all write-operations to  XML-files should be done through
+        // Note - ALL write-operations to XML-files should be done through
         // the use of this method, since it drastically lowers the odds for of write-operations
         // doing the dirty stuff at the same time. Won't happen often, but it would 
         // crash the program horribly if or when it happened.
+
+        // again, use this method from any other methods you write on the service-level.
        
         public static void WriteXmlValue(string elementName, string newValue, string filePath)
         {
-            XDocument xmlDocument = XDocument.Load(@"service\AppValues.xml");
-//            XElement newElement = new XElement(elementName, contentValue);
-
-            XElement retrievedElement = xmlDocument.Element(elementName);
+            XDocument document = XDocument.Load(@"service\AppValues.xml");
+            XElement retrievedElement = document.Root.Element(elementName);
 
             if (retrievedElement == null)
             {
@@ -290,7 +289,7 @@ namespace Panda_20
                 lock (XmlWriteLock)
                 {
                     retrievedElement.SetValue(newValue);
-                    xmlDocument.Save(@"service\AppValues.xml");
+                    document.Save(@"service\AppValues.xml");
                 }
             }
             

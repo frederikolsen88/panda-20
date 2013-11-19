@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Xml.Linq;
 using Facebook;
-
+using Panda_20.gui;
+using Panda_20.model;
 using Panda_20.service;
 
 
@@ -220,12 +221,18 @@ namespace Panda_20
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
 
-                    string tempPicUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
-                    _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(tempPicUrl));
+                    // TODO picUrl kan omnavngives for bedre forståelse. Se getPictureURL(..)
+
+                    string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
+                    _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(picUrl));
                 }
             }
         }
-   
-        
+
+        public static void CreateNotification(PandaNotification pn)
+        {
+            NotificationPopup np = new NotificationPopup(pn.Message, pn.Owner.Name, pn.Owner.PicSquare, pn.GetType().ToString());
+            np.Show();
+        }
     }
 }

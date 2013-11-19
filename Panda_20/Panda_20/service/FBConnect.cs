@@ -81,6 +81,7 @@ namespace Panda_20.service
         {
             // COMMIT FOR SCIENCE
             ArrayList newNotifications = new ArrayList();
+            ArrayList newUsers = new ArrayList();
 
             foreach (JsonObject data in (JsonArray)fqlresult["data"])
             {
@@ -92,8 +93,8 @@ namespace Panda_20.service
                         string time = Convert.ToString(comment["time"]);
                         string text = Convert.ToString(comment["text"]);
                         string post_id = Convert.ToString(comment["post_id"]);
-                        PandaComment pc = new PandaComment(fromid, time, text, post_id);
-                        newNotifications.Add(pc);
+                        PandaNotification pn = new PandaComment(fromid, time, text, post_id);
+                        newNotifications.Add(pn);
                     }
                 }
                 else if (data["name"].Equals("posts"))
@@ -104,8 +105,8 @@ namespace Panda_20.service
                         string created_time = Convert.ToString(post["created_time"]);
                         string message = Convert.ToString(post["message"]);
                         string type = Convert.ToString(post["type"]);
-                        PandaPost pp = new PandaPost(actor_id, created_time, message, type);
-                        newNotifications.Add(pp);
+                        PandaNotification pn = new PandaPost(actor_id, created_time, message, type);
+                        newNotifications.Add(pn);
                     }
                 }
                 else if (data["name"].Equals("private_messages"))
@@ -115,12 +116,46 @@ namespace Panda_20.service
                         string author_id = Convert.ToString(private_message["author_id"]);
                         string created_time = Convert.ToString(private_message["created_time"]);
                         string body = Convert.ToString(private_message["body"]);
-                        PandaPrivateMessage ppm = new PandaPrivateMessage(author_id, created_time, body);
-                        newNotifications.Add(ppm);
+                        PandaNotification pn = new PandaPrivateMessage(author_id, created_time, body);
+                        newNotifications.Add(pn);
+                    }
+                }
+                else
+                {
+                    foreach (JsonObject author in (JsonArray) data["fql_result_set"])
+                    {
+                        // uid, name, friend_count, subscriber_count, pic_square
+                        string uid = Convert.ToString(author["uid"]);
+                        string name = Convert.ToString(author["name"]);
+                        string friend_count = Convert.ToString(author["friend_count"]);
+                        string subscriber_count = Convert.ToString(author["subscriber_count"]);
+                        string pic_square = Convert.ToString(author["pic_square"]);
+                        PandaUser pu = new PandaUser(uid,name,friend_count,subscriber_count,pic_square);
+                        newUsers.Add(pu);
                     }
                 }
             }
-            Console.WriteLine(newNotifications);
+
+            // Join dem
+            for (int i = 0; i < newNotifications.Count; i++)
+            {
+                string uid = "";
+                PandaNotification pn = (PandaNotification) newNotifications[i];
+                uid = pn.Uid;
+
+                foreach (PandaUser newUser in newUsers)
+                {
+                    if (newUser.Uid.Equals(uid))
+                    {
+                        pn.Owner = newUser;
+                    }
+                }
+            }
+
+            foreach (PandaNotification pn in newNotifications)
+            {
+                Service.CreateNotification(pn);
+            }
         }
 
     }

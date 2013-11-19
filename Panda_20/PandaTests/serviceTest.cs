@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Panda_20;
+using Panda_20.service;
 
 
 namespace PandaTests
@@ -11,7 +12,7 @@ namespace PandaTests
         [TestMethod]
         public void ReadXmlCanReadXml()
         {
-            String value = Service.GetXmlElement("test");
+            String value = Misc.GetXmlElement("test");
             Assert.AreEqual("it seems to work", value);
         }
 

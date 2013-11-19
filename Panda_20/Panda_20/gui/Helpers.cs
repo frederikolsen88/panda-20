@@ -18,7 +18,7 @@ namespace Panda_20.gui
 
         public static void InitBrowser(WebBrowser browser)
         {
-            CurrentUri = new Uri(Service.GetXmlElement("fbUrl"));
+            CurrentUri = new Uri(Misc.GetXmlElement("fbUrl"));
             browser.Navigate(CurrentUri);
         }
 

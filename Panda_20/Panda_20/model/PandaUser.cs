@@ -7,7 +7,7 @@ using System.Windows.Markup;
 
 namespace Panda_20.model
 {
-    class PandaUser
+    public class PandaUser
     {
         private string uid;
         private string name;

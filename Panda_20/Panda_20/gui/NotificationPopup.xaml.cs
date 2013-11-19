@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Panda_20.service;
 
 namespace Panda_20.gui
 {
@@ -20,12 +21,16 @@ namespace Panda_20.gui
     /// </summary>
     public partial class NotificationPopup : Window
     {
-        public NotificationPopup()
+        public NotificationPopup(string message, string name, string imageUrl, string type)
         {
             InitializeComponent();
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
             this.Top = GetTopOffset();
             this.Topmost = true;
+            SetMessage(message);
+            SetName(name);
+            SetImageUrl(imageUrl);
+            SetType(type);
             //DismissImage = billede af et kryds i guess
         }
 
@@ -53,6 +58,26 @@ namespace Panda_20.gui
         private void changetopColor()
         {
             // Der skal nok laves om i designet :S
+        }
+
+        private void SetMessage(string message)
+        {
+            Message.Text = message;
+        }
+
+        private void SetName(string name)
+        {
+            UserName.Text = name;
+        }
+
+        private void SetImageUrl(string imageUrl)
+        {
+            UserImage.Source = Misc.DownloadImage(imageUrl);
+        }
+
+        private void SetType(string type)
+        {
+            // TODO
         }
     }
 }

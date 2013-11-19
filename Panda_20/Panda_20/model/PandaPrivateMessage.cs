@@ -6,35 +6,15 @@ using System.Threading.Tasks;
 
 namespace Panda_20.model
 {
-    class PandaPrivateMessage
+    public class PandaPrivateMessage:PandaNotification
     {
-        private string author_id;
-        private string body;
-        private string created_time;
 
-        public PandaPrivateMessage(string authorId, string body, string createdTime)
+        public PandaPrivateMessage(string uid, string message, string createdTime)
         {
-            author_id = authorId;
-            this.body = body;
-            created_time = createdTime;
+            this.uid = uid;
+            this.Message = message;
+            this.CreatedTime = createdTime;
         }
 
-        public string AuthorId
-        {
-            get { return author_id; }
-            set { author_id = value; }
-        }
-
-        public string Body
-        {
-            get { return body; }
-            set { body = value; }
-        }
-
-        public string CreatedTime
-        {
-            get { return created_time; }
-            set { created_time = value; }
-        }
     }
 }

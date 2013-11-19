@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 
 namespace Panda_20.service
 {
@@ -70,6 +71,45 @@ namespace Panda_20.service
         {
             if (_webClient != null)
                 _webClient.Dispose();
+        }
+
+        //-----------------------------------------------------------
+        //--------------<READ XML VALUE>---------------- Author: TRR 
+        //-----------------------------------------------------------
+
+        public static String GetXmlElement(String elementName)
+        {
+
+            XDocument document = XDocument.Load(@"service\AppValues.xml");
+            XElement element = document.Root.Element(elementName);
+
+            if (element == null)
+            {
+                throw new Exception("Element not found in XML-file!");
+            }
+
+            return element.Value;
+        }
+
+        /**
+         * Skriv til AppValues.xml
+         */
+        public static bool WriteXmlElement(string name, string value)
+        {
+            XDocument document = XDocument.Load(@"service\AppValues.xml");
+            XElement newElement = new XElement(name, value);
+            bool result = false;
+
+            XElement values = document.Element("values");
+
+            if (values != null)
+            {
+                values.Add(newElement);
+                document.Save(@"service\AppValues.xml");
+                result = true;
+            }
+                
+            return result;
         }
     }
 }

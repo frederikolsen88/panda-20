@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Forms;
 using Panda_20.gui;
+using Panda_20.service;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -33,6 +34,10 @@ namespace Panda_20
             InitializeComponent();
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon =  Properties.Resources.pandaIcon;
+
+            // TEST
+
+            Misc.WriteXmlElement("writeTest", "Can I write, ma?");
 
             contextMenuSetup();
             Hide();

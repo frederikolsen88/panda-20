@@ -89,7 +89,7 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-           MiscHelper.ShowClosingPopUp(this, e);
+           TerminationAssistant.ShowClosingPopUp(this, e);
         }
     }
 }

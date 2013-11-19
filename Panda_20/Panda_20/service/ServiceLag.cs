@@ -67,11 +67,8 @@ namespace Panda_20
             }
         }
 
-        private static FacebookClient _client;
+        private static FacebookClient _loginClient;
         private static FacebookClient _pageClient;
-
-        private static WebClient _webClient;
-        public static WebClient WebClient { get; set; }
 
         public static JsonObject SelectedPage { get; set; }
         private static long lastSuccessfullFacebookUpdate;
@@ -149,7 +146,7 @@ namespace Panda_20
             appData.Add("client_secret", AppSecret);
             appData.Add("fb_exchange_token", shortLivedAccessToken);
 
-            JsonObject result = (JsonObject) _client.Get("/oauth/access_token", appData);
+            JsonObject result = (JsonObject) _loginClient.Get("/oauth/access_token", appData);
 
             string extendedToken = (string) result["access_token"];
 
@@ -186,7 +183,7 @@ namespace Panda_20
             {
                 _facebookToken = accessToken;
                 FacebookClient newClient = new FacebookClient(accessToken);
-                _client = newClient;
+                _loginClient = newClient;
             }
             catch (FacebookOAuthException)
             {
@@ -197,7 +194,7 @@ namespace Panda_20
 
             }
 
-            return _client;
+            return _loginClient;
 
         }
 
@@ -207,13 +204,13 @@ namespace Panda_20
 
         public static void FetchPages()
         {
-            // Jeg kan ikke benytte _client.AccessToken i metodekaldet
-            // nedenfor, da _client er null på det tidspunkt. Men den
+            // Jeg kan ikke benytte _loginClient.AccessToken i metodekaldet
+            // nedenfor, da _loginClient er null på det tidspunkt. Men den
             // bliver selvfølgelig brugt efterfølgende. -Frede
             string accessToken = TokenAndExpiresIn[0];
             SetFacebookToken(accessToken);
 
-            JsonObject response = _client.Get("me/accounts") as JsonObject;
+            JsonObject response = _loginClient.Get("me/accounts") as JsonObject;
 
             if (_pages.Count == 0)
             {

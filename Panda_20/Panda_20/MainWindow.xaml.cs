@@ -35,10 +35,6 @@ namespace Panda_20
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon =  Properties.Resources.pandaIcon;
 
-            // TEST
-
-            Misc.WriteXmlElement("writeTest", "Can I write, ma?");
-
             contextMenuSetup();
             Hide();
 

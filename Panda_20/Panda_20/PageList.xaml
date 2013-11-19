@@ -29,20 +29,18 @@
                        FontWeight="Bold"
                        Grid.Column="1"
                        Grid.Row="0"></TextBlock>
-                    <TextBlock Text="{Binding Path=Likes}"
-                       Grid.Column="1"
-                       Grid.Row="1"></TextBlock>
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <TextBlock Text="{Binding Path=Likes}"/>
+                        <Image Source="resources\like.png" Margin="5,-5,0,0"></Image>
+                    </StackPanel>
                 </Grid>
             </DataTemplate>
-
-            <Style x:Key="StyleListBox" TargetType="{x:Type ListBox}">
-                <Setter Property="ItemTemplate" Value="{StaticResource ResourceKey=ListBoxPage}"></Setter>
-            </Style>
         </ResourceDictionary>      
     </Window.Resources>
 
-    <ListBox Name="PagesListBox" DisplayMemberPath="Name" HorizontalAlignment="Stretch" 
+    <ListBox Name="PagesListBox" HorizontalAlignment="Stretch" 
              Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" 
-             MouseDoubleClick="PagesListBox_MouseDoubleClick" Style="{StaticResource StyleListBox}"></ListBox>
+             MouseDoubleClick="PagesListBox_MouseDoubleClick" ItemTemplate="{StaticResource ListBoxPage}"></ListBox>
 
 </Window>

@@ -69,6 +69,7 @@ namespace Panda_20
                 string key = ((DisplayPage)PagesListBox.Items[0]).Name;
                 Service.SelectedPage = Service.Pages[key];
                 Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
+                connectedToPageToolTip();
                 Close();
             }
             else
@@ -80,7 +81,7 @@ namespace Panda_20
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Service.SelectedPage == null)
-                MiscHelper.ShowClosingPopUp(this, e);
+                TerminationAssistant.ShowClosingPopUp(this, e);
         }
 
         private void LoadPictures()
@@ -96,10 +97,17 @@ namespace Panda_20
         {
             Service.SelectedPage = Service.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
             Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
+            connectedToPageToolTip();
             Close();
 
             // TODO ... og så sker der ellers ting og sager.
-        }        
+        }
+
+        private void connectedToPageToolTip()
+        {
+            MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is connected to - " + Service.SelectedPage["name"], ToolTipIcon.Info);
+            MainWindow.NotifyIcon.Text = "Panda is connected to - " + Service.SelectedPage["name"];
+        }
 
         // Repræsentation af en Facebook-side som udelukkende skal
         // bruges til at få vist billede og navn i ListBox'en.

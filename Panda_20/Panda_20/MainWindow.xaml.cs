@@ -10,7 +10,7 @@ namespace Panda_20
     /// <summary>
     /// Hoved- og konfigurationsvinduelogik.
     /// 
-    /// Author: Frederik Olsen (nej, ikke Thor)
+    /// Author: Frederik Olsen og Toke V. Albrechtsen
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -29,7 +29,7 @@ namespace Panda_20
 
         public MainWindow()
         {
-            // THOR IS HERE!
+            
             InitializeComponent();
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon =  Properties.Resources.pandaIcon;
@@ -77,7 +77,6 @@ namespace Panda_20
     
         private void menuItemExit_Click(object Sender, System.EventArgs e)
         {
-            // Close the form, which closes the application. 
             Close();
         }
         private void menuItemOption_Click(object Sender, System.EventArgs e)
@@ -87,7 +86,7 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-           MiscHelper.ShowClosingPopUp(this, e);
+           TerminationAssistant.ShowClosingPopUp(this, e);
         }
     }
 }

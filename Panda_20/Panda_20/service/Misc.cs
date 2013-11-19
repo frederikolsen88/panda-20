@@ -77,28 +77,21 @@ namespace Panda_20.service
 
 
         //-----------------------------------------------------------
-        //--------------<READ XML VALUE FROM APPVALUES>---------------- Author: TRR 
+        //--------------<READ XML VALUE FROM APPVALUES>---Author: TRR 
         //-----------------------------------------------------------
         public static String ReadXmlElementFromAppValues(String elementName)
         {
-
-            XDocument document = XDocument.Load(@"service\AppValues.xml");
-            XElement element = document.Root.Element(elementName);
-
-            if (element == null)
-            {
-                throw new Exception("Element not found in XML-file!");
-            }
-
-            return element.Value;
+            return Service.ReadXmlValue(elementName, @"service\AppValues.xml");
         }
 
 
         //-----------------------------------------------------------
-        //--------------<WRITE XML VALUE FROM APPVALUES>---------------- Author: ??? 
+        //--------------<WRITE XML VALUE TO APPVALUES>--- Author: ??? 
         //-----------------------------------------------------------
-        public static bool WriteXmlElementFromAppValues(string destination, string name, string value)
+        public static bool WriteXmlElementToAppValues(string destination, string name, string value)
         {
+      
+            //TODO make this method use the Service.WriteXmlValue()-method instead.
             XDocument document = XDocument.Load(@"service\AppValues.xml");
             XElement newElement = new XElement(name, value);
             bool result = false;

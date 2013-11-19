@@ -31,6 +31,7 @@ namespace Panda_20
         private const String AppID = "470029853116845";
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
         private static string GrantType { get; set; }
+        private static Object XmlWriteLock = new Object();
 
         private static String _facebookToken;
 
@@ -239,20 +240,60 @@ namespace Panda_20
         }
 
 
-        //-----------------------------------------------------------
+        //-------------------------------------------------------------------
         //--------------<GENERAL READ XML VALUE>---------------- Author: TRR 
-        //-----------------------------------------------------------
-        private static String ReadXmlValue(string elementName, string relativeFilePath)
+        //-------------------------------------------------------------------
+        
+        // Siden i insisterer på at have MISC-klassen, så brug de specifikke access-metoder dér i stedet. 
+        // De refererer hertil - det her er "hovedmetoden".
+        public static String ReadXmlValue(string elementName, string filePath)
         {   
-            XDocument document = XDocument.Load(relativeFilePath);
+            XDocument document = XDocument.Load(filePath);
             XElement element = document.Root.Element(elementName);
 
             if (element == null)
             {
-                throw new Exception("Element not found in XML-file!");
+                throw new Exception("Element <" + elementName + "> not found in XML-file <" + filePath +">.");
             }
 
             return element.Value;
+        }
+
+        //-------------------------------------------------------------------
+        //--------------<GENERAL WRITE XML VALUE>--------------- Author: TRR 
+        //-------------------------------------------------------------------
+        // Note - all write-operations to  XML-files should be done through
+        // the use of this method, since it drastically lowers the odds for of write-operations
+        // doing the dirty stuff at the same time. Won't happen often, but it would 
+        // crash the program horribly if or when it happened.
+       
+        public static void WriteXmlValue(string elementName, string newValue, string filePath)
+        {
+            XDocument xmlDocument = XDocument.Load(@"service\AppValues.xml");
+//            XElement newElement = new XElement(elementName, contentValue);
+
+            XElement retrievedElement = xmlDocument.Element(elementName);
+
+            if (retrievedElement == null)
+            {
+                //All elements must exist in the XML-file prior to writing them 
+                // - doing otherwise is dangerous.
+                throw new Exception("No such XML element (" + elementName +") exists in the file <" + filePath + ">. Check your spelling - and add it manually if needed before trying to write to it");
+            } 
+            
+            if (retrievedElement.Value.Equals(newValue))
+            {
+                //Don't initiate costly IO-operation if the value already is what it's supposed to be
+            } else
+            {
+                //Locked so it's threadsafe to write to the file.
+                lock (XmlWriteLock)
+                {
+                    retrievedElement.SetValue(newValue);
+                    xmlDocument.Save(@"service\AppValues.xml");
+                }
+            }
+            
         }
 
 

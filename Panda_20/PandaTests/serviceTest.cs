@@ -10,11 +10,19 @@ namespace PandaTests
     public class ServiceTest
     {
         [TestMethod]
-        public void ReadXmlCanReadXml()
+        public void ReadXmlValue_canRead()
         {
-            String value = Misc.GetXmlElement("test");
+            String value = Service.ReadXmlValue("test", @"service\AppValues.xml");
             Assert.AreEqual("it seems to work", value);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Element <" + "shouldFail" + "> not found in XML-file <" + @"service\AppValues.xml" +">.")]
+        public void ReadXmlValue_throwsException()
+        {
+            Service.ReadXmlValue("shouldFail", @"service\AppValues.xml");
+        }
+
 
 
     }

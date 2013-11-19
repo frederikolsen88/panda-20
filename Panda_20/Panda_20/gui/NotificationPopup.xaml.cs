@@ -21,7 +21,8 @@ namespace Panda_20.gui
     /// </summary>
     public partial class NotificationPopup : Window
     {
-        public NotificationPopup(string message, string name, string imageUrl, string type)
+        private string nid;
+        public NotificationPopup(string message, string name, string imageUrl, string type, string userFriends, string nid)
         {
             InitializeComponent();
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
@@ -31,7 +32,15 @@ namespace Panda_20.gui
             SetName(name);
             SetImageUrl(imageUrl);
             SetType(type);
+            SetUserFriends(userFriends);
+            this.Nid = nid;
             //DismissImage = billede af et kryds i guess
+        }
+
+        public string Nid
+        {
+            get { return nid; }
+            set { nid = value; }
         }
 
         private int GetTaskbarHeight()
@@ -52,7 +61,8 @@ namespace Panda_20.gui
 
         private void FacebookButton_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.google.com"); //URL til fb posten
+            string[] pizza = Nid.Split('_');
+            System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] + "&id=" + pizza[0]); //URL til fb posten
         }
 
         private void changetopColor()
@@ -79,5 +89,11 @@ namespace Panda_20.gui
         {
             // TODO
         }
+
+        private void SetUserFriends(string userFriends)
+        {
+            UserFriends.Text = userFriends;
+        }
+
     }
 }

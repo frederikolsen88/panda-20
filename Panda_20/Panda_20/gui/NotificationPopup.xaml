@@ -26,9 +26,10 @@
 
 
             <Image Name="UserImage" Width="50" Height="50" Grid.Row="1" Grid.Column="0" Margin="10,10,11,102"/>
-            <TextBlock Name="Message" Width ="260" Grid.Row="1" Grid.Column="1" Margin="6,6,6,80" Background="White"/>
+            <TextBlock Name="Message" Width ="260" Grid.Row="1" Grid.Column="1" Margin="6,6,6,80" Background="White" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
             <TextBlock Name="UserName" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="16" Margin="28,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263"/>
             <Image Name="IconImage" HorizontalAlignment="Left" Height="16" Margin="5,2,0,0" VerticalAlignment="Top" Width="16"/>
+            <TextBlock Name="UserFriends" HorizontalAlignment="Left" TextAlignment="Center" Margin="10,65,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Height="17"/>
 
         </Grid>
     </Border>

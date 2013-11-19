@@ -48,7 +48,7 @@ namespace Panda_20.service
                                 Service.SelectedPage["id"] + "') AND time > " + timestamp,
                             comments_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT fromid FROM #comments)",
                             posts =
-                                "SELECT actor_id, created_time, message, type FROM stream WHERE source_id = '" +
+                                "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +
                                 Service.SelectedPage["id"] + "' AND created_time > " + timestamp,
                             posts_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
                             private_messages = "SELECT author_id, body, created_time FROM message WHERE thread_id IN (SELECT thread_id FROM thread WHERE folder_id = '0') AND created_time > " + timestamp,
@@ -104,8 +104,8 @@ namespace Panda_20.service
                         string actor_id = Convert.ToString(post["actor_id"]);
                         string created_time = Convert.ToString(post["created_time"]);
                         string message = Convert.ToString(post["message"]);
-                        string type = Convert.ToString(post["type"]);
-                        PandaNotification pn = new PandaPost(actor_id, created_time, message, type);
+                        string post_id = Convert.ToString(post["post_id"]);
+                        PandaNotification pn = new PandaPost(actor_id, created_time, message, post_id);
                         newNotifications.Add(pn);
                     }
                 }

@@ -231,7 +231,8 @@ namespace Panda_20
 
         public static void CreateNotification(PandaNotification pn)
         {
-            NotificationPopup np = new NotificationPopup(pn.Message, pn.Owner.Name, pn.Owner.PicSquare, pn.GetType().ToString());
+            int userFriends = Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount);
+            NotificationPopup np = new NotificationPopup(pn.Message, pn.Owner.Name, pn.Owner.PicSquare, pn.GetType().ToString(), Convert.ToString(userFriends), pn.Nid);
             np.Show();
         }
     }

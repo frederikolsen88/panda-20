@@ -15,7 +15,6 @@ using System.Xml.Linq;
 using Facebook;
 
 using Panda_20.service;
-using Image = System.Drawing.Image;
 
 
 namespace Panda_20
@@ -72,6 +71,8 @@ namespace Panda_20
         private static FacebookClient _pageClient;
 
         private static WebClient _webClient;
+        public static WebClient WebClient { get; set; }
+
         public static JsonObject SelectedPage { get; set; }
         private static long lastSuccessfullFacebookUpdate;
 
@@ -225,65 +226,9 @@ namespace Panda_20
                     // TODO picUrl kan omnavngives for bedre forståelse. Se getPictureURL(..)
 
                     string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
-                    _pagePictures.Add((string) jsonAccount["name"], GetPagePictureUrl(picUrl));
+                    _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(picUrl));
                 }
             }
-        }
-
-        // TODO Fejlhåndtering på de to nedenstående metoder
-
-        /**
-         * Streamer et bitmap-billede fra et URL.
-         */
-
-        public static BitmapImage DownloadImage(string fullUrl)
-        {
-            Uri urlAsUri;
-            bool urlIsValid = Uri.TryCreate(fullUrl, UriKind.Absolute, out urlAsUri);
-
-            if (urlIsValid)
-            {
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = urlAsUri;
-                bitmap.EndInit();
-
-                return bitmap;
-            }
-
-            else
-            {
-                throw new UriFormatException(fullUrl + " could not be parsed as an Uri!");
-            }
-        }
-
-        /**
-         * Finder det korrekte URL til et Facebookbillede via Graph API'et.
-         */
-
-        private static string GetPagePictureUrl(string req)
-        {
-            string pictureUrl = "";
-
-            if (_webClient == null) 
-                _webClient = new WebClient();
-
-            try
-            {
-                string response = _webClient.DownloadString(req);
-
-                // Jeg har haft problemer med at arbejde med Json'en, der kommer tilbage.
-                // Ergo denne workaround.
-
-                pictureUrl = response.Split('"')[5].Replace(@"\", "");
-            }
-
-            catch (WebException)
-            {
-                pictureUrl = @"\resources\placeholder.gif";
-            }
-
-            return pictureUrl;
         }
     }
 }

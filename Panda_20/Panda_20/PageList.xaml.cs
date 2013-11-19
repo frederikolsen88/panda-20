@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Facebook;
 using Panda_20.gui;
+using Panda_20.service;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -86,7 +87,7 @@ namespace Panda_20
         {
             foreach (KeyValuePair<string, string> pair in Service.PagePictures)
             {
-                DisplayPage page = new DisplayPage(pair.Key, Service.DownloadImage(pair.Value));
+                DisplayPage page = new DisplayPage(pair.Key, Misc.DownloadImage(pair.Value));
                 PagesListBox.Items.Add(page);
             }
         }

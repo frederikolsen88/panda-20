@@ -18,7 +18,7 @@ namespace Panda_20.gui
 
         public static void InitBrowser(WebBrowser browser)
         {
-            CurrentUri = new Uri(Misc.GetXmlElement("fbUrl"));
+            CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
             browser.Navigate(CurrentUri);
         }
 
@@ -43,8 +43,8 @@ namespace Panda_20.gui
                 Service.TokenAndExpiresIn[0] = token;
                 Service.TokenAndExpiresIn[1] = expiresIn;
 
-                Misc.WriteXmlElement("fbToken", "access_token", Service.TokenAndExpiresIn[0]);
-                Misc.WriteXmlElement("fbToken", "expiresIn", Service.TokenAndExpiresIn[1]);
+                Misc.WriteXmlElementFromAppValues("fbToken", "access_token", Service.TokenAndExpiresIn[0]);
+                Misc.WriteXmlElementFromAppValues("fbToken", "expiresIn", Service.TokenAndExpiresIn[1]);
             }
 
             return hasToken;

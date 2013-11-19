@@ -73,11 +73,13 @@ namespace Panda_20.service
                 _webClient.Dispose();
         }
 
-        //-----------------------------------------------------------
-        //--------------<READ XML VALUE>---------------- Author: TRR 
-        //-----------------------------------------------------------
 
-        public static String GetXmlElement(String elementName)
+
+
+        //-----------------------------------------------------------
+        //--------------<READ XML VALUE FROM APPVALUES>---------------- Author: TRR 
+        //-----------------------------------------------------------
+        public static String ReadXmlElementFromAppValues(String elementName)
         {
 
             XDocument document = XDocument.Load(@"service\AppValues.xml");
@@ -91,10 +93,11 @@ namespace Panda_20.service
             return element.Value;
         }
 
-        /**
-         * Skriv til AppValues.xml
-         */
-        public static bool WriteXmlElement(string destination, string name, string value)
+
+        //-----------------------------------------------------------
+        //--------------<WRITE XML VALUE FROM APPVALUES>---------------- Author: ??? 
+        //-----------------------------------------------------------
+        public static bool WriteXmlElementFromAppValues(string destination, string name, string value)
         {
             XDocument document = XDocument.Load(@"service\AppValues.xml");
             XElement newElement = new XElement(name, value);

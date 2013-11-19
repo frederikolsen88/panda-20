@@ -237,5 +237,24 @@ namespace Panda_20
 
             return likes;
         }
+
+
+        //-----------------------------------------------------------
+        //--------------<GENERAL READ XML VALUE>---------------- Author: TRR 
+        //-----------------------------------------------------------
+        private static String ReadXmlValue(string elementName, string relativeFilePath)
+        {   
+            XDocument document = XDocument.Load(relativeFilePath);
+            XElement element = document.Root.Element(elementName);
+
+            if (element == null)
+            {
+                throw new Exception("Element not found in XML-file!");
+            }
+
+            return element.Value;
+        }
+
+
     }
 }

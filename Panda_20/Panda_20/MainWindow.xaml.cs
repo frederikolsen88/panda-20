@@ -35,7 +35,7 @@ namespace Panda_20
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon =  Properties.Resources.pandaIcon;
 
-            contextMenuSetup();
+            ContextMenuSetup();
             Hide();
 
             WindowState = System.Windows.WindowState.Minimized;
@@ -44,7 +44,7 @@ namespace Panda_20
         }
 
         // Handles the Menu
-        public void contextMenuSetup()
+        public void ContextMenuSetup()
         {
             contextMenu = new ContextMenu();
             menuItemExit = new MenuItem();
@@ -81,7 +81,8 @@ namespace Panda_20
         }
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
-            // Option Logic ToDo
+            // TODO Option Logic 
+            // ROLAND BE WORKING ON THIS!
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

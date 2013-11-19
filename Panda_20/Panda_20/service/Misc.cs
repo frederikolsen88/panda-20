@@ -94,17 +94,17 @@ namespace Panda_20.service
         /**
          * Skriv til AppValues.xml
          */
-        public static bool WriteXmlElement(string name, string value)
+        public static bool WriteXmlElement(string destination, string name, string value)
         {
             XDocument document = XDocument.Load(@"service\AppValues.xml");
             XElement newElement = new XElement(name, value);
             bool result = false;
 
-            XElement values = document.Element("values");
+            XElement destinationElement = document.Element(destination);
 
-            if (values != null)
+            if (destinationElement != null)
             {
-                values.Add(newElement);
+                destinationElement.Add(newElement);
                 document.Save(@"service\AppValues.xml");
                 result = true;
             }

@@ -242,13 +242,16 @@ namespace Panda_20
 
         public static Int32 GetLikes(string id)
         {
-            int likes = 0;
+            Int32 likes = 0;
+
             JsonObject response = _loginClient.Get("//" + id + "?fields=likes") as JsonObject;
 
             if (response != null)
-                likes = Convert.ToInt32(response["likes"]);
-
-            Debug.WriteLine(likes);
+            {
+                object likesValue;
+                if (response.TryGetValue("likes", out likesValue))
+                    likes = Convert.ToInt32(likesValue);
+            }
 
             return likes;
         }

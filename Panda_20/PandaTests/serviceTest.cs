@@ -36,7 +36,7 @@ namespace PandaTests
         {
             String currentValue = Service.ReadXmlValue("test_write", @"service\AppValues.xml");
             String newValue = "on";
-            // new value incremented, unless
+           
             if (currentValue.Equals("on"))
             {
                 newValue = "off";

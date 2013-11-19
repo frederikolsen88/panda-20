@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Xml.Linq;
 using Facebook;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 using Panda_20.service;
 using Image = System.Drawing.Image;
 

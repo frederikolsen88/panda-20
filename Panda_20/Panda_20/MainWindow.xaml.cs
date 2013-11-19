@@ -41,6 +41,8 @@ namespace Panda_20
             _notifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is currently running", ToolTipIcon.Info);
             BrowserWindow browserWindow = new BrowserWindow();
             browserWindow.Show();
+            NotificationPopup np = new NotificationPopup();
+            np.Show();
         }
 
         // Handles the Menu

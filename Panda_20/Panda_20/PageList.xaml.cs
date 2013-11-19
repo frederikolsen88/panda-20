@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Facebook;
-using Newtonsoft.Json;
 using Panda_20.gui;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;

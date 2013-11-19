@@ -6,43 +6,16 @@ using System.Threading.Tasks;
 
 namespace Panda_20.model
 {
-    class PandaPost
+    public class PandaPost:PandaNotification
     {
-        private string actor_id;
-        private string created_time;
-        private string message;
-        private string type;
 
-        public PandaPost(string actorId, string createdTime, string message, string type)
+        public PandaPost(string uid, string createdTime, string message, string nid)
         {
-            actor_id = actorId;
-            created_time = createdTime;
-            this.message = message;
-            this.type = type;
+            this.Uid = uid;
+            this.CreatedTime = createdTime;
+            this.Message = message;
+            this.Nid = nid;
         }
 
-        public string ActorId
-        {
-            get { return actor_id; }
-            set { actor_id = value; }
-        }
-
-        public string CreatedTime
-        {
-            get { return created_time; }
-            set { created_time = value; }
-        }
-
-        public string Message
-        {
-            get { return message; }
-            set { message = value; }
-        }
-
-        public string Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
     }
 }

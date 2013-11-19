@@ -40,8 +40,6 @@ namespace Panda_20
             WindowState = System.Windows.WindowState.Minimized;
             BrowserWindow browserWindow = new BrowserWindow();
             browserWindow.Show();
-            NotificationPopup np = new NotificationPopup();
-            np.Show();
         }
 
         // Handles the Menu

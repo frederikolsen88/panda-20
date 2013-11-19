@@ -7,51 +7,15 @@ using System.Threading.Tasks;
 
 namespace Panda_20.model
 {
-    class PandaComment
+    public class PandaComment:PandaNotification
     {
-        private string fromid;
-        private string time;
-        private string text;
-        private string post_id;
-        private PandaUser owner;
-        // Hej
 
-        public PandaComment(string fromid, string time, string text, string post_id)
+        public PandaComment(string uid, string createdTime, string message, string nid)
         {
-            this.fromid = fromid;
-            this.time = time;
-            this.text = text;
-            this.post_id = post_id;
-        }
-
-        public string Fromid
-        {
-            get { return fromid; }
-            set { fromid = value; }
-        }
-
-        public string Time
-        {
-            get { return time; }
-            set { time = value; }
-        }
-
-        public string Text
-        {
-            get { return text; }
-            set { text = value; }
-        }
-
-        public string PostId
-        {
-            get { return post_id; }
-            set { post_id = value; }
-        }
-
-        public PandaUser Owner
-        {
-            get { return owner; }
-            set { owner = value; }
+            this.Uid = uid;
+            this.CreatedTime = createdTime;
+            this.Message = message;
+            this.Nid = nid;
         }
     }
 }

@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="Manual"
         ResizeMode="NoResize"
-        Title="Notification" Height="170" Width="350"
+        Title="Notification" Height="112.4" Width="350"
         WindowStyle="None"  Background="Transparent"  AllowsTransparency="True" >
 
     <Border BorderBrush="LightGray"  BorderThickness="3,3,3,3" CornerRadius="8,8,8,8" Opacity="0.8" >
-                  
+
         <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" Name="TopBar"/>
@@ -17,18 +17,20 @@
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Name="DismissButton" Grid.Row="0"  Height="16" Width="16" Grid.Column="1" Margin="252,2,2,2" Click="DismissButton_OnClick">
+            <Button Name="DismissButton" Grid.Row="0"  Height="16" Width="16" Grid.Column="1" Margin="252,2,7,2" Click="DismissButton_OnClick">
                 <Image Name="DismissImage"></Image>
             </Button>
-            <Button Name="FacebookButton" Grid.Row="0"  Height="16" Width="16" Grid.Column="1" Margin="230,2,22,2" Click="FacebookButton_OnClick">
+            <Button Name="FacebookButton" Grid.Row="0"  Height="16" Width="16" Grid.Column="1" Margin="230,2,25,2" Click="FacebookButton_OnClick">
                 <TextBlock>f</TextBlock>
             </Button>
 
 
-            <Image Name="FbPicture" Width="50" Height="50" Grid.Row="1" Grid.Column="0" Margin="10,10,11,102"/>
-            <TextBlock Width ="260" Grid.Row="1" Grid.Column="1" Margin="9,10,10,30" Background="White"/>
+            <Image Name="UserImage" Width="50" Height="50" Grid.Row="1" Grid.Column="0" Margin="10,10,11,102"/>
+            <TextBlock Name="Message" Width ="260" Grid.Row="1" Grid.Column="1" Margin="6,6,6,80" Background="White"/>
+            <TextBlock Name="UserName" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="16" Margin="28,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263"/>
+            <Image Name="IconImage" HorizontalAlignment="Left" Height="16" Margin="5,2,0,0" VerticalAlignment="Top" Width="16"/>
 
-            </Grid>
+        </Grid>
     </Border>
 
 </Window>

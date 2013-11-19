@@ -89,6 +89,10 @@ namespace Panda_20
             foreach (KeyValuePair<string, string> pair in Service.PagePictures)
             {
                 DisplayPage page = new DisplayPage(pair.Key, Misc.DownloadImage(pair.Value));
+
+                string id = (string) Service.Pages[pair.Key]["id"];
+                // Nedenstående kald er broken.
+                // page.Likes = Service.GetLikes(id);
                 PagesListBox.Items.Add(page);
             }
         }

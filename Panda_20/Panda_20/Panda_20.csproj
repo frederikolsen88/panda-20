@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="model\ModelLag.cs" />
     <Compile Include="model\PandaComment.cs" />
+    <Compile Include="model\PandaNotification.cs" />
     <Compile Include="model\PandaPost.cs" />
     <Compile Include="model\PandaPrivateMessage.cs" />
     <Compile Include="model\PandaUser.cs" />
@@ -151,9 +152,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\pandaIcon.ico">
+    <Resource Include="resources\pandaIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -177,6 +178,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\placeholder.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\comment.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\like.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\pm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\post.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\read.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

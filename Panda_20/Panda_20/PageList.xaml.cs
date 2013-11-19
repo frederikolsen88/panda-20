@@ -89,6 +89,9 @@ namespace Panda_20
             foreach (KeyValuePair<string, string> pair in Service.PagePictures)
             {
                 DisplayPage page = new DisplayPage(pair.Key, Misc.DownloadImage(pair.Value));
+
+                string id = (string) Service.Pages[pair.Key]["id"];
+                page.Likes = Service.GetLikes(id);
                 PagesListBox.Items.Add(page);
             }
         }
@@ -123,7 +126,7 @@ namespace Panda_20
 
             public BitmapImage Image { get; set; }
 
-            public int Likes { get; set; }
+            public Int32 Likes { get; set; }
         }
     }
 }

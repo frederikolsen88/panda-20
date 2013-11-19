@@ -31,8 +31,8 @@
                        Grid.Row="0"></TextBlock>
                     
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <Image Source="resources\like.png" Margin="0,-5,5,0"></Image>
                         <TextBlock Text="{Binding Path=Likes}"/>
-                        <Image Source="resources\like.png" Margin="5,-5,0,0"></Image>
                     </StackPanel>
                 </Grid>
             </DataTemplate>

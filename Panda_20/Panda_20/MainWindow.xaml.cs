@@ -38,7 +38,6 @@ namespace Panda_20
             Hide();
 
             WindowState = System.Windows.WindowState.Minimized;
-            _notifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is currently running", ToolTipIcon.Info);
             BrowserWindow browserWindow = new BrowserWindow();
             browserWindow.Show();
         }

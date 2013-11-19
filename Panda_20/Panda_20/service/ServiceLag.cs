@@ -235,5 +235,22 @@ namespace Panda_20
             NotificationPopup np = new NotificationPopup(pn.Message, pn.Owner.Name, pn.Owner.PicSquare, pn.GetType().ToString(), Convert.ToString(userFriends), pn.Nid);
             np.Show();
         }
+
+        /**
+         * Returnerer antal likes på en Facebook-side med et givent id.
+         */
+
+        public static Int32 GetLikes(string id)
+        {
+            int likes = 0;
+            JsonObject response = _loginClient.Get("//" + id + "?fields=likes") as JsonObject;
+
+            if (response != null)
+                likes = Convert.ToInt32(response["likes"]);
+
+            Debug.WriteLine(likes);
+
+            return likes;
+        }
     }
 }

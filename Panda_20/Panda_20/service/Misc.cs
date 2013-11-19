@@ -10,6 +10,9 @@ namespace Panda_20.service
 {
     class Misc
     {
+
+        private static WebClient _webClient;
+
         // Accepts seconds to add or subtract
         public static long UnixTimeNow(long seconds)
         {
@@ -42,12 +45,12 @@ namespace Panda_20.service
         {
             string pictureUrl = "";
 
-            if (Service.WebClient == null) 
-                Service.WebClient = new WebClient();
+            if (_webClient == null) 
+                _webClient = new WebClient();
 
             try
             {
-                string response = Service.WebClient.DownloadString(req);
+                string response = _webClient.DownloadString(req);
 
                 // Jeg har haft problemer med at arbejde med Json'en, der kommer tilbage.
                 // Ergo denne workaround.
@@ -61,6 +64,12 @@ namespace Panda_20.service
             }
 
             return pictureUrl;
+        }
+
+        public static void DisposeWebClient()
+        {
+            if (_webClient != null)
+                _webClient.Dispose();
         }
     }
 }

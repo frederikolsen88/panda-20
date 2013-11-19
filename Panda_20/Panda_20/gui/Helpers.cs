@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using Panda_20.service;
 
 namespace Panda_20.gui
 {
@@ -47,7 +48,7 @@ namespace Panda_20.gui
         }
     }
 
-    class MiscHelper
+    class TerminationAssistant
     {
         public static void ShowClosingPopUp(object sender, CancelEventArgs e)
         {
@@ -61,6 +62,7 @@ namespace Panda_20.gui
                 if (result == MessageBoxResult.OK)
                 {
                    MainWindow.NotifyIcon.Dispose();
+                   Misc.DisposeWebClient();
                    System.Environment.Exit(0);
                 }
 

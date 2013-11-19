@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="service\FBConnect.cs" />
     <Compile Include="service\Misc.cs" />
+    <Compile Include="service\Queue.cs" />
     <Compile Include="service\ServiceLag.cs" />
     <Compile Include="BrowserWindow.xaml.cs">
       <DependentUpon>BrowserWindow.xaml</DependentUpon>

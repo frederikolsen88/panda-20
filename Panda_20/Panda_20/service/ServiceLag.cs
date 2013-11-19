@@ -225,61 +225,7 @@ namespace Panda_20
                 }
             }
         }
-
+   
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-         * Returnerer antal likes på en Facebook-side med et givent id.
-         */
-
-        public static int GetLikes(string id)
-        {
-            int likes = 0;
-            JsonObject response = _loginClient.Get("//" + id + "?fields=likes") as JsonObject;
-
-            if (response != null)
-                likes = (int) response["likes"];
-            
-            Debug.WriteLine(likes);
-
-            return likes;
-        }
     }
 }

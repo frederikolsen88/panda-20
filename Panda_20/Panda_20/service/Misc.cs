@@ -84,6 +84,12 @@ namespace Panda_20.service
             return Service.ReadXmlValue(elementName, @"service\AppValues.xml");
         }
 
+        public static void  WriteXmlElementToAppValues(string elementName, string newValue)
+        {
+            Service.WriteXmlValue(elementName, newValue, @"service\AppValues.xml");
+        }
+        
+
 
         //-----------------------------------------------------------
         //--------------<WRITE XML VALUE TO APPVALUES>--- Author: ??? 

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
+  <!-- SETTINGS PAGE for all the settings the user is able to set. DON'T access directly - use the SettingAccess class! -->
+
   <!-- TEST FOR TESTING-->
   <test>it works</test>
-  
-  <!-- SETTINGS PAGE for all the settings the user is able to set. DON'T access directly - use the SettingAccess class! -->
   
   <!--NOTIFICATIONS WHEN OWNER (PAGE) POSTS STUFF-->
   <own_comment_notifications>false</own_comment_notifications>

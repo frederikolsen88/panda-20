@@ -43,8 +43,8 @@ namespace Panda_20.gui
                 Service.TokenAndExpiresIn[0] = token;
                 Service.TokenAndExpiresIn[1] = expiresIn;
 
-                Misc.WriteXmlElementToAppValues("fbToken", "access_token", Service.TokenAndExpiresIn[0]);
-                Misc.WriteXmlElementToAppValues("fbToken", "expiresIn", Service.TokenAndExpiresIn[1]);
+                Misc.WriteXmlElementToAppValues("fb_token", Service.TokenAndExpiresIn[0]);
+                Misc.WriteXmlElementToAppValues("fb_token_expiresIn", Service.TokenAndExpiresIn[1]);
             }
 
             return hasToken;

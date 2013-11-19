@@ -9,6 +9,10 @@
     ]]>
   </fbUrl>
 
+  <fb_token></fb_token>
+  <fb_token_expiresIn></fb_token_expiresIn>
+  
+  
   <!-- TESTS-->
   <test>it seems to work</test>
   <test_write>off</test_write>

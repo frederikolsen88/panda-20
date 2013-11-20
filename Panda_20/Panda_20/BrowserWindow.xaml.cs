@@ -38,16 +38,30 @@ namespace Panda_20
 
         private void Browser_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-            if (e.Uri != BrowserHelper.CurrentUri)
-            {
-                BrowserHelper.CurrentUri = e.Uri;
 
-                if (BrowserHelper.FetchToken())
+            if (!e.Uri.ToString().StartsWith("res://ieframe.dll"))
+            {
+                if (e.Uri != BrowserHelper.CurrentUri)
                 {
-                    _pageList = new PageList();
-                    Close();
+                    BrowserHelper.CurrentUri = e.Uri;
+
+                    if (BrowserHelper.FetchToken())
+                    {
+                        _pageList = new PageList();
+                        Close();
+                    }
                 }
             }
+
+            // Et URL, som begynder med "res://ieframe.dll" indikerer, at der er sket en
+            // forbindelsesfejl, hvorved vi terminerer programmet.
+            
+            else
+            {
+                TerminationAssistant.ShowErrorPopUp("Panda was unable connect to the Internet! Click OK to close the program.");
+            }
+
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

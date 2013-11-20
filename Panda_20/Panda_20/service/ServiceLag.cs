@@ -244,7 +244,7 @@ namespace Panda_20
         //--------------<GENERAL READ XML VALUE>---------------- Author: TRR 
         //-------------------------------------------------------------------
         
-        // Please use specific read-methods instead of this one. They are on the Misc class.. for some reason.
+        // DEPRECATED - USE Settings.Default.NAMEOFYOURSETTING
         public static String ReadXmlValue(string elementName, string filePath)
         {   
             XDocument document = XDocument.Load(filePath);
@@ -266,11 +266,14 @@ namespace Panda_20
         // doing the dirty stuff at the same time. Won't happen often, but it would 
         // crash the program horribly if or when it happened.
 
-        // again, use this method from any other methods you write on the service-level.
+        // DEPRECATED - USE:
+        // Settings.Default.NAMEOFYOURSETTING = yourValue
+        // Settings.Default.Save();
+        // ...instead. See how in actual use in BrowserHelper-class.
        
         public static void WriteXmlValue(string elementName, string newValue, string filePath)
         {
-            XDocument document = XDocument.Load(@"service\AppValues.xml");
+            XDocument document = XDocument.Load(filePath);
             XElement retrievedElement = document.Root.Element(elementName);
 
             if (retrievedElement == null)

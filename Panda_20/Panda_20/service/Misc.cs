@@ -76,42 +76,42 @@ namespace Panda_20.service
 
 
 
-        //-----------------------------------------------------------
-        //--------------<READ XML VALUE FROM APPVALUES>---Author: TRR 
-        //-----------------------------------------------------------
-        public static String ReadXmlElementFromAppValues(String elementName)
-        {
-            return Service.ReadXmlValue(elementName, @"service\AppValues.xml");
-        }
-
-        public static void  WriteXmlElementToAppValues(string elementName, string newValue)
-        {
-            Service.WriteXmlValue(elementName, newValue, @"service\AppValues.xml");
-        }
-        
-
-
-        //-----------------------------------------------------------
-        //--------------<WRITE XML VALUE TO APPVALUES>--- Author: ??? 
-        //-----------------------------------------------------------
-        public static bool WriteXmlElementToAppValues(string destination, string name, string value)
-        {
-      
-            //TODO make this method use the Service.WriteXmlValue()-method instead.
-            XDocument document = XDocument.Load(@"service\AppValues.xml");
-            XElement newElement = new XElement(name, value);
-            bool result = false;
-
-            XElement destinationElement = document.Element(destination);
-
-            if (destinationElement != null)
-            {
-                destinationElement.Add(newElement);
-                document.Save(@"service\AppValues.xml");
-                result = true;
-            }
-                
-            return result;
-        }
+//        //-----------------------------------------------------------
+//        //--------------<READ XML VALUE FROM APPVALUES>---Author: TRR 
+//        //-----------------------------------------------------------
+//        public static String ReadXmlElementFromAppValues(String elementName)
+//        {
+//            return Service.ReadXmlValue(elementName, @"service\AppValues.xml");
+//        }
+//
+//        public static void  WriteXmlElementToAppValues(string elementName, string newValue)
+//        {
+//            Service.WriteXmlValue(elementName, newValue, @"service\AppValues.xml");
+//        }
+//        
+//
+//
+//        //-----------------------------------------------------------
+//        //--------------<WRITE XML VALUE TO APPVALUES>--- Author: ??? 
+//        //-----------------------------------------------------------
+//        public static bool WriteXmlElementToAppValues(string destination, string name, string value)
+//        {
+//      
+//            //TODO make this method use the Service.WriteXmlValue()-if this method should to exist instead.
+//            XDocument document = XDocument.Load(@"service\AppValues.xml");
+//            XElement newElement = new XElement(name, value);
+//            bool result = false;
+//
+//            XElement destinationElement = document.Element(destination);
+//
+//            if (destinationElement != null)
+//            {
+//                destinationElement.Add(newElement);
+//                document.Save(@"service\AppValues.xml");
+//                result = true;
+//            }
+//                
+//            return result;
+//        }
     }
 }

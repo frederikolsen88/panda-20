@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using Panda_20.Properties;
 using Panda_20.service;
 
 namespace Panda_20.gui
@@ -18,7 +19,8 @@ namespace Panda_20.gui
 
         public static void InitBrowser(WebBrowser browser)
         {
-            CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
+//            CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
+            CurrentUri = new Uri(Settings.Default.fbUrl); 
             browser.Navigate(CurrentUri);
         }
 
@@ -40,11 +42,17 @@ namespace Panda_20.gui
 
                 string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
 
+
+                // ----------------- <TODO EXTRACT THIS SETTING OF STUFF TO A METHOD ON SERVICE> -----------
                 Service.TokenAndExpiresIn[0] = token;
                 Service.TokenAndExpiresIn[1] = expiresIn;
 
-                Misc.WriteXmlElementToAppValues("fb_token", Service.TokenAndExpiresIn[0]);
-                Misc.WriteXmlElementToAppValues("fb_token_expiresIn", Service.TokenAndExpiresIn[1]);
+                //This is how to set properties - damn easy, yo! Use it instead of writing to XML
+                Settings.Default.fb_token = Service.TokenAndExpiresIn[0];
+                Settings.Default.fb_token_expires_in = Service.TokenAndExpiresIn[1];
+                Settings.Default.Save(); // remember to save the changes!
+
+                // ----------------- </TODO EXTRACT THIS SETTING OF STUFF TO A METHOD ON SERVICE> -----------
             }
 
             return hasToken;

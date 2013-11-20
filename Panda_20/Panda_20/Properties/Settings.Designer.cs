@@ -23,14 +23,27 @@ namespace Panda_20.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=http" +
-            "s://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,r" +
-            "ead_mailbox,read_page_mailboxes,offline_access&response_type=token")]
-        public string fbUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string fb_token {
             get {
-                return ((string)(this["fbUrl"]));
+                return ((string)(this["fb_token"]));
+            }
+            set {
+                this["fb_token"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string fb_token_expires_in {
+            get {
+                return ((string)(this["fb_token_expires_in"]));
+            }
+            set {
+                this["fb_token_expires_in"] = value;
             }
         }
         
@@ -43,54 +56,77 @@ namespace Panda_20.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("it works")]
-        public string test {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=http" +
+            "s://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,r" +
+            "ead_mailbox,read_page_mailboxes,offline_access&response_type=token")]
+        public string fbUrl {
             get {
-                return ((string)(this["test"]));
+                return ((string)(this["fbUrl"]));
             }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool notifications_own_comments_on {
-            get {
-                return ((bool)(this["notifications_own_comments_on"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool notifications_own_posts_on {
-            get {
-                return ((bool)(this["notifications_own_posts_on"]));
+            set {
+                this["fbUrl"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool notifications_other_comments_on {
+        public bool allow_notifications_comment_own {
             get {
-                return ((bool)(this["notifications_other_comments_on"]));
+                return ((bool)(this["allow_notifications_comment_own"]));
             }
             set {
-                this["notifications_other_comments_on"] = value;
+                this["allow_notifications_comment_own"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool notifications_other_posts_on {
+        public bool allow_notifications_post_own {
             get {
-                return ((bool)(this["notifications_other_posts_on"]));
+                return ((bool)(this["allow_notifications_post_own"]));
             }
             set {
-                this["notifications_other_posts_on"] = value;
+                this["allow_notifications_post_own"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool allow_notifications_comment_other {
+            get {
+                return ((bool)(this["allow_notifications_comment_other"]));
+            }
+            set {
+                this["allow_notifications_comment_other"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool allow_notifications_post_other {
+            get {
+                return ((bool)(this["allow_notifications_post_other"]));
+            }
+            set {
+                this["allow_notifications_post_other"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int notifications_max_amount {
+            get {
+                return ((int)(this["notifications_max_amount"]));
+            }
+            set {
+                this["notifications_max_amount"] = value;
             }
         }
     }

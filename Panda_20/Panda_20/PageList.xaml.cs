@@ -108,8 +108,8 @@ namespace Panda_20
 
         private void connectedToPageToolTip()
         {
-            MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is connected to - " + Service.SelectedPage["name"], ToolTipIcon.Info);
-            MainWindow.NotifyIcon.Text = "Panda is connected to - " + Service.SelectedPage["name"];
+            MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda Status", "Panda is connected to " + Service.SelectedPage["name"], ToolTipIcon.Info);
+            MainWindow.NotifyIcon.Text = "Panda is connected to " + Service.SelectedPage["name"];
         }
 
         // Repræsentation af en Facebook-side som udelukkende skal

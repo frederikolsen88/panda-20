@@ -90,6 +90,8 @@ namespace Panda_20.gui
             {
                 MainWindow.NotifyIcon.Dispose();
                 Misc.DisposeWebClient();
+                Service.WriteToConfig("fb_token", "");
+                Service.WriteToConfig("fb_token_expires_in", "0");
                 System.Environment.Exit(0);
             }
         }

@@ -83,6 +83,8 @@ namespace Panda_20
         {
             // TODO Option Logic 
             // ROLAND BE WORKING ON THIS!
+            OptionsWindow opWindow = new OptionsWindow();
+            opWindow.Show();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -5,6 +5,7 @@
         Title="Facebook pages" Height="250" Width="450" Closing="Window_Closing">
         
     <Window.Resources>
+        
         <ResourceDictionary>
             <DataTemplate x:Key="ListBoxPage">
                 <Grid Margin="5">
@@ -36,11 +37,15 @@
                     </StackPanel>
                 </Grid>
             </DataTemplate>
-        </ResourceDictionary>      
+        </ResourceDictionary>    
+        
     </Window.Resources>
-
-    <ListBox Name="PagesListBox" HorizontalAlignment="Stretch" 
+    <Grid x:Name="LayoutRoot" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox Name="PagesListBox" HorizontalAlignment="Stretch" 
              Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" 
-             MouseDoubleClick="PagesListBox_MouseDoubleClick" ItemTemplate="{StaticResource ListBoxPage}"></ListBox>
-
+             MouseDoubleClick="PagesListBox_MouseDoubleClick" ItemTemplate="{StaticResource ListBoxPage}" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"></ListBox>
+    </Grid>
 </Window>

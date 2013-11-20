@@ -206,10 +206,14 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\friends.png" />
+    <Resource Include="resources\friends.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\panda2.ico" />
+    <Resource Include="resources\panda2.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

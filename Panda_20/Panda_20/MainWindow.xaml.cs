@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using Panda_20.gui;
@@ -13,6 +14,7 @@ namespace Panda_20
     /// 
     /// Author: Frederik Olsen og Toke V. Albrechtsen
     /// </summary>
+    
     public partial class MainWindow : Window
     {
         private static NotifyIcon _notifyIcon;

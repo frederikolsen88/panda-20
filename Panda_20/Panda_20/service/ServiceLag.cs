@@ -14,9 +14,9 @@ namespace Panda_20
     /// <summary>
     /// Service-klasse der tillader adgang mellem GUI og model-lag jævnført Model/View/Controller-modellen.
     /// </summary>
+
     public static class Service
     {
-
         // TODO Redundans; vi skal bruge XML'en alligevel
         private const String AppID = "470029853116845";
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
@@ -76,7 +76,7 @@ namespace Panda_20
         //-----------------------------------------------------------
         // This FacebookClient is needed to get posts, private messages
         // and more from the selected page
-
+        [STAThread]
         public static FacebookClient SetPageFacebookClient(string pageAccessToken)
         {
             try
@@ -172,6 +172,7 @@ namespace Panda_20
             }
         }
 
+        
         public static void CreateNotification(PandaNotification pn)
         {
             int userFriends = Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount);

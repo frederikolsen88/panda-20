@@ -40,7 +40,7 @@ namespace Panda_20
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _notifyIcon = new NotifyIcon();
-            _notifyIcon.Icon = Properties.Resources.pandaIcon;
+            _notifyIcon.Icon = Properties.Resources.panda2;
 
             ContextMenuSetup();
             Hide();

@@ -34,8 +34,13 @@ namespace Panda_20
         {
             
             InitializeComponent();
+                  
+            
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             _notifyIcon = new NotifyIcon();
-            _notifyIcon.Icon =  Properties.Resources.pandaIcon;
+            _notifyIcon.Icon = Properties.Resources.pandaIcon;
 
             ContextMenuSetup();
             Hide();
@@ -44,14 +49,12 @@ namespace Panda_20
             if (BrowserHelper.HasToken())
             {
                 PageList pageList = new PageList();
-                pageList.Show();
             }
             else
             {
                 BrowserWindow browserWindow = new BrowserWindow();
                 browserWindow.Show();
             }
-            
         }
 
         // Handles the Menu
@@ -102,6 +105,8 @@ namespace Panda_20
         {
            TerminationAssistant.ShowClosingPopUp(this, e);
         }
+
+       
     }
 }
 

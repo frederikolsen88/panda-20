@@ -4,7 +4,7 @@
         xmlns:properties="clr-namespace:Panda_20.Properties"
         Title="OptionsWindow" Height="350" Width="600">
 
-    <StackPanel x:Name="MainContentStackPanel" >
+    <StackPanel x:Name="MainContentStackPanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
 
         <Label x:Name="PageDescriptionLabel" FontSize="17" Margin="10,0,0,0">OPTIONS</Label>
         <Separator Margin="10,5"></Separator>

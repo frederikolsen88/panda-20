@@ -93,7 +93,7 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool allow_notifications_posts_from_others {
             get {
                 return ((bool)(this["allow_notifications_posts_from_others"]));
@@ -105,7 +105,7 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool allow_notifications_comments_from_others {
             get {
                 return ((bool)(this["allow_notifications_comments_from_others"]));

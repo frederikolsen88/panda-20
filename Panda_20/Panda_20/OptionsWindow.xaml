@@ -1,0 +1,14 @@
+﻿<Window x:Class="Panda_20.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OptionsWindow" Height="500" Width="800">
+    
+    <StackPanel>
+        <DockPanel  x:Name="Buttons" Margin="8" HorizontalAlignment="Right" Width="auto">
+            <Button HorizontalAlignment="Right" Height ="20" MinWidth="93">OK</Button>
+            <Button HorizontalAlignment="Right" Height ="20" MinWidth="93" Margin="10,0,0,0">Cancel</Button>
+            <Button HorizontalAlignment="Right" Height ="20" MaxWidth="93" Margin="10,0,0,0" Width="120">Defaults</Button>
+        </DockPanel>
+    </StackPanel>
+    
+</Window>

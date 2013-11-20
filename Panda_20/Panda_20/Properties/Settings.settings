@@ -21,10 +21,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="allow_notifications_posts_from_others" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="allow_notifications_comments_from_others" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="notifications_max_amount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4</Value>

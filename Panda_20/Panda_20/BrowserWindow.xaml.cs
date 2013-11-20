@@ -52,7 +52,7 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (Service.TokenAndExpiresIn[0] == null)
+            if (Service.ReadFromConfig("fb_token") == "")
             TerminationAssistant.ShowClosingPopUp(this, e);
         }
     }

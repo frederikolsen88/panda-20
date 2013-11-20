@@ -47,20 +47,28 @@ namespace Panda_20.gui
             Debug.WriteLine(uriString);
             bool hasToken = false;
 
-            if (uriString.Contains("access_token"))
+            if (!uriString.Contains("error_reason=user_denied"))
             {
-                int tokenStart = uriString.IndexOf('#') + 1;
-                int expiresInStart = uriString.LastIndexOf('=') + 1;
-                hasToken = true;
+                if (uriString.Contains("access_token"))
+                {
+                    int tokenStart = uriString.IndexOf('#') + 1;
+                    int expiresInStart = uriString.LastIndexOf('=') + 1;
+                    hasToken = true;
 
-                string token = uriString.Substring(tokenStart, uriString.IndexOf('&') - tokenStart);
+                    string token = uriString.Substring(tokenStart, uriString.IndexOf('&') - tokenStart);
 
-                token = token.Substring(token.IndexOf('=') + 1);
+                    token = token.Substring(token.IndexOf('=') + 1);
 
-                string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
+                    string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
 
-                Service.WriteToConfig("fb_token", token);
-                Service.WriteToConfig("fb_token_expires_in", expiresIn);
+                    Service.WriteToConfig("fb_token", token);
+                    Service.WriteToConfig("fb_token_expires_in", expiresIn);
+                }
+            }
+
+            else
+            {
+                TerminationAssistant.NoPermissionsErrorPopUp();
             }
 
             return hasToken;
@@ -69,6 +77,23 @@ namespace Panda_20.gui
 
     class TerminationAssistant
     {
+
+        public static void NoPermissionsErrorPopUp()
+        {
+            const string message = "Panda did not get the required permissions. Click OK to close.";
+            const string caption = "Panda";
+            const MessageBoxButton button = MessageBoxButton.OK;
+            const MessageBoxImage image = MessageBoxImage.Error;
+            MessageBoxResult result = MessageBox.Show(Application.Current.MainWindow, message, caption, button, image);
+
+            if (result == MessageBoxResult.OK)
+            {
+                MainWindow.NotifyIcon.Dispose();
+                Misc.DisposeWebClient();
+                System.Environment.Exit(0);
+            }
+        }
+
         public static void ShowClosingPopUp(object sender, CancelEventArgs e)
         {
             const string message = "Do you want to close Panda?";

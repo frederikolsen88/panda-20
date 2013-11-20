@@ -4,7 +4,7 @@
         WindowStartupLocation="Manual"
         ResizeMode="NoResize"
         Title="Notification" Height="100" Width="300"
-        WindowStyle="None"  Background="Transparent"  AllowsTransparency="True" >
+        WindowStyle="None"  Background="Transparent"  AllowsTransparency="True" ShowInTaskbar="False" >
 
     <Border BorderBrush="LightGray"  BorderThickness="3,3,3,3" CornerRadius="8,8,0,0" Opacity="0.95" Margin="0,0,0,0" >
 

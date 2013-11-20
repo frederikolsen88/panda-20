@@ -34,8 +34,6 @@ namespace Panda_20
 
         // Her gemmes Token og en Unix Time for hvornår det token udløber i et string array.
 
-        // Ovenstående kommentar forklarer det vist. Bemærk dog, at jeg hele tiden har haft XML'en
-        // in mente. Derfor er string[]'et bare en temp løsning for at få sendt dataene videre fra GUI-laget. -Frede
         private static string[] tokenAndExpiresIn = new string[2];
 
         private static Dictionary<string, JsonObject> _pages = new Dictionary<string, JsonObject>();
@@ -191,9 +189,9 @@ namespace Panda_20
             np.Show();
         }
 
-        /**
-         * Returnerer antal likes på en Facebook-side med et givent id.
-         */
+        //-----------------------------------------------------------
+        //--------------<RETURN PAGE LIKES>---------------Author: FOL 
+        //-----------------------------------------------------------
 
         public static Int32 GetLikes(string id)
         {

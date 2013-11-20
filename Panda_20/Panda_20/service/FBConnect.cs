@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Facebook;
 using Panda_20.model;
@@ -11,6 +13,17 @@ namespace Panda_20.service
 {
     static class FBConnect
     {
+
+        public static void OneMinuteTimer()
+        {
+            // Create an inferred delegate that invokes methods for the timer.
+
+            // Create a timer that signals the delegate to invoke  
+            // CheckStatus after one second, and every 1/4 second  
+            // thereafter.
+            Console.WriteLine("{0} Creating timer.\n", DateTime.Now.ToString("h:mm:ss.fff"));
+            //Timer stateTimer = new Timer(GetFacebookUpdates, null, 1000, 20000);
+        }
 
         //-----------------------------------------------------------
         //--------------<Super Duper 1 Minute Method>---------Author: HJTH 
@@ -134,6 +147,15 @@ namespace Panda_20.service
                         newUsers.Add(pu);
                     }
                 }
+
+                // Create a user for the current page
+                string puid = Convert.ToString(Service.SelectedPage["id"]);
+                string pname = Convert.ToString(Service.SelectedPage["name"]);
+                string pfriend_count = "0";
+                string psubscriber_count = "0";
+                string ppic_square = Convert.ToString(("http://graph.facebook.com/" + (string)Service.SelectedPage["id"]) + "/picture?redirect=false");
+                PandaUser ppu = new PandaUser(puid, pname, pfriend_count, psubscriber_count, ppic_square);
+                newUsers.Add(ppu);
             }
 
             // Join dem

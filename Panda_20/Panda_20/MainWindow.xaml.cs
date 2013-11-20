@@ -39,8 +39,17 @@ namespace Panda_20
             Hide();
 
             WindowState = System.Windows.WindowState.Minimized;
-            BrowserWindow browserWindow = new BrowserWindow();
-            browserWindow.Show();
+            if (BrowserHelper.HasToken())
+            {
+                PageList pageList = new PageList();
+                pageList.Show();
+            }
+            else
+            {
+                BrowserWindow browserWindow = new BrowserWindow();
+                browserWindow.Show();
+            }
+            
         }
 
         // Handles the Menu

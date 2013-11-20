@@ -17,9 +17,26 @@ namespace Panda_20.gui
     {
         public static Uri CurrentUri { get; set; }
 
+        public static bool HasToken()
+        {
+            bool hasToken = false;
+
+            if ((Service.ReadFromConfig("fb_token") != "") && (Service.ReadFromConfig("fb_token_expires_in") != ""))
+            {
+                long expiresInAsLong = Convert.ToInt64(Service.ReadFromConfig("fb_token_expires_in"));
+
+                if (Misc.UnixTimeNow(43200) < expiresInAsLong || expiresInAsLong == 0)
+                {
+                    hasToken = true;
+                }
+            }
+
+            return hasToken;
+        }
+
         public static void InitBrowser(WebBrowser browser)
         {
-//            CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
+//          CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
             CurrentUri = new Uri(Settings.Default.fbUrl); 
             browser.Navigate(CurrentUri);
         }

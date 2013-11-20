@@ -86,7 +86,11 @@ namespace Panda_20.gui
      */
     class TerminationAssistant
     {
-
+        /**
+         * Denne metode vil spawne en fejl-popup med en given meddelelse. Da "OK"-knappen terminerer programmet
+         * og rydder ud i credentials skal denne selvfølgelig kun kaldes når lokummet virkelig brænder på og 
+         * Panda ikke kan arbejde videre.
+         */
         public static void ShowErrorPopUp(string msg)
         {
             string message = msg;
@@ -105,7 +109,9 @@ namespace Panda_20.gui
             }
         }
         
-
+        /**
+         * Denne metode spawner en pop-up til "pæn" nedlukning.
+         */
         public static void ShowClosingPopUp(object sender, CancelEventArgs e)
         {
             const string message = "Do you want to close Panda?";

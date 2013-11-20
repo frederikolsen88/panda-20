@@ -34,8 +34,7 @@ namespace Panda_20
         {
             
             InitializeComponent();
-                  
-            
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

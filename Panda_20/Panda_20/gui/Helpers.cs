@@ -47,7 +47,7 @@ namespace Panda_20.gui
                 browser.Navigate(CurrentUri);
             }
 
-            catch (Facebook.WebExceptionWrapper e)
+            catch (Facebook.WebExceptionWrapper)
             {
                 TerminationAssistant.ShowErrorPopUp("Panda is unable to connect to Facebook. Click OK to close the program.");
             }
@@ -89,6 +89,11 @@ namespace Panda_20.gui
         }
     }
 
+    /**
+     * Hjælpeklasse til diverse nedlukningsscenarier.
+     * 
+     * Author: Frederik Olsen
+     */
     class TerminationAssistant
     {
 

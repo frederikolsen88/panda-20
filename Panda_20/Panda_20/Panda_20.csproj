@@ -97,6 +97,7 @@
     <Compile Include="PageList.xaml.cs">
       <DependentUpon>PageList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="service\BackToDefaults.cs" />
     <Compile Include="service\FBConnect.cs" />
     <Compile Include="service\Misc.cs" />
     <Compile Include="service\Queue.cs" />

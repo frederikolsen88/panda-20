@@ -1,16 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Runtime.Remoting.Messaging;
-using System.Threading;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using System.Xml.Linq;
 using Facebook;
 using Panda_20.gui;
@@ -74,21 +63,6 @@ namespace Panda_20
 
         public static JsonObject SelectedPage { get; set; }
         private static long lastSuccessfullFacebookUpdate;
-
-        //private Service()
-        //{
-        //    TokenAndExpiresIn = new string[2];
-        //    _pages = new Dictionary<string, JsonObject>();
-        //    _pagePictures = new Dictionary<string, string>();
-        //}
-
-        //public static Service Instance
-        //{
-        //    get
-        //    {
-        //        return ServiceInstance;
-        //    }
-        //}
 
         public static long LastSuccessfullFacebookUpdate
         {

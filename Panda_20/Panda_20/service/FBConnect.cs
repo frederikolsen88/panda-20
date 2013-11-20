@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Facebook;
 using Panda_20.model;
 
@@ -16,13 +17,10 @@ namespace Panda_20.service
 
         public static void OneMinuteTimer()
         {
-            // Create an inferred delegate that invokes methods for the timer.
-
-            // Create a timer that signals the delegate to invoke  
-            // CheckStatus after one second, and every 1/4 second  
-            // thereafter.
-            Console.WriteLine("{0} Creating timer.\n", DateTime.Now.ToString("h:mm:ss.fff"));
-            //Timer stateTimer = new Timer(GetFacebookUpdates, null, 1000, 20000);
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(GetFacebookUpdates);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 60);
+            dispatcherTimer.Start();
         }
 
         //-----------------------------------------------------------
@@ -30,7 +28,7 @@ namespace Panda_20.service
         //-----------------------------------------------------------
         // Ask Facebook what's up! Method needs to run asynchronously to work.
 
-        public static async void GetFacebookUpdates()
+        public static async void GetFacebookUpdates(object sender, EventArgs e)
         {
             Console.WriteLine("UpdateFBMethod");
 
@@ -38,14 +36,8 @@ namespace Panda_20.service
             long unix_time = Misc.UnixTimeNow(0);
             Console.WriteLine("unix before: " + unix_time);
 
-            if (Service.LastSuccessfullFacebookUpdate == 0)
-            {
-                Service.LastSuccessfullFacebookUpdate = unix_time;
-            }
-
             bool successfullconnect = true;
-            // To test this, add "-60" to the below timestamp so that you have time to add a message somewhere. This is not needed once we get this method to run once a minute.
-            long timestamp = Service.LastSuccessfullFacebookUpdate-500;
+            long timestamp = Service.LastSuccessfullFacebookUpdate;
             JsonObject result = new JsonObject();
 
             // Collecting the data. I still need to get comment_authors in the same way I did post_authors.

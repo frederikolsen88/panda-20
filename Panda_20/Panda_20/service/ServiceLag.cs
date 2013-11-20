@@ -57,7 +57,7 @@ namespace Panda_20
         private static FacebookClient _pageClient;
 
         public static JsonObject SelectedPage { get; set; }
-        private static long lastSuccessfullFacebookUpdate;
+        private static long lastSuccessfullFacebookUpdate = Misc.UnixTimeNow(0);
 
         public static long LastSuccessfullFacebookUpdate
         {
@@ -85,7 +85,7 @@ namespace Panda_20
                 Console.WriteLine("page access token: " + pageAccessToken);
                 FacebookClient pageFacebookClient = new FacebookClient(pageAccessToken);
                 PageClient = pageFacebookClient;
-                FBConnect.GetFacebookUpdates();
+                FBConnect.OneMinuteTimer();
             }
             catch (FacebookOAuthException)
             {

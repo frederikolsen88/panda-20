@@ -3,9 +3,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using Panda_20.Properties;
 using Panda_20.service;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
+using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace Panda_20.gui
 {
@@ -37,7 +40,8 @@ namespace Panda_20.gui
         public static void InitBrowser(WebBrowser browser)
         {
 //          CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
-            CurrentUri = new Uri(Settings.Default.fbUrl); 
+
+            CurrentUri = new Uri(Settings.Default.fbUrl);
             browser.Navigate(CurrentUri);
         }
 
@@ -68,19 +72,28 @@ namespace Panda_20.gui
 
             else
             {
-                TerminationAssistant.NoPermissionsErrorPopUp();
+                TerminationAssistant.ShowErrorPopUp("Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
             }
 
             return hasToken;
         }
     }
 
+    /**
+     * Hjælpeklasse til diverse nedlukningsscenarier.
+     * 
+     * Author: Frederik Olsen
+     */
     class TerminationAssistant
     {
-
-        public static void NoPermissionsErrorPopUp()
+        /**
+         * Denne metode vil spawne en fejl-popup med en given meddelelse. Da "OK"-knappen terminerer programmet
+         * og rydder ud i credentials skal denne selvfølgelig kun kaldes når lokummet virkelig brænder på og 
+         * Panda ikke kan arbejde videre.
+         */
+        public static void ShowErrorPopUp(string msg)
         {
-            const string message = "Panda did not get the required permissions. Click OK to close.";
+            string message = msg;
             const string caption = "Panda";
             const MessageBoxButton button = MessageBoxButton.OK;
             const MessageBoxImage image = MessageBoxImage.Error;
@@ -90,10 +103,15 @@ namespace Panda_20.gui
             {
                 MainWindow.NotifyIcon.Dispose();
                 Misc.DisposeWebClient();
+                Service.WriteToConfig("fb_token", "");
+                Service.WriteToConfig("fb_token_expires_in", "0");
                 System.Environment.Exit(0);
             }
         }
-
+        
+        /**
+         * Denne metode spawner en pop-up til "pæn" nedlukning.
+         */
         public static void ShowClosingPopUp(object sender, CancelEventArgs e)
         {
             const string message = "Do you want to close Panda?";

@@ -93,6 +93,7 @@ namespace Panda_20
                 string id = (string) Service.Pages[pair.Key]["id"];
                 page.Likes = Service.GetLikes(id);
                 PagesListBox.Items.Add(page);
+
             }
         }
 

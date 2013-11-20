@@ -156,20 +156,30 @@ namespace Panda_20
             
             SetFacebookToken(ReadFromConfig("fb_token"));
 
-            JsonObject response = _loginClient.Get("me/accounts") as JsonObject;
-
-            if (_pages.Count == 0)
+            try
             {
-                foreach (var account in (JsonArray) response["data"])
-                {
-                    JsonObject jsonAccount = ((JsonObject) account);
-                    string name = (string) jsonAccount["name"];
-                    _pages.Add(name, jsonAccount);
+                JsonObject response = _loginClient.Get("me/accounts") as JsonObject;
 
-                    string tempPicUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
-                    _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(tempPicUrl));
+                if (_pages.Count == 0)
+                {
+                    foreach (var account in (JsonArray) response["data"])
+                    {
+                        JsonObject jsonAccount = ((JsonObject) account);
+                        string name = (string) jsonAccount["name"];
+                        _pages.Add(name, jsonAccount);
+
+                        string tempPicUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) +
+                                            "/picture?redirect=false";
+                        _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(tempPicUrl));
+                    }
                 }
             }
+
+            catch (Facebook.WebExceptionWrapper e)
+            {
+                TerminationAssistant.ShowErrorPopUp("Panda was unable to connect to Facebook. Click OK to close the program.");
+            }
+            
         }
 
         

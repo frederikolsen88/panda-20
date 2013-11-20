@@ -41,18 +41,8 @@ namespace Panda_20.gui
         {
 //          CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
 
-            try
-            {
-                CurrentUri = new Uri(Settings.Default.fbUrl);
-                browser.Navigate(CurrentUri);
-            }
-
-            catch (Facebook.WebExceptionWrapper)
-            {
-                TerminationAssistant.ShowErrorPopUp("Panda is unable to connect to Facebook. Click OK to close the program.");
-            }
-
-            
+            CurrentUri = new Uri(Settings.Default.fbUrl);
+            browser.Navigate(CurrentUri);
         }
 
         public static bool FetchToken()

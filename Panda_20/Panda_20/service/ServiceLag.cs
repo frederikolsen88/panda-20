@@ -178,10 +178,8 @@ namespace Panda_20
                     string name = (string) jsonAccount["name"];
                     _pages.Add(name, jsonAccount);
 
-                    // TODO picUrl kan omnavngives for bedre forståelse. Se getPictureURL(..)
-
-                    string picUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
-                    _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(picUrl));
+                    string tempPicUrl = ("http://graph.facebook.com/" + (string) jsonAccount["id"]) + "/picture?redirect=false";
+                    _pagePictures.Add((string) jsonAccount["name"], Misc.GetPagePictureUrl(tempPicUrl));
                 }
             }
         }

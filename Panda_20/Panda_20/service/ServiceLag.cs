@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using Facebook;
 using Panda_20.gui;
 using Panda_20.model;
+using Panda_20.Properties;
 using Panda_20.service;
 
 
@@ -13,9 +14,9 @@ namespace Panda_20
     /// <summary>
     /// Service-klasse der tillader adgang mellem GUI og model-lag jævnført Model/View/Controller-modellen.
     /// </summary>
+
     public static class Service
     {
-
         // TODO Redundans; vi skal bruge XML'en alligevel
         private const String AppID = "470029853116845";
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
@@ -31,10 +32,6 @@ namespace Panda_20
                 return _facebookToken;
             }
         }
-
-        // Her gemmes Token og en Unix Time for hvornår det token udløber i et string array.
-
-        private static string[] tokenAndExpiresIn = new string[2];
 
         private static Dictionary<string, JsonObject> _pages = new Dictionary<string, JsonObject>();
 
@@ -74,19 +71,12 @@ namespace Panda_20
             set { _pageClient = value; }
         }
 
-        public static string[] TokenAndExpiresIn
-        {
-            get { return tokenAndExpiresIn; }
-            set { tokenAndExpiresIn = value; }
-        }
-
-
         //-----------------------------------------------------------
         //--------------<Set Page Access Token>---------Author: HJTH 
         //-----------------------------------------------------------
         // This FacebookClient is needed to get posts, private messages
         // and more from the selected page
-
+        [STAThread]
         public static FacebookClient SetPageFacebookClient(string pageAccessToken)
         {
             try
@@ -163,8 +153,8 @@ namespace Panda_20
             // Jeg kan ikke benytte _loginClient.AccessToken i metodekaldet
             // nedenfor, da _loginClient er null på det tidspunkt. Men den
             // bliver selvfølgelig brugt efterfølgende. -Frede
-            string accessToken = TokenAndExpiresIn[0];
-            SetFacebookToken(accessToken);
+            
+            SetFacebookToken(ReadFromConfig("fb_token"));
 
             JsonObject response = _loginClient.Get("me/accounts") as JsonObject;
 
@@ -182,6 +172,7 @@ namespace Panda_20
             }
         }
 
+        
         public static void CreateNotification(PandaNotification pn)
         {
             int userFriends = Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount);
@@ -265,9 +256,37 @@ namespace Panda_20
                     document.Save(@"service\AppValues.xml");
                 }
             }
-            
         }
 
+        /**
+         * Skriver en værdi til programmets settings, såfremt vi forsøger
+         * at skrive til en property, der rent faktisk findes.
+         */
 
+        public static void WriteToConfig(string name, string value)
+        {
+            if (Settings.Default.Properties[name] != null)
+            {
+                Settings.Default[name] = value;
+                Settings.Default.Save();
+            }
+        }
+
+        /**
+         * Henter værdien af en given property i settings, såfremt
+         * den findes. Bemærk, at vi kun returnere som en string.
+         * Dér hvor man skal bruge setting'en, skal der castes afhg.
+         * af forventet indhold.
+         */
+
+        public static string ReadFromConfig(string name)
+        {
+            string setting = "";
+
+            if (Settings.Default.Properties[name] != null)
+                setting = Settings.Default[name].ToString();
+
+            return setting;
+        }
     }
 }

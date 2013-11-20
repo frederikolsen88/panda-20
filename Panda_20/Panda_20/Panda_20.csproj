@@ -76,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Settings.cs" />
     <Page Include="BrowserWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +111,7 @@
     </Compile>
     <Compile Include="service\BackToDefaults.cs" />
     <Compile Include="service\FBConnect.cs" />
+    <Compile Include="service\FBThread.cs" />
     <Compile Include="service\Misc.cs" />
     <Compile Include="service\Queue.cs" />
     <Compile Include="service\ServiceLag.cs" />

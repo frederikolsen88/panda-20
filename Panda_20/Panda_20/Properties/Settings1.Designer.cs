@@ -56,7 +56,7 @@ namespace Panda_20.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/dialog/oauth?client_id=244316138954589&redirect_uri=http" +
             "s://www.facebook.com/connect/login_success.html&scope=read_stream,manage_pages,r" +
@@ -65,56 +65,53 @@ namespace Panda_20.Properties {
             get {
                 return ((string)(this["fbUrl"]));
             }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool allow_notifications_comments_from_self {
+            get {
+                return ((bool)(this["allow_notifications_comments_from_self"]));
+            }
             set {
-                this["fbUrl"] = value;
+                this["allow_notifications_comments_from_self"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_comment_own {
+        public bool allow_notifications_posts_from_self {
             get {
-                return ((bool)(this["allow_notifications_comment_own"]));
+                return ((bool)(this["allow_notifications_posts_from_self"]));
             }
             set {
-                this["allow_notifications_comment_own"] = value;
+                this["allow_notifications_posts_from_self"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_post_own {
+        public bool allow_notifications_posts_from_others {
             get {
-                return ((bool)(this["allow_notifications_post_own"]));
+                return ((bool)(this["allow_notifications_posts_from_others"]));
             }
             set {
-                this["allow_notifications_post_own"] = value;
+                this["allow_notifications_posts_from_others"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_comment_other {
+        public bool allow_notifications_comments_from_others {
             get {
-                return ((bool)(this["allow_notifications_comment_other"]));
+                return ((bool)(this["allow_notifications_comments_from_others"]));
             }
             set {
-                this["allow_notifications_comment_other"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_post_other {
-            get {
-                return ((bool)(this["allow_notifications_post_other"]));
-            }
-            set {
-                this["allow_notifications_post_other"] = value;
+                this["allow_notifications_comments_from_others"] = value;
             }
         }
         
@@ -127,6 +124,18 @@ namespace Panda_20.Properties {
             }
             set {
                 this["notifications_max_amount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool allow_notifications_comments_on_self_posts {
+            get {
+                return ((bool)(this["allow_notifications_comments_on_self_posts"]));
+            }
+            set {
+                this["allow_notifications_comments_on_self_posts"] = value;
             }
         }
     }

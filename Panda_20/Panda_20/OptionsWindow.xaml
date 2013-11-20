@@ -2,12 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:properties="clr-namespace:Panda_20.Properties"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         Title="OptionsWindow" Height="350" Width="600">
 
     <StackPanel x:Name="MainContentStackPanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
 
         <Label x:Name="PageDescriptionLabel" FontSize="17" Margin="10,0,0,0">OPTIONS</Label>
-        <Separator Margin="10,5"></Separator>
 
         <StackPanel Margin="10,5">
             

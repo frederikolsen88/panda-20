@@ -3,9 +3,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using Panda_20.Properties;
 using Panda_20.service;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
+using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace Panda_20.gui
 {
@@ -37,8 +40,19 @@ namespace Panda_20.gui
         public static void InitBrowser(WebBrowser browser)
         {
 //          CurrentUri = new Uri(Misc.ReadXmlElementFromAppValues("fbUrl"));
-            CurrentUri = new Uri(Settings.Default.fbUrl); 
-            browser.Navigate(CurrentUri);
+
+            try
+            {
+                CurrentUri = new Uri(Settings.Default.fbUrl);
+                browser.Navigate(CurrentUri);
+            }
+
+            catch (Facebook.WebExceptionWrapper e)
+            {
+                TerminationAssistant.ShowErrorPopUp("Panda is unable to connect to Facebook. Click OK to close the program.");
+            }
+
+            
         }
 
         public static bool FetchToken()
@@ -68,7 +82,7 @@ namespace Panda_20.gui
 
             else
             {
-                TerminationAssistant.NoPermissionsErrorPopUp();
+                TerminationAssistant.ShowErrorPopUp("Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
             }
 
             return hasToken;
@@ -78,9 +92,9 @@ namespace Panda_20.gui
     class TerminationAssistant
     {
 
-        public static void NoPermissionsErrorPopUp()
+        public static void ShowErrorPopUp(string msg)
         {
-            const string message = "Panda did not get the required permissions. Click OK to close.";
+            string message = msg;
             const string caption = "Panda";
             const MessageBoxButton button = MessageBoxButton.OK;
             const MessageBoxImage image = MessageBoxImage.Error;
@@ -95,6 +109,7 @@ namespace Panda_20.gui
                 System.Environment.Exit(0);
             }
         }
+        
 
         public static void ShowClosingPopUp(object sender, CancelEventArgs e)
         {

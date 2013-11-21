@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using Panda_20.model;
 using Panda_20.service;
+using Button = System.Windows.Controls.Button;
 
 namespace Panda_20.gui
 {
@@ -126,5 +127,17 @@ namespace Panda_20.gui
             UserFriends.Text = userFriends;
         }
 
+        private void DismissButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ((Button) sender).Background = new SolidColorBrush(Colors.DarkTurquoise);
+
+        }
+
+        private void DismissButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            var convertFromString = ColorConverter.ConvertFromString("#41B1E1");
+            if (convertFromString != null)
+                ((Button) sender).Background = new SolidColorBrush((Color) convertFromString);
+        }
     }
 }

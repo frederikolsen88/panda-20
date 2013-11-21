@@ -41,7 +41,7 @@ namespace Panda_20
         {
             
             _notifyIcon = new NotifyIcon();
-            _notifyIcon.Icon = Properties.Resources.panda2;
+            _notifyIcon.Icon = Properties.Resources.panda;
 
             ContextMenuSetup();
             Hide();

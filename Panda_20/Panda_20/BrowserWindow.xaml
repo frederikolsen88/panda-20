@@ -4,7 +4,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
-        Title="Login" Height="Auto" Width="Auto" Closing="Window_Closing" Icon="/resources/appbar.social.facebook.png">
+        Title="Login" Height="Auto" Width="Auto" Closing="Window_Closing" Icon="/resources/appbar.social.facebook.png" ShowInTaskbar="False">
 
     <i:Interaction.Behaviors>
         <behaviours:BorderlessWindowBehavior ResizeWithGrip="True"/>

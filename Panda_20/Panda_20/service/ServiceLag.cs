@@ -185,8 +185,21 @@ namespace Panda_20
         
         public static void CreateNotification(PandaNotification pn)
         {
+            Console.WriteLine("TYPE: " + pn.GetType().ToString());
+
             int userFriends = Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount);
-            NotificationPopup np = new NotificationPopup(pn.Message, pn.Owner.Name, pn.Owner.PicSquare, pn.GetType().ToString(), Convert.ToString(userFriends), pn.Nid);
+            NotificationPopup np;
+            if (pn.GetType().ToString() == "Panda_20.model.PandaComment")
+            {
+                PandaComment pc = (PandaComment) pn;
+                np = new NotificationPopup(pc.Message, pc.Owner.Name, pc.Owner.PicSquare,
+                    pc.GetType().ToString(), Convert.ToString(userFriends), pc.PostId);
+            }
+            else
+            {
+                np = new NotificationPopup(pn.Message, pn.Owner.Name, pn.Owner.PicSquare,
+                    pn.GetType().ToString(), Convert.ToString(userFriends), pn.Nid);
+            }
             np.Show();
         }
 

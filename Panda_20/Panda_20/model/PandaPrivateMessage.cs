@@ -9,11 +9,12 @@ namespace Panda_20.model
     public class PandaPrivateMessage:PandaNotification
     {
 
-        public PandaPrivateMessage(string uid, string message, string createdTime)
+        public PandaPrivateMessage(string uid, string createdTime, string message, string nid)
         {
             this.uid = uid;
             this.Message = message;
             this.CreatedTime = createdTime;
+            this.Nid = nid;
         }
 
     }

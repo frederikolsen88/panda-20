@@ -150,7 +150,7 @@ namespace Panda_20.service
                 string pname = Convert.ToString(Service.SelectedPage["name"]);
                 string pfriend_count = "0";
                 string psubscriber_count = "0";
-                string ppic_square = Convert.ToString(("http://graph.facebook.com/" + (string)Service.SelectedPage["id"]) + "/picture?redirect=false");
+                string ppic_square = Convert.ToString(("http://graph.facebook.com/" + (string)Service.SelectedPage["id"]) + "/picture");
                 PandaUser ppu = new PandaUser(puid, pname, pfriend_count, psubscriber_count, ppic_square);
                 newUsers.Add(ppu);
             }

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using Panda_20.gui;
 using Application = System.Windows.Application;
 
@@ -24,7 +25,7 @@ namespace Panda_20
     /// 
     /// Author: Frederik Olsen
     /// </summary>
-    public partial class BrowserWindow : Window
+    public partial class BrowserWindow : MetroWindow
     {
 
         private PageList _pageList;

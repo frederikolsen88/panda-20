@@ -4,7 +4,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
-        Title="Login" Height="Auto" Width="Auto" Closing="Window_Closing">
+        Title="Login" Height="Auto" Width="Auto" Closing="Window_Closing" Icon="/resources/appbar.social.facebook.png">
 
     <i:Interaction.Behaviors>
         <behaviours:BorderlessWindowBehavior ResizeWithGrip="True"/>
@@ -23,6 +23,6 @@
     </Window.Resources>
 
     <Grid>
-        <WebBrowser Name="Browser" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Stretch" Navigating="Browser_Navigating"/>
+        <WebBrowser Name="Browser" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Navigating="Browser_Navigating"/>
     </Grid>
 </controls:MetroWindow>

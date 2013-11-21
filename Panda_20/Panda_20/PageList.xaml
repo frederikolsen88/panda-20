@@ -5,7 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:panda20="clr-namespace:Panda_20"                          
-        Title="Facebook pages" Height="250" Width="450" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="Facebook pages" Height="250" Width="450" Closing="Window_Closing" ResizeMode="NoResize" Icon="/resources/appbar.page.multiple.png" ShowIconOnTitleBar="True">
 
     <i:Interaction.Behaviors>
         <behaviours:BorderlessWindowBehavior ResizeWithGrip="False" AutoSizeToContent="True"/>
@@ -17,11 +17,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/baselight.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <DataTemplate x:Key="ListBoxPage">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -53,7 +52,7 @@
                     
                 </Grid>
             </DataTemplate>
-        </ResourceDictionary>    
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">

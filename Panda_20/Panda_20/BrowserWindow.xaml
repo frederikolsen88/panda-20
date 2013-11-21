@@ -23,6 +23,6 @@
     </Window.Resources>
 
     <Grid>
-        <WebBrowser Name="Browser" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Navigating="Browser_Navigating"/>
+        <WebBrowser Name="Browser" Margin="0,0,0,0" Navigating="Browser_Navigating"/>
     </Grid>
 </controls:MetroWindow>

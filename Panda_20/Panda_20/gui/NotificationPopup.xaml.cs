@@ -28,6 +28,7 @@ namespace Panda_20.gui
         public NotificationPopup(PandaNotification pn)
         {
             InitializeComponent();
+            WindowStyle = WindowStyle.None;
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
             this.Top = GetTopOffset();
             this.Topmost = true;

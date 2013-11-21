@@ -207,11 +207,6 @@
     <Resource Include="resources\appbar.social.facebook.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\appbar.people.multiple.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="resources\closeButton.png" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +229,9 @@
     <Resource Include="resources\like.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\friends.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

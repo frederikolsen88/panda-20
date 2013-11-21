@@ -4,7 +4,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStartupLocation="Manual"
         ResizeMode="NoResize"
-        Title="Notification" Height="100" Width="300"
+        Title="Notification" Height="105" Width="300"
         ShowTitleBar="False"
         ShowCloseButton="False"
         WindowStyle="None"  Background="Transparent"  AllowsTransparency="True" ShowInTaskbar="False">
@@ -23,14 +23,14 @@
     </Window.Resources>
 
     <Grid Background="White" Margin="0,0,0,0">
-        <Rectangle Name="ColorRectangle" Fill="LightGreen" HorizontalAlignment="Right" Width="300" Margin="0,0,0,80"/>
-        <Image Name="UserImage" Width="50" Height="50" Margin="4,25,243,25"/>
+        <Rectangle Name="ColorRectangle" Fill="DeepSkyBlue" HorizontalAlignment="Right" Width="300" Margin="0,0,0,80"/>
+        <Image Name="UserImage" Width="50" Height="50" Margin="4,31,246,24"/>
         <TextBlock Name="Message" Margin="61,25,5,6" Background="White" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
-        <TextBlock Name="UserName" HorizontalAlignment="Left" Margin="23,2,0,82" TextWrapping="Wrap" Width="150"/>
-        <Image Name="IconImage" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.969,0.469" Margin="2,2,0,0"/>
-        <TextBlock Name="UserFriends" HorizontalAlignment="Left" TextAlignment="Right" Margin="28,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" Height="14">300</TextBlock>
-        <Button Name="DismissButton" Grid.Row="0" Width="20" Click="DismissButton_OnClick" HorizontalAlignment="Left" Margin="280,0,0,80"/>
-        <Image Source="../resources/appbar.people.multiple.png" HorizontalAlignment="Left" Height="14" Margin="4,80,0,0" VerticalAlignment="Top" Width="19"/>
+        <TextBlock Name="UserName" Foreground="White" HorizontalAlignment="Left" Margin="23,4,0,85" TextWrapping="Wrap" Width="150"/>
+        <Image Name="IconImage" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.969,0.469" Margin="2,4,0,0"/>
+        <TextBlock Name="UserFriends" HorizontalAlignment="Left" TextAlignment="Center" Margin="28,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" Height="14">300</TextBlock>
+        <Button Name="DismissButton" Grid.Row="0" Width="25" Click="DismissButton_OnClick" HorizontalAlignment="Left" Margin="275,0,0,80"/>
+        <Image Source="../resources/appbar.people.multiple.png" HorizontalAlignment="Left" Height="14" Margin="4,85,0,0" VerticalAlignment="Top" Width="19"/>
     </Grid>
 </controls:MetroWindow>
 

@@ -67,15 +67,15 @@ namespace Panda_20.gui
         private void DismissButton_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PandaNotification thisNotification = null;
-            foreach (PandaNotification pd in service.Queue.DisplayedNotifications)
-            {
-                if (pd.Nid == this.Nid)
-                {
-                    thisNotification = pd;
-                }
-            }
-            service.Queue.RemoveNotification(thisNotification);
+            //PandaNotification thisNotification = null;
+            //foreach (NotificationPopup np in service.Queue.DisplayedNotifications)
+            //{
+            //    if (np.Pn.Nid == this.Nid)
+            //    {
+            //        thisNotification = np.Pn;
+            //    }
+            //}
+            service.Queue.RemoveNotification(this);
         }
 
         private void FacebookButton_OnClick(object sender, RoutedEventArgs e)

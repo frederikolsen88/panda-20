@@ -197,6 +197,7 @@ namespace Panda_20
             {
                 np = new NotificationPopup(pn);
             }
+            Queue.AddNotification(np);
             np.Show();
         }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Panda_20.gui;
 using Panda_20.model;
 
 namespace Panda_20.service
@@ -11,21 +12,20 @@ namespace Panda_20.service
     public static class Queue
     {
         private static ArrayList displayedNotifications = new ArrayList();
-        private static ArrayList displayedPopups = new ArrayList();
 
         public static ArrayList DisplayedNotifications
         {
             get { return displayedNotifications; }
         }
 
-        public static void AddNotification(PandaNotification pn)
+        public static void AddNotification(NotificationPopup np)
         {
-            DisplayedNotifications.Add(pn);
+            DisplayedNotifications.Add(np);
         }
 
-        public static void RemoveNotification(PandaNotification pn)
+        public static void RemoveNotification(NotificationPopup np)
         {
-            DisplayedNotifications.Remove(pn);
+            DisplayedNotifications.Remove(np);
         }
 
 

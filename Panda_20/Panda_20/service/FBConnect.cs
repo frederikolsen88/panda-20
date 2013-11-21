@@ -189,8 +189,7 @@ namespace Panda_20.service
                 }
                 if (!duplicate)
                 {
-                    Service.CreateNotification(pn);
-                    Queue.AddNotification(pn);
+                    Service.CreateNotification(pn);;
                 }
             }
 

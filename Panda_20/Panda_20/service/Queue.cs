@@ -11,6 +11,7 @@ namespace Panda_20.service
     public static class Queue
     {
         private static ArrayList displayedNotifications = new ArrayList();
+        private static ArrayList displayedPopups = new ArrayList();
 
         public static ArrayList DisplayedNotifications
         {

@@ -24,18 +24,20 @@ namespace Panda_20.gui
     public partial class NotificationPopup : Window
     {
         private string nid;
-        public NotificationPopup(string message, string name, string imageUrl, string type, string userFriends, string nid)
+        private PandaNotification pn;
+        public NotificationPopup(PandaNotification pn)
         {
             InitializeComponent();
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
             this.Top = GetTopOffset();
             this.Topmost = true;
-            SetMessage(message);
-            SetName(name);
-            SetImageUrl(imageUrl);
-            SetType(type);
-            SetUserFriends(userFriends);
-            this.Nid = nid;
+            this.Pn = pn;
+            SetMessage(pn.Message);
+            SetName(pn.Owner.Name);
+            SetImageUrl(pn.Owner.PicSquare);
+            SetType(pn.GetType().ToString());
+            SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
+            this.Nid = pn.Nid;
             //DismissImage = billede af et kryds i guess
         }
 
@@ -43,6 +45,12 @@ namespace Panda_20.gui
         {
             get { return nid; }
             set { nid = value; }
+        }
+
+        public PandaNotification Pn
+        {
+            get { return pn; }
+            set { pn = value; }
         }
 
         private int GetTaskbarHeight()

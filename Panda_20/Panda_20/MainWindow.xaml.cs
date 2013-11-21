@@ -36,7 +36,6 @@ namespace Panda_20
             
             InitializeComponent();
             WindowState = System.Windows.WindowState.Minimized;
-
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

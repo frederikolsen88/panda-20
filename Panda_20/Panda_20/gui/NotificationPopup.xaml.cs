@@ -97,7 +97,18 @@ namespace Panda_20.gui
 
         private void SetType(string type)
         {
-            // TODO
+            if (type.Equals("Panda_20.model.PandaPrivateMessage"))
+            {
+                IconImage.Source = new BitmapImage(new Uri("../resources/pm.png", UriKind.Relative));
+            }
+            if (type.Equals("Panda_20.model.PandaPost"))
+            {
+                IconImage.Source = new BitmapImage(new Uri("../resources/post.png", UriKind.Relative));
+            }
+            if (type.Equals("Panda_20.model.PandaComment"))
+            {
+                IconImage.Source = new BitmapImage(new Uri("../resources/comment.png", UriKind.Relative));
+            }
         }
 
         private void SetUserFriends(string userFriends)

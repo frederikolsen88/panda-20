@@ -10,7 +10,7 @@
 
         <Grid Background="White" Margin="0,0,0,0">
 
-            <Rectangle Name="ColorRectangle" Fill="LightGray" Height="21" VerticalAlignment="Top" Margin="-1,-1,-1,0" HorizontalAlignment="Right" Width="296"/>
+            <Rectangle Name="ColorRectangle" Fill="LightGreen" Height="21" VerticalAlignment="Top" Margin="-1,-1,-1,0" HorizontalAlignment="Right" Width="296"/>
             <Image Name="UserImage" Width="50" Height="50" Margin="3,23,239.4,21.4"/>
             <TextBlock Name="Message" Margin="60,23,4.4,4.4" Background="White" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
             <TextBlock Name="UserName" HorizontalAlignment="Left" Height="16" Margin="28,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>

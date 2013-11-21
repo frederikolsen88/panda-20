@@ -15,11 +15,13 @@ namespace Panda_20.service
     static class FBConnect
     {
 
+        private static ArrayList oldNotifications = new ArrayList();
+
         public static void OneMinuteTimer()
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(GetFacebookUpdates);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 60);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
         }
 
@@ -37,7 +39,7 @@ namespace Panda_20.service
             Console.WriteLine("unix before: " + unix_time);
 
             bool successfullconnect = true;
-            long timestamp = Service.LastSuccessfullFacebookUpdate;
+            long timestamp = Service.LastSuccessfullFacebookUpdate-5;
             JsonObject result = new JsonObject();
 
             // Collecting the data. I still need to get comment_authors in the same way I did post_authors.
@@ -49,14 +51,14 @@ namespace Panda_20.service
                         q = new
                         {
                             comments =
-                                "SELECT fromid, text, time, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
-                                Service.SelectedPage["id"] + "') AND time > " + timestamp,
+                                "SELECT fromid, text, time, id, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
+                                Service.SelectedPage["id"] + "' LIMIT 100) AND time > " + timestamp,
                             comments_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT fromid FROM #comments)",
                             posts =
                                 "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +
-                                Service.SelectedPage["id"] + "' AND created_time > " + timestamp,
+                                Service.SelectedPage["id"] + "' AND created_time > '" + timestamp + "' LIMIT 100",
                             posts_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
-                            private_messages = "SELECT author_id, body, created_time FROM message WHERE thread_id IN (SELECT thread_id FROM thread WHERE folder_id = '0') AND created_time > " + timestamp,
+                            private_messages = "SELECT author_id, body, created_time, message_id FROM message WHERE thread_id IN (SELECT thread_id FROM thread WHERE folder_id = '0') AND created_time > " + timestamp,
                             private_messages_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT author_id FROM #private_messages)"
                         }
                     }) as JsonObject;
@@ -84,7 +86,7 @@ namespace Panda_20.service
 
         public static void createModelObjects(JsonObject fqlresult)
         {
-            // COMMIT FOR SCIENCE
+            
             ArrayList newNotifications = new ArrayList();
             ArrayList newUsers = new ArrayList();
 
@@ -97,8 +99,10 @@ namespace Panda_20.service
                         string fromid = Convert.ToString(comment["fromid"]);
                         string time = Convert.ToString(comment["time"]);
                         string text = Convert.ToString(comment["text"]);
+                        string id = Convert.ToString(comment["id"]);
                         string post_id = Convert.ToString(comment["post_id"]);
-                        PandaNotification pn = new PandaComment(fromid, time, text, post_id);
+                        PandaNotification pn = new PandaComment(fromid, time, text, id, post_id);
+                        Console.WriteLine("TILFØJET: " + pn.Message);
                         newNotifications.Add(pn);
                     }
                 }
@@ -121,7 +125,8 @@ namespace Panda_20.service
                         string author_id = Convert.ToString(private_message["author_id"]);
                         string created_time = Convert.ToString(private_message["created_time"]);
                         string body = Convert.ToString(private_message["body"]);
-                        PandaNotification pn = new PandaPrivateMessage(author_id, created_time, body);
+                        string message_id = Convert.ToString(private_message["message_id"]);
+                        PandaNotification pn = new PandaPrivateMessage(author_id, created_time, body, message_id);
                         newNotifications.Add(pn);
                     }
                 }
@@ -166,11 +171,30 @@ namespace Panda_20.service
                 }
             }
 
+            Console.WriteLine(newNotifications.Count);
+            Console.WriteLine(oldNotifications.Count);
+
             foreach (PandaNotification pn in newNotifications)
             {
-                Service.CreateNotification(pn);
-                Queue.AddNotification(pn);
+                Console.WriteLine("POPUP: " + pn.Message);
+                bool duplicate = false;
+                foreach (PandaNotification oldNotification in oldNotifications)
+                {
+                    if (pn.Nid.Equals(oldNotification.Nid))
+                    {
+                        Console.WriteLine("PN: " + pn.Nid + "PN M:" + pn.Message);
+                        Console.WriteLine("PN OLD: " + oldNotification.Nid + "PN OLD M: " + oldNotification.Message);
+                        duplicate = true;
+                    }
+                }
+                if (!duplicate)
+                {
+                    Service.CreateNotification(pn);
+                    Queue.AddNotification(pn);
+                }
             }
+
+            oldNotifications = newNotifications;
         }
 
     }

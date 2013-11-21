@@ -1,12 +1,23 @@
-﻿    <Window x:Class="Panda_20.PageList"
+﻿<Controls:MetroWindow x:Class="Panda_20.PageList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:panda20="clr-namespace:Panda_20"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:panda20="clr-namespace:Panda_20"                          
         Title="Facebook pages" Height="250" Width="450" Closing="Window_Closing" ResizeMode="NoResize">
-        
+
     <Window.Resources>
         
         <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
             <DataTemplate x:Key="ListBoxPage">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -40,6 +51,7 @@
         </ResourceDictionary>    
         
     </Window.Resources>
+        
     <Grid x:Name="LayoutRoot" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -48,4 +60,4 @@
              Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" 
              MouseDoubleClick="PagesListBox_MouseDoubleClick" ItemTemplate="{StaticResource ListBoxPage}" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"></ListBox>
     </Grid>
-</Window>
+</Controls:MetroWindow>

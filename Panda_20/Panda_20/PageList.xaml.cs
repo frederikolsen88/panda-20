@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Facebook;
+using MahApps.Metro.Controls;
 using Panda_20.gui;
 using Panda_20.service;
 using Application = System.Windows.Application;
@@ -24,8 +25,8 @@ namespace Panda_20
     /// <summary>
     /// Interaction logic for PageList.xaml
     /// </summary>
-    public partial class PageList : Window
-    {
+    public partial class PageList : MetroWindow {
+    
         public PageList()
         {        
             InitializeComponent();

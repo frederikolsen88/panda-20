@@ -177,7 +177,7 @@ namespace Panda_20
 
             catch (Facebook.WebExceptionWrapper)
             {
-                TerminationAssistant.ShowErrorPopUp("Panda was unable to connect to Facebook. Click OK to close the program.");
+                TerminationAssistant.ShowErrorPopUp(null, "Panda was unable to connect to Facebook. Click OK to close the program.");
             }
             
         }

@@ -82,7 +82,10 @@ namespace Panda_20
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Service.SelectedPage == null)
-                TerminationAssistant.ShowClosingPopUp(this, e);
+            {
+                TerminationAssistant.ShowClosingPopUp(this, e);         
+            }
+                
         }
 
         private void LoadPictures()

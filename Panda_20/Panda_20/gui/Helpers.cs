@@ -72,7 +72,7 @@ namespace Panda_20.gui
 
             else
             {
-                TerminationAssistant.ShowErrorPopUp("Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
+                TerminationAssistant.ShowErrorPopUp(null, "Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
             }
 
             return hasToken;
@@ -91,8 +91,15 @@ namespace Panda_20.gui
          * og rydder ud i credentials skal denne selvfølgelig kun kaldes når lokummet virkelig brænder på og 
          * Panda ikke kan arbejde videre.
          */
-        public static void ShowErrorPopUp(string msg)
+        public static void ShowErrorPopUp(object sender, string msg)
         {
+            // For at forhindre aktivitet i det bagvedliggende vindue.
+            // Jeg har ikke haft held med andre former for låsning.
+            // sender kan dog godt være null; det er ikke altid et vindue,
+            // der beder om en fejl-popup.
+            if (sender != null)
+                ((Window)sender).Hide();
+
             string message = msg;
             const string caption = "Panda";
             const MessageBoxButton button = MessageBoxButton.OK;
@@ -114,6 +121,10 @@ namespace Panda_20.gui
          */
         public static void ShowClosingPopUp(object sender, CancelEventArgs e)
         {
+            // For at forhindre aktivitet i det bagvedliggende vindue.
+            // Jeg har ikke haft held med andre former for låsning.
+            ((Window)sender).Hide();
+
             const string message = "Do you want to close Panda?";
             const string caption = "Panda";
             const MessageBoxButton buttons = MessageBoxButton.OKCancel;
@@ -131,6 +142,7 @@ namespace Panda_20.gui
                 if (result == MessageBoxResult.Cancel)
                 {
                     e.Cancel = true;
+                    ((Window)sender).Show();
                 }
             }
             

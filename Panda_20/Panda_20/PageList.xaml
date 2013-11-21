@@ -11,16 +11,15 @@
         <behaviours:BorderlessWindowBehavior ResizeWithGrip="False" AutoSizeToContent="True"/>
     </i:Interaction.Behaviors>
 
-    <Window.Resources>
-        
+    <Window.Resources>     
         <ResourceDictionary>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate x:Key="ListBoxPage">
@@ -51,12 +50,12 @@
                         <Image Source="resources\like.png" Margin="0,-5,5,0"></Image>
                         <TextBlock Text="{Binding Path=Likes}"/>
                     </StackPanel>
+                    
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>    
-        
     </Window.Resources>
-        
+
     <Grid x:Name="LayoutRoot" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>

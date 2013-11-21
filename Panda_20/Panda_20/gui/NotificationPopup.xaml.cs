@@ -21,7 +21,7 @@ namespace Panda_20.gui
     /// <summary>
     /// Interaction logic for NotificationPopup.xaml
     /// </summary>
-    public partial class NotificationPopup : MetroWindow
+    public partial class NotificationPopup : Window
     {
         private string nid;
         private PandaNotification pn;

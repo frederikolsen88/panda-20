@@ -28,7 +28,10 @@ namespace Panda_20.service
             DisplayedNotifications.Remove(np);
         }
 
-
+        public static void AdjustPopups()
+        {
+            
+        }
 
     }
 }

@@ -35,12 +35,11 @@ namespace Panda_20.gui
             this.Topmost = true;
             this.Pn = pn;
             SetMessage(pn.Message);
-            SetName(pn.Owner.Name);
+            SetName(pn.Owner.Name.ToUpper());
             SetImageUrl(pn.Owner.PicSquare);
             SetType(pn.GetType().ToString());
             SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
             this.Nid = pn.Nid;
-            //DismissImage = billede af et kryds i guess
         }
 
         public string Nid

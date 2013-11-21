@@ -29,22 +29,24 @@ namespace Panda_20
         private ContextMenu contextMenu;
         private MenuItem menuItemExit;
         private MenuItem menuItemOptions;
+        private MenuItem menuItemRemoveAll;
 
         public MainWindow()
         {
             
             InitializeComponent();
-
+            WindowState = System.Windows.WindowState.Minimized;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = Properties.Resources.panda2;
 
             ContextMenuSetup();
             Hide();
 
-            WindowState = System.Windows.WindowState.Minimized;
+            
             if (BrowserHelper.HasToken())
             {
                 PageList pageList = new PageList();
@@ -62,21 +64,29 @@ namespace Panda_20
             contextMenu = new ContextMenu();
             menuItemExit = new MenuItem();
             menuItemOptions = new MenuItem();
+            menuItemRemoveAll = new MenuItem();
             
 
             // Initialize contextMenu
             contextMenu.MenuItems.AddRange(
-                    new System.Windows.Forms.MenuItem[] { this.menuItemOptions, this.menuItemExit });
+                    new System.Windows.Forms.MenuItem[] { this.menuItemRemoveAll, this.menuItemOptions, this.menuItemExit });
+
+            // Initialize menuRemoveAll
+            menuItemRemoveAll.Index = 0;
+            menuItemRemoveAll.Text = "R&emove All";
+            menuItemRemoveAll.Click += new System.EventHandler(this.menuItemRemoveAll_Click);
+
+            // Initialize menuItemOptions 
+            menuItemOptions.Index = 1;
+            menuItemOptions.Text = "O&ptions";
+            menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
 
             // Initialize menuItemEixt 
-            menuItemExit.Index = 1;
+            menuItemExit.Index = 2;
             menuItemExit.Text = "E&xit";
             menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
 
-            // Initialize menuItemOptions 
-            menuItemOptions.Index = 0;
-            menuItemOptions.Text = "O&ptions";
-            menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
+           
 
             // The ContextMenu property sets the menu that will 
             // appear when the systray icon is right clicked.
@@ -92,12 +102,19 @@ namespace Panda_20
         {
             Close();
         }
+
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
             // TODO Option Logic 
             // ROLAND BE WORKING ON THIS!
+            // More Like done?
             OptionsWindow opWindow = new OptionsWindow();
             opWindow.Show();
+        }
+
+        private void menuItemRemoveAll_Click(object Sender, System.EventArgs e)
+        {
+            // ToDo Remove Logic
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

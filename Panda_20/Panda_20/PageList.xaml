@@ -1,12 +1,26 @@
-﻿    <Window x:Class="Panda_20.PageList"
+﻿<controls:MetroWindow x:Class="Panda_20.PageList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:panda20="clr-namespace:Panda_20"
-        Title="Facebook pages" Height="250" Width="450" Closing="Window_Closing" ResizeMode="NoResize">
-        
-    <Window.Resources>
-        
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:panda20="clr-namespace:Panda_20"                          
+        Title="Facebook pages" Height="250" Width="450" Closing="Window_Closing" ResizeMode="NoResize" Icon="/resources/appbar.page.multiple.png" ShowIconOnTitleBar="True">
+
+    <i:Interaction.Behaviors>
+        <behaviours:BorderlessWindowBehavior ResizeWithGrip="False" AutoSizeToContent="True"/>
+    </i:Interaction.Behaviors>
+
+    <Window.Resources>     
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/baselight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
             <DataTemplate x:Key="ListBoxPage">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -35,11 +49,12 @@
                         <Image Source="resources\like.png" Margin="0,-5,5,0"></Image>
                         <TextBlock Text="{Binding Path=Likes}"/>
                     </StackPanel>
+                    
                 </Grid>
             </DataTemplate>
-        </ResourceDictionary>    
-        
+        </ResourceDictionary>
     </Window.Resources>
+
     <Grid x:Name="LayoutRoot" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -48,4 +63,4 @@
              Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" 
              MouseDoubleClick="PagesListBox_MouseDoubleClick" ItemTemplate="{StaticResource ListBoxPage}" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"></ListBox>
     </Grid>
-</Window>
+</controls:MetroWindow>

@@ -217,11 +217,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\friends.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="resources\panda2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -232,6 +227,11 @@
   <ItemGroup>
     <Resource Include="resources\appbar.page.multiple.png" />
     <Resource Include="resources\appbar.social.facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\appbar.people.multiple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

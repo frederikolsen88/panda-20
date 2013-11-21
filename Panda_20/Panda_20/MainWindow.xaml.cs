@@ -38,13 +38,14 @@ namespace Panda_20
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            WindowState = System.Windows.WindowState.Minimized;
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = Properties.Resources.panda2;
 
             ContextMenuSetup();
             Hide();
 
-            WindowState = System.Windows.WindowState.Minimized;
+            
             if (BrowserHelper.HasToken())
             {
                 PageList pageList = new PageList();

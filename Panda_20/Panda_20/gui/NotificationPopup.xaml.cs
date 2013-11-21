@@ -29,6 +29,7 @@ namespace Panda_20.gui
         {
             InitializeComponent();
             WindowStyle = WindowStyle.None;
+            ResizeMode = ResizeMode.NoResize;
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
             this.Top = GetTopOffset();
             this.Topmost = true;

@@ -46,9 +46,10 @@ namespace Panda_20.service
 
         public static void AdjustPopups()
         {
-            foreach (NotificationPopup displayedNotification in DisplayedNotifications)
+            for (int i = 0; i < DisplayedNotifications.Count; i++)
             {
-                displayedNotification.RepositionMe();
+                NotificationPopup np = (NotificationPopup) DisplayedNotifications[i];
+                np.RepositionMe(DisplayedNotifications.Count-i);
             }
         }
 

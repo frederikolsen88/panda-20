@@ -24,8 +24,7 @@ namespace Panda_20.gui
     /// </summary>
     public partial class QueuePopup : Window
     {
-        private string nid;
-        private PandaNotification pn;
+
         public QueuePopup(string queuecount, string visiblecount)
         {
             InitializeComponent();

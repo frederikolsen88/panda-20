@@ -32,7 +32,7 @@ namespace Panda_20.gui
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
-            this.Top = GetTopOffset();
+            this.Top = GetTopOffset(0);
             this.Topmost = true;
             this.Pn = pn;
             SetMessage(pn.Message);
@@ -60,9 +60,9 @@ namespace Panda_20.gui
             return Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.WorkingArea.Height;
         }
 
-        private double GetTopOffset()
+        private double GetTopOffset(int order)
         {
-            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight()+5 - ((5 + this.Height) * (service.Queue.DisplayedNotifications.Count+1)) ; //1 skal være størrelsen af notification arrayet.
+            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight()+5 - ((5 + this.Height) * ((service.Queue.DisplayedNotifications.Count+1)-order)) ; //1 skal være størrelsen af notification arrayet.
         }
 
 
@@ -141,10 +141,10 @@ namespace Panda_20.gui
                 ((Button) sender).Background = new SolidColorBrush((Color) convertFromString);
         }
 
-        public void RepositionMe()
+        public void RepositionMe(int order)
         {
-            // Doesn't fucking work
-            //this.Top = GetTopOffset();
+            //Doesn't fucking work
+            this.Top = GetTopOffset(order);
         }
     }
 }

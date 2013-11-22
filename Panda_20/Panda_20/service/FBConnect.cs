@@ -16,6 +16,7 @@ namespace Panda_20.service
     {
 
         private static ArrayList oldNotifications = new ArrayList();
+        private static PandaUser defaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
 
         public static void OneMinuteTimer()
         {
@@ -89,6 +90,7 @@ namespace Panda_20.service
             
             ArrayList newNotifications = new ArrayList();
             ArrayList newUsers = new ArrayList();
+            newUsers.Add(defaultPagePandaUser);
 
             foreach (JsonObject data in (JsonArray)fqlresult["data"])
             {
@@ -144,15 +146,6 @@ namespace Panda_20.service
                         newUsers.Add(pu);
                     }
                 }
-
-                // Create a user for the current page
-                string puid = Convert.ToString(Service.SelectedPage["id"]);
-                string pname = Convert.ToString(Service.SelectedPage["name"]);
-                string pfriend_count = "0";
-                string psubscriber_count = "0";
-                string ppic_square = Convert.ToString(("http://graph.facebook.com/" + (string)Service.SelectedPage["id"]) + "/picture");
-                PandaUser ppu = new PandaUser(puid, pname, pfriend_count, psubscriber_count, ppic_square);
-                newUsers.Add(ppu);
             }
 
             // Join dem

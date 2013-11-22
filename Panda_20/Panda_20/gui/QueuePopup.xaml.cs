@@ -20,13 +20,13 @@ using Button = System.Windows.Controls.Button;
 namespace Panda_20.gui
 {
     /// <summary>
-    /// Interaction logic for NotificationPopup.xaml
+    /// Interaction logic for QueuePopup.xaml
     /// </summary>
-    public partial class NotificationPopup : Window
+    public partial class QueuePopup : Window
     {
         private string nid;
         private PandaNotification pn;
-        public NotificationPopup(PandaNotification pn)
+        public QueuePopup(string queuecount, string visiblecount)
         {
             InitializeComponent();
             WindowStyle = WindowStyle.None;
@@ -34,25 +34,10 @@ namespace Panda_20.gui
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 10;
             this.Top = GetTopOffset();
             this.Topmost = true;
-            this.Pn = pn;
-            SetMessage(pn.Message);
-            SetName(pn.Owner.Name.ToUpper());
-            SetImageUrl(pn.Owner.PicSquare);
-            SetType(pn.GetType().ToString());
-            SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
-            this.Nid = pn.Nid;
-        }
-
-        public string Nid
-        {
-            get { return nid; }
-            set { nid = value; }
-        }
-
-        public PandaNotification Pn
-        {
-            get { return pn; }
-            set { pn = value; }
+            SetMessage("You have " + queuecount + " popups waiting to be shown, but there is no more room to show them!");
+            SetName("Panda has run out of bamboo".ToUpper());
+            SetImageUrl();
+            SetType();
         }
 
         private int GetTaskbarHeight()
@@ -69,22 +54,7 @@ namespace Panda_20.gui
         private void DismissButton_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
-            //PandaNotification thisNotification = null;
-            //foreach (NotificationPopup np in service.Queue.DisplayedNotifications)
-            //{
-            //    if (np.Pn.Nid == this.Nid)
-            //    {
-            //        thisNotification = np.Pn;
-            //    }
-            //}
-            service.Queue.RemoveDisplayedNotification(this);
-            Queue.AdjustPopups();
-        }
-
-        private void FacebookButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            string[] pizza = Nid.Split('_');
-            System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] + "&id=" + pizza[0]); //URL til fb posten
+            //Queue.AdjustPopups();
         }
 
         private void changetopColor()
@@ -102,30 +72,14 @@ namespace Panda_20.gui
             UserName.Text = name;
         }
 
-        private void SetImageUrl(string imageUrl)
+        private void SetImageUrl()
         {
-            UserImage.Source = Misc.DownloadImage(imageUrl);
+            UserImage.Source = new BitmapImage(new Uri("../resources/exclamation.png", UriKind.Relative));
         }
 
-        private void SetType(string type)
+        private void SetType()
         {
-            if (type.Equals("Panda_20.model.PandaPrivateMessage"))
-            {
-                IconImage.Source = new BitmapImage(new Uri("../resources/pm.png", UriKind.Relative));
-            }
-            if (type.Equals("Panda_20.model.PandaPost"))
-            {
-                IconImage.Source = new BitmapImage(new Uri("../resources/post.png", UriKind.Relative));
-            }
-            if (type.Equals("Panda_20.model.PandaComment"))
-            {
-                IconImage.Source = new BitmapImage(new Uri("../resources/comment.png", UriKind.Relative));
-            }
-        }
-
-        private void SetUserFriends(string userFriends)
-        {
-            UserFriends.Text = userFriends;
+                IconImage.Source = new BitmapImage(new Uri("../resources/appbar.transit.construction.png", UriKind.Relative));
         }
 
         private void DismissButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -145,6 +99,11 @@ namespace Panda_20.gui
         {
             // Doesn't fucking work
             //this.Top = GetTopOffset();
+        }
+
+        private void ClearVisible_Click(object sender, RoutedEventArgs e)
+        {
+            Queue.removeVisiblePopups();
         }
     }
 }

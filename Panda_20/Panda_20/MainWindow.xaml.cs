@@ -114,7 +114,7 @@ namespace Panda_20
 
         private void menuItemRemoveAll_Click(object Sender, System.EventArgs e)
         {
-            // ToDo Remove Logic
+            Queue.removeVisiblePopups();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

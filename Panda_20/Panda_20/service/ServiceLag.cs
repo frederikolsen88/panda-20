@@ -197,8 +197,19 @@ namespace Panda_20
             {
                 np = new NotificationPopup(pn);
             }
-            Queue.AddNotification(np);
-            np.Show();
+
+            if (Queue.DisplayedNotifications.Count < 4)
+            {
+                Queue.AddDisplayedNotification(np);
+                np.Show();
+            }
+            else
+            {
+                Queue.AddQueueNotification(np);
+                QueuePopup qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count), Convert.ToString(Queue.DisplayedNotifications.Count));
+                qp.Show();
+            }
+            
         }
 
         //-----------------------------------------------------------

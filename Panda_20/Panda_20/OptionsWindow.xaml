@@ -4,8 +4,8 @@
         xmlns:properties="clr-namespace:Panda_20.Properties"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStyle="None"
-        ResizeMode="CanResize"
-        Title="Options" Height="Auto" MaxHeight="410" Width="641" MaxWidth="800"
+        ResizeMode="CanMinimize"
+        Title="Options" Height="404" Width="641"
         Icon="resources/panda.ico">
 
     <Window.Resources>

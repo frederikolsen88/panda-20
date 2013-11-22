@@ -22,6 +22,7 @@ namespace Panda_20
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
         private static string GrantType { get; set; }
         private static Object XmlWriteLock = new Object();
+        private static bool queueShown = false;
 
         private static String _facebookToken;
 
@@ -69,6 +70,12 @@ namespace Panda_20
         {
             get { return _pageClient; }
             set { _pageClient = value; }
+        }
+
+        public static bool QueueShown
+        {
+            get { return queueShown; }
+            set { queueShown = value; }
         }
 
         //-----------------------------------------------------------
@@ -206,8 +213,17 @@ namespace Panda_20
             else
             {
                 Queue.AddQueueNotification(np);
-                QueuePopup qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count), Convert.ToString(Queue.DisplayedNotifications.Count));
-                qp.Show();
+                if (!QueueShown)
+                {
+                    Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
+                        Convert.ToString(Queue.DisplayedNotifications.Count));
+                    Queue.Qp.Show();
+                    QueueShown = true;
+                }
+                else
+                {
+                    Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
+                }
             }
             
         }

@@ -102,7 +102,17 @@ namespace Panda_20.gui
 
         private void ClearVisible_Click(object sender, RoutedEventArgs e)
         {
-            Queue.removeVisiblePopups();
+            Queue.RemoveDisplayedPopups();
+        }
+
+        public void updateQueueCount(string queuecount)
+        {
+            this.SetMessage("You have " + queuecount + " popups waiting to be shown, but there is no more room to show them!");
+        }
+
+        private void ClearAll_Click(object sender, RoutedEventArgs e)
+        {
+            Queue.RemoveDisplayedAndQueuePopups();
         }
     }
 }

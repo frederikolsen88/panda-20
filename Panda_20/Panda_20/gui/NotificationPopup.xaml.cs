@@ -79,6 +79,7 @@ namespace Panda_20.gui
             //}
             service.Queue.RemoveDisplayedNotification(this);
             Queue.AdjustPopups();
+            Queue.InsertPopupsFromQueue();
         }
 
         private void FacebookButton_OnClick(object sender, RoutedEventArgs e)

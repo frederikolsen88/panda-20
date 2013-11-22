@@ -53,7 +53,7 @@ namespace Panda_20.service
                         {
                             comments =
                                 "SELECT fromid, text, time, id, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
-                                Service.SelectedPage["id"] + "' LIMIT 100) AND time > " + timestamp,
+                                Service.SelectedPage["id"] + "' LIMIT 100) AND time > '" + timestamp + "' LIMIT 1000",
                             comments_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT fromid FROM #comments)",
                             posts =
                                 "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +

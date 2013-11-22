@@ -115,7 +115,11 @@ namespace Panda_20.service
 
         public static void RemoveDisplayedAndQueuePopups()
         {
-            RemoveDisplayedPopups();
+            foreach (NotificationPopup displayedNotification in DisplayedNotifications)
+            {
+                displayedNotification.Close();
+            }
+            DisplayedNotifications.Clear();
             QueueNotifications.Clear();
             Queue.Qp.Close();
             Service.QueueShown = false;

@@ -26,7 +26,7 @@
     <Grid Background="White" Margin="0,0,0,0">
         <Rectangle Name="ColorRectangle" Fill="#41B1E1" HorizontalAlignment="Right" Width="300" Margin="0,0,0,80"/>
         <Image Name="UserImage" Width="50" Height="50" Margin="4,31,246,24"/>
-        <TextBlock Name="Message" Margin="61,27,5,5" Background="White" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
+        <TextBlock Name="Message" Margin="61,27,5,5" Background="White" TextTrimming="WordEllipsis" TextWrapping="Wrap" MouseDown="FacebookButton_OnClick"/>
         <TextBlock Name="UserName" Foreground="White" HorizontalAlignment="Left" Margin="25,4,0,85" TextWrapping="Wrap" Width="245"/>
         <Image Name="IconImage" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="10" RenderTransformOrigin="0.969,0.469" Margin="6,8,0,0"/>
         <TextBlock Name="UserFriends" HorizontalAlignment="Left" TextAlignment="Center" Margin="27,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="29" Height="14">300</TextBlock>

@@ -87,6 +87,7 @@ namespace Panda_20.gui
         {
             string[] pizza = Nid.Split('_');
             System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] + "&id=" + pizza[0]); //URL til fb posten
+            DismissButton_OnClick(this, null);
         }
 
         private void changetopColor(byte r, byte g, byte b)

@@ -41,6 +41,7 @@ namespace Panda_20.gui
             SetType(pn.GetType().ToString());
             SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
             this.Nid = pn.Nid;
+            changetopColor(255, 11, 15);
         }
 
         public string Nid
@@ -88,9 +89,10 @@ namespace Panda_20.gui
             System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] + "&id=" + pizza[0]); //URL til fb posten
         }
 
-        private void changetopColor()
+        private void changetopColor(byte r, byte g, byte b)
         {
-            // Der skal nok laves om i designet :S
+
+            ColorRectangle.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(r, g, b));
         }
 
         private void SetMessage(string message)

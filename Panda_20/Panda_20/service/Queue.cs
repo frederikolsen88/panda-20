@@ -13,7 +13,7 @@ namespace Panda_20.service
     {
         private static ArrayList displayedNotifications = new ArrayList();
         private static ArrayList queueNotifications = new ArrayList();
-        private static QueuePopup qp;
+        private static QueuePopup qp = new QueuePopup("0", "0");
 
         public static ArrayList DisplayedNotifications
         {
@@ -77,7 +77,7 @@ namespace Panda_20.service
                 displayedNotification.Close();
             }
             DisplayedNotifications.Clear();
-            Queue.Qp.Close();
+            Qp.Close();
             Service.QueueShown = false;
             InsertPopupsFromQueue();
         }
@@ -87,12 +87,12 @@ namespace Panda_20.service
             if (DisplayedNotifications.Count < 4 && QueueNotifications.Count > 0)
             {
                 // Get amount to insert into DisplayedNotifications
-                int countToInsert = Math.Abs(DisplayedNotifications.Count - 4);
+                int countToInsert = Math.Abs(DisplayedNotifications.Count - 4); // WHAT? det er jo bare   4 - displayed.Count???
                 int currentQueueCount = QueueNotifications.Count;
                 Console.WriteLine("currentQueueCount: " + currentQueueCount);
                 for (int i = 0; i < countToInsert; i++)
                 {
-                    if (i < currentQueueCount)
+                    while (QueueNotifications.Count > i)
                     {
                         Console.WriteLine("Inserted POPUPS: " + i);
                         NotificationPopup np = (NotificationPopup) QueueNotifications[i];

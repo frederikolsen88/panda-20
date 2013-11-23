@@ -39,7 +39,7 @@ namespace Panda_20.gui
             SetName(pn.Owner.Name.ToUpper());
             SetImageUrl(pn.Owner.PicSquare);
             SetType(pn.GetType().ToString());
-            SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
+            SetUserFriends(Convert.ToString(Convert.ToInt32((string)pn.Owner.FriendCount) + Convert.ToInt32((string)pn.Owner.SubscriberCount)));
             this.Nid = pn.Nid;
             changetopColor(255, 11, 15);
         }

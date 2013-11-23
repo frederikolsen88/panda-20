@@ -59,7 +59,7 @@ namespace Panda_20.service
                                 "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +
                                 Service.SelectedPage["id"] + "' AND created_time > '" + timestamp + "' ORDER BY created_time ASC LIMIT 100",
                             posts_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT actor_id FROM #posts)",
-                            private_messages = "SELECT author_id, body, created_time, message_id FROM message WHERE thread_id IN (SELECT thread_id FROM thread WHERE folder_id = '0') AND created_time > '" + timestamp + "' ORDER BY created_time ASC",
+                            private_messages = "SELECT author_id, body, created_time, message_id FROM message WHERE thread_id IN (SELECT thread_id FROM thread WHERE folder_id = '0' LIMIT 100) AND created_time > '" + timestamp + "' ORDER BY created_time ASC LIMIT 100",
                             private_messages_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT author_id FROM #private_messages)"
                         }
                     }) as JsonObject;

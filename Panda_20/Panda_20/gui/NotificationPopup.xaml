@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        
+        ShowActivated = "false"
         WindowStartupLocation="Manual"
         ResizeMode="NoResize"
         Title="Notification" Height="105" Width="300"

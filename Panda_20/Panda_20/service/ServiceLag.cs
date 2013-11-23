@@ -223,7 +223,7 @@ namespace Panda_20
                     }
                     else
                     {
-                Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
+                        Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
                     }
                 }
             }

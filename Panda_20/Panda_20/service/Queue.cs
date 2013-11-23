@@ -102,7 +102,9 @@ namespace Panda_20.service
 
                 if (QueueNotifications.Count > 0)
                 {
-                    Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
+                    //Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
+                    //Convert.ToString(Queue.DisplayedNotifications.Count));
+                    Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
                     Queue.Qp.Show();
                     Service.QueueShown = true;
                 }

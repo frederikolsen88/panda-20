@@ -91,8 +91,8 @@ namespace Panda_20.gui
 
         private void changetopColor(byte r, byte g, byte b)
         {
-
             ColorRectangle.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(r, g, b));
+            DismissButton.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(r, g, b));
         }
 
         private void SetMessage(string message)
@@ -133,15 +133,17 @@ namespace Panda_20.gui
 
         private void DismissButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            ((Button) sender).Background = new SolidColorBrush(Colors.DarkTurquoise);
+           // ((Button) sender).Background = new SolidColorBrush(Colors.GhostWhite);
+            ((Button) sender).Opacity = 0.5;
 
         }
 
         private void DismissButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            var convertFromString = ColorConverter.ConvertFromString("#41B1E1");
-            if (convertFromString != null)
-                ((Button) sender).Background = new SolidColorBrush((Color) convertFromString);
+          //  var convertFromString = ColorConverter.ConvertFromString("#FFF8F8FF");
+          //  if (convertFromString != null)
+          //      ((Button) sender).Background = new SolidColorBrush((Color) convertFromString);
+            ((Button)sender).Opacity = 1;
         }
 
         public void RepositionMe(int order)

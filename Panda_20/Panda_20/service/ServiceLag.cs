@@ -217,8 +217,7 @@ namespace Panda_20
                     Queue.AddQueueNotification(pn);
                     if (!QueueShown)
                     {
-                        Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
-                            Convert.ToString(Queue.DisplayedNotifications.Count));
+                        Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
                         Queue.Qp.Show();
                         QueueShown = true;
                     }

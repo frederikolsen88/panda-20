@@ -46,7 +46,7 @@ namespace Panda_20.gui
 
         private double GetTopOffset()
         {
-            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight()+5 - ((5 + this.Height) * (service.Queue.DisplayedNotifications.Count+1)) ; //1 skal være størrelsen af notification arrayet.
+            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight()+5 - ((5 + this.Height) * (5)) ; //1 skal være størrelsen af notification arrayet.
         }
 
 

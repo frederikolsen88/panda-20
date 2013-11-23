@@ -60,7 +60,7 @@ namespace Panda_20.service
             }
             if (QueueNotifications.Count == 0)
             {
-                Queue.Qp.Close();
+                Queue.Qp.Hide();
                 Service.QueueShown = false;
             }
             else
@@ -77,7 +77,7 @@ namespace Panda_20.service
                 displayedNotification.Close();
             }
             DisplayedNotifications.Clear();
-            Qp.Close();
+            Qp.Hide();
             Service.QueueShown = false;
             InsertPopupsFromQueue();
         }
@@ -102,8 +102,9 @@ namespace Panda_20.service
 
                 if (QueueNotifications.Count > 0)
                 {
-                    Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
-                    Convert.ToString(Queue.DisplayedNotifications.Count));
+                    //Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
+                    //Convert.ToString(Queue.DisplayedNotifications.Count));
+                    Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
                     Queue.Qp.Show();
                     Service.QueueShown = true;
                 }
@@ -118,7 +119,7 @@ namespace Panda_20.service
             }
             DisplayedNotifications.Clear();
             QueueNotifications.Clear();
-            Queue.Qp.Close();
+            Queue.Qp.Hide();
             Service.QueueShown = false;
         }
 

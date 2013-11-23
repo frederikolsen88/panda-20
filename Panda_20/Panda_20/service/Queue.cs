@@ -31,12 +31,12 @@ namespace Panda_20.service
             set { qp = value; }
         }
 
-        public static void AddQueueNotification(NotificationPopup np)
+        public static void AddQueueNotification(PandaNotification np)
         {
             QueueNotifications.Add(np);
         }
 
-        public static void RemoveQueueNotification(NotificationPopup np)
+        public static void RemoveQueueNotification(PandaNotification np)
         {
             QueueNotifications.Remove(np);
         }
@@ -87,20 +87,17 @@ namespace Panda_20.service
             if (DisplayedNotifications.Count < 4 && QueueNotifications.Count > 0)
             {
                 // Get amount to insert into DisplayedNotifications
-                int countToInsert = Math.Abs(DisplayedNotifications.Count - 4); // WHAT? det er jo bare   4 - displayed.Count???
-                int currentQueueCount = QueueNotifications.Count;
-                Console.WriteLine("currentQueueCount: " + currentQueueCount);
+                int free = Math.Abs(DisplayedNotifications.Count - 4); // WHAT? det er jo bare   4 - displayed.Count???
+                int countToInsert = Math.Min(QueueNotifications.Count, free);
                 for (int i = 0; i < countToInsert; i++)
                 {
-                    while (QueueNotifications.Count > i)
-                    {
+                    
                         Console.WriteLine("Inserted POPUPS: " + i);
-                        NotificationPopup np = (NotificationPopup) QueueNotifications[i];
-                        AddDisplayedNotification(np);
-                        QueueNotifications.Remove(np);
+                        PandaNotification pn = (PandaNotification) QueueNotifications[0];
+                        Service.CreateNotification(pn);
+                        QueueNotifications.Remove(pn);
                         AdjustPopups();
-                        np.Show();
-                    }
+                    
                 }
 
                 if (QueueNotifications.Count > 0)

@@ -194,35 +194,38 @@ namespace Panda_20
         {
             Console.WriteLine("TYPE: " + pn.GetType().ToString());
 
-            NotificationPopup np;
-            if (pn.GetType().ToString() == "Panda_20.model.PandaComment")
-            {
-                PandaComment pc = (PandaComment) pn;
-                np = new NotificationPopup(pc);
-            }
-            else
-            {
-                np = new NotificationPopup(pn);
-            }
-
             if (Queue.DisplayedNotifications.Count < 4)
             {
+                NotificationPopup np;
+                if (pn.GetType().ToString() == "Panda_20.model.PandaComment")
+                {
+                    PandaComment pc = (PandaComment)pn;
+                    np = new NotificationPopup(pc);
+                }
+                else
+                {
+                    np = new NotificationPopup(pn);
+                }
+
                 Queue.AddDisplayedNotification(np);
                 np.Show();
             }
             else
             {
-                Queue.AddQueueNotification(np);
-                if (!QueueShown)
+                if (!Queue.QueueNotifications.Contains(pn))
                 {
-                    Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
-                        Convert.ToString(Queue.DisplayedNotifications.Count));
-                    Queue.Qp.Show();
-                    QueueShown = true;
-                }
-                else
-                {
-                    Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
+                    Queue.AddQueueNotification(pn);
+                    if (!QueueShown)
+                    {
+                        Queue.Qp = new QueuePopup(Convert.ToString(Queue.QueueNotifications.Count),
+                            Convert.ToString(Queue.DisplayedNotifications.Count));
+                        Queue.Qp.Show();
+                        QueueShown = true;
+                    }
+                    else
+                    {
+                        Queue.Qp.updateQueueCount(Convert.ToString(Queue.QueueNotifications.Count));
+                    }
                 }
             }
             

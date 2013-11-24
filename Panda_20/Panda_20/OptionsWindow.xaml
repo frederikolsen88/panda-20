@@ -221,7 +221,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         
-                        <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" Width="120" Grid.Column="0" Margin="0,10,0,0">clear credentials</Button>
+                        <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" Width="120" Margin="0,10,0,0">clear credentials</Button>
                         <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" Width="120" Grid.Row="1" Margin="0,10,0,0">reset to default</Button>
                     </Grid>
                 </TabItem>
@@ -230,8 +230,8 @@
         </StackPanel>
 
         <DockPanel  x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" Width="Auto">
-            <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}">Save</Button>
-            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}">Close</Button>
+            <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}" Click="ButtonSave_Click">Save</Button>
+            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw">Close</Button>
         </DockPanel>
     </StackPanel>
 

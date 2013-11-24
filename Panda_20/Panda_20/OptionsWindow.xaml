@@ -61,8 +61,9 @@
 
                             <Label Content="Notification settings" FontSize="18" Grid.Row="0"/>
                             <Label Content="Display a maximum of " Grid.Column="0" Grid.Row="1"/>
-                            <ComboBox Name="ComboBoxTowerHeight" Width="75" Grid.Column="1" Grid.Row="1" SelectedItem="{Binding Source={x:Static properties:Settings.Default}, 
-           Path=notifications_max_amount, Mode=TwoWay}">
+                            <ComboBox Name="ComboBoxTowerHeight" Width="75" Grid.Column="1" Grid.Row="1" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, 
+                                      Path=notifications_max_amount, Mode=TwoWay}">
                                 <ComboBox.ItemsSource>
                                     <x:Array Type="{x:Type sys:Int32}">
                                         <sys:Int32>1</sys:Int32>
@@ -96,9 +97,12 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Post notification settings" FontSize="18" Grid.Row="0"/>
-                        <controls:ToggleSwitch Name="SwitchNotifyPosts"  Header="Display notifications" Grid.Row="1" />
-                        <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Show own posts" Grid.Row="2" />
-                        <controls:ToggleSwitch Name="SwitchPostSounds" Header="Play a sound on notifications" Grid.Row="3" />
+                        <controls:ToggleSwitch Name="SwitchNotifyPosts"  Header="Display notifications" Grid.Row="1" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_notifications, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Show own posts" Grid.Row="2" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_own, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchPostSounds" Header="Play a sound on notifications" Grid.Row="3" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
 
@@ -113,7 +117,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Warn me when a post is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxPostLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." />
+                            <ComboBox Name="ComboBoxPostLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" />
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -134,9 +139,11 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Private message notification settings" FontSize="18" Grid.Row="0"/>
-                        <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" />
+                        <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_display_notifications, Mode=TwoWay}"/>
 
-                        <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play a sound on notifications" Grid.Row="2" />
+                        <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play a sound on notifications" Grid.Row="2" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
 
@@ -172,9 +179,12 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Comment notification settings" FontSize="18" Grid.Row="0"/>
-                        <controls:ToggleSwitch Name="SwitchNotifyComment"  Header="Display notifications" Grid.Row="1" />
-                        <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show comments on own posts" Grid.Row="2" />
-                        <controls:ToggleSwitch Name="SwitchCommentSounds" Header="Play a sound on notifications" Grid.Row="3" />
+                        <controls:ToggleSwitch Name="SwitchNotifyComment"  Header="Display notifications" Grid.Row="1" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_notifications, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show comments on own posts" Grid.Row="2" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_own, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchCommentSounds" Header="Play a sound on notifications" Grid.Row="3" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
 

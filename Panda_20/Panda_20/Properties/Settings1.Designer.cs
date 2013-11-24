@@ -141,7 +141,7 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int posts_time_limit {
             get {
                 return ((int)(this["posts_time_limit"]));
@@ -177,7 +177,7 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int messages_time_limit {
             get {
                 return ((int)(this["messages_time_limit"]));
@@ -225,13 +225,30 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int comments_time_limit {
             get {
                 return ((int)(this["comments_time_limit"]));
             }
             set {
                 this["comments_time_limit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfInt xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <int>5</int>
+  <int>10</int>
+  <int>15</int>
+  <int>20</int>
+  <int>25</int>
+  <int>30</int>
+</ArrayOfInt>")]
+        public int[] time_limit_values {
+            get {
+                return ((int[])(this["time_limit_values"]));
             }
         }
     }

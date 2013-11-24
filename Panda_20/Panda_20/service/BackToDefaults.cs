@@ -12,11 +12,7 @@ namespace Panda_20.service
         {
             //TODO metode der resetter værdierne i Settings.Default
 
-            Settings.Default.allow_notifications_comments_from_others = true;
-            Settings.Default.allow_notifications_comments_from_self = false;
-            Settings.Default.allow_notifications_comments_on_self_posts = false;
-            Settings.Default.allow_notifications_posts_from_others = true;
-            Settings.Default.allow_notifications_posts_from_self = false;
+    
 
             Settings.Default.notifications_max_amount = 4;
 

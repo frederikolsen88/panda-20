@@ -7,7 +7,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         WindowStyle="None"
         ResizeMode="CanMinimize"
-        Title="Options" Height="440" Width="641"
+        Title="Options" Height="475" Width="650"
         Icon="resources/panda.ico">
 
     <Window.Resources>

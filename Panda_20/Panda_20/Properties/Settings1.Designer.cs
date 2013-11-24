@@ -138,5 +138,29 @@ namespace Panda_20.Properties {
                 this["allow_notifications_comments_on_self_posts"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool start_with_windows {
+            get {
+                return ((bool)(this["start_with_windows"]));
+            }
+            set {
+                this["start_with_windows"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool notifications_play_sound {
+            get {
+                return ((bool)(this["notifications_play_sound"]));
+            }
+            set {
+                this["notifications_play_sound"] = value;
+            }
+        }
     }
 }

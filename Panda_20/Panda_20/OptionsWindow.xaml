@@ -42,8 +42,11 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="General settings" FontSize="18" Grid.Column="0" Grid.Row="0" />
-                        <controls:ToggleSwitch Name="SwitchStartUp" Header="Start Panda when Windows starts" Grid.Row="1" Grid.Column="0"/>
-                        <controls:ToggleSwitch Name="SwitchSound" Header="Sound" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0"/>
+                        <controls:ToggleSwitch Name="SwitchStartUp" Header="Start Panda when Windows starts" Grid.Row="1" Grid.Column="0"  
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=start_with_windows, Mode=TwoWay}"/>
+                        
+                        <controls:ToggleSwitch Name="SwitchSound" Header="Sound" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0"
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifications_play_sound, Mode=TwoWay}"/>
                         <Grid Name="TowerHeightGrid" Row="3" Margin="0,10,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -192,7 +195,7 @@
                     </Grid>
                 </TabItem>
                 
-                <TabItem Header="advanced" Margin="1,3,-1,-3">
+                <TabItem Header="advanced" Margin="-4,-1,4,1">
                     <Grid MaxHeight="400" MaxWidth="800">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

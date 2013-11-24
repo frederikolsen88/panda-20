@@ -165,7 +165,7 @@ namespace Panda_20
 
             try
             {
-                JsonObject response = _loginClient.Get("me/accounts") as JsonObject;
+                JsonObject response = _loginClient.Get("me/accounts?fields=link,category,name,access_token,perms,id") as JsonObject;
 
                 if (_pages.Count == 0)
                 {

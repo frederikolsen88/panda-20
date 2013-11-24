@@ -39,7 +39,7 @@ namespace Panda_20.gui
             SetName(pn.Owner.Name.ToUpper());
             SetImageUrl(pn.Owner.PicSquare);
             SetType(pn.GetType().ToString());
-            SetUserFriends(Convert.ToString(Convert.ToInt32((string)pn.Owner.FriendCount) + Convert.ToInt32((string)pn.Owner.SubscriberCount)));
+            SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
             this.Nid = pn.Nid;
             changetopColor(255, 11, 15);
         }
@@ -85,8 +85,24 @@ namespace Panda_20.gui
 
         private void FacebookButton_OnClick(object sender, RoutedEventArgs e)
         {
-            string[] pizza = Nid.Split('_');
-            System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] + "&id=" + pizza[0]); //URL til fb posten
+            if (pn.GetType().ToString().Equals("Panda_20.model.PandaComment"))
+            {
+                PandaComment pc = (PandaComment) Pn;
+                string[] pizza = pc.PostId.Split('_');
+                string[] burger = pc.Nid.Split('_');
+                System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] +
+                                                 "&id=" + pizza[0] + "&comment_id=" + burger[1]); //URL til fb posten
+            }
+            else if (pn.GetType().ToString().Equals("Panda_20.model.PandaPrivateMessage"))
+            {
+                string[] pizza = Nid.Split('_');
+                System.Diagnostics.Process.Start(Service.SelectedPage["link"] + "?sk=messages_inbox&action=read&tid=id." + pizza[0]); //URL til fb posten
+            }
+            else
+            {
+                string[] pizza = Nid.Split('_');
+                System.Diagnostics.Process.Start("https://www.facebook.com/permalink.php?story_fbid=" + pizza[1] + "&id=" + pizza[0]); //URL til fb posten
+            }
             DismissButton_OnClick(this, null);
         }
 

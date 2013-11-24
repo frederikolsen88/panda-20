@@ -139,8 +139,8 @@ namespace Panda_20.service
                         // uid, name, friend_count, subscriber_count, pic_square
                         string uid = Convert.ToString(author["uid"]);
                         string name = Convert.ToString(author["name"]);
-                        string friend_count = Convert.ToString(author["friend_count"]);
-                        string subscriber_count = Convert.ToString(author["subscriber_count"]);
+                        string friend_count =  author["friend_count"] != null ? Convert.ToString(author["friend_count"]) : "0";
+                        string subscriber_count = author["subscriber_count"] != null ? Convert.ToString(author["subscriber_count"]) : "0";
                         string pic_square = Convert.ToString(author["pic_square"]);
                         PandaUser pu = new PandaUser(uid,name,friend_count,subscriber_count,pic_square);
                         newUsers.Add(pu);

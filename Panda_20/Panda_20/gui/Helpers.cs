@@ -1,9 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Net;
 using System.Windows;
-using System.Windows.Forms;
 using Panda_20.Properties;
 using Panda_20.service;
 using Application = System.Windows.Application;
@@ -79,6 +77,8 @@ namespace Panda_20.gui
         }
     }
 
+  
+
     /**
      * Hjælpeklasse til diverse nedlukningsscenarier.
      * 
@@ -115,6 +115,16 @@ namespace Panda_20.gui
                 System.Environment.Exit(0);
             }
         }
+
+        /*
+         * Method for shutting down without dialog (extracted from ShowClosingPopUp)
+         */
+        public static void ShutItDown()
+        {
+            MainWindow.NotifyIcon.Dispose();
+            Misc.DisposeWebClient();
+            System.Environment.Exit(0);
+        }
         
         /**
          * Denne metode spawner en pop-up til "pæn" nedlukning.
@@ -134,9 +144,7 @@ namespace Panda_20.gui
 
                 if (result == MessageBoxResult.OK)
                 {
-                   MainWindow.NotifyIcon.Dispose();
-                   Misc.DisposeWebClient();
-                   System.Environment.Exit(0);
+                    ShutItDown();
                 }
 
                 if (result == MessageBoxResult.Cancel)
@@ -147,4 +155,6 @@ namespace Panda_20.gui
             }
             
         }
+
+        
     }

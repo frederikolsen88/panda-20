@@ -158,7 +158,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Warn me when a private message is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxPmLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."></ComboBox>
+                            <ComboBox Name="ComboBoxPmLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" />
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -199,7 +200,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Warn me when a comment is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxCommentLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."></ComboBox>
+                            <ComboBox Name="ComboBoxCommentLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" />
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>

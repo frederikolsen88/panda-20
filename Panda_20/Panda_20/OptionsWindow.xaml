@@ -7,7 +7,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         WindowStyle="None"
         ResizeMode="CanMinimize"
-        Title="Options" Height="404" Width="641"
+        Title="Options" Height="440" Width="641"
         Icon="resources/panda.ico">
 
     <Window.Resources>
@@ -98,9 +98,9 @@
                         <Label Content="Post notification settings" FontSize="18" Grid.Row="0"/>
                         <controls:ToggleSwitch Name="SwitchNotifyPosts"  Header="Display notifications" Grid.Row="1" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_notifications, Mode=TwoWay}"/>
-                        <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Show own posts" Grid.Row="2" 
+                        <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Display notification when page posts" Grid.Row="2" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_own, Mode=TwoWay}"/>
-                        <controls:ToggleSwitch Name="SwitchPostSounds" Header="Play a sound on notifications" Grid.Row="3" 
+                        <controls:ToggleSwitch Name="SwitchPostSounds" Header="Play sound on new post" Grid.Row="3" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
@@ -142,7 +142,7 @@
                         <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_display_notifications, Mode=TwoWay}"/>
 
-                        <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play a sound on notifications" Grid.Row="2" 
+                        <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play sound on new message" Grid.Row="2" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
@@ -181,16 +181,19 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Comment notification settings" FontSize="18" Grid.Row="0"/>
+                        
                         <controls:ToggleSwitch Name="SwitchNotifyComment"  Header="Display notifications" Grid.Row="1" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_notifications, Mode=TwoWay}"/>
-                        <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show comments on own posts" Grid.Row="2" 
+                        <controls:ToggleSwitch Name="Switch"  Header="Show notification when page comments on something" Grid.Row="2" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_own, Mode=TwoWay}"/>
-                        <controls:ToggleSwitch Name="SwitchCommentSounds" Header="Play a sound on notifications" Grid.Row="3" 
+                        <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show notification when people comments on posts by page" Grid.Row="3" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_comments_on_own_post, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchCommentSounds" Header="Play sound on new comment" Grid.Row="4" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_play_sound, Mode=TwoWay}"/>
 
-                        <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
+                        <Label Content="Time limit settings" FontSize="18" Grid.Row="5"/>
 
-                        <Grid Name="CommentTimeLimitGrid" Grid.Row="5">
+                        <Grid Name="CommentTimeLimitGrid" Grid.Row="6">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>

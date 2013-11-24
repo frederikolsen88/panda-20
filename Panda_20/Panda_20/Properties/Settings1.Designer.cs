@@ -69,54 +69,6 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_comments_from_self {
-            get {
-                return ((bool)(this["allow_notifications_comments_from_self"]));
-            }
-            set {
-                this["allow_notifications_comments_from_self"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_posts_from_self {
-            get {
-                return ((bool)(this["allow_notifications_posts_from_self"]));
-            }
-            set {
-                this["allow_notifications_posts_from_self"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool allow_notifications_posts_from_others {
-            get {
-                return ((bool)(this["allow_notifications_posts_from_others"]));
-            }
-            set {
-                this["allow_notifications_posts_from_others"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool allow_notifications_comments_from_others {
-            get {
-                return ((bool)(this["allow_notifications_comments_from_others"]));
-            }
-            set {
-                this["allow_notifications_comments_from_others"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public int notifications_max_amount {
             get {
@@ -124,18 +76,6 @@ namespace Panda_20.Properties {
             }
             set {
                 this["notifications_max_amount"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_comments_on_self_posts {
-            get {
-                return ((bool)(this["allow_notifications_comments_on_self_posts"]));
-            }
-            set {
-                this["allow_notifications_comments_on_self_posts"] = value;
             }
         }
         

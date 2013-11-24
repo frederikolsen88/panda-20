@@ -62,8 +62,7 @@
                             <Label Content="Notification settings" FontSize="18" Grid.Row="0"/>
                             <Label Content="Display a maximum of " Grid.Column="0" Grid.Row="1"/>
                             <ComboBox Name="ComboBoxTowerHeight" Width="75" Grid.Column="1" Grid.Row="1" 
-                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, 
-                                      Path=notifications_max_amount, Mode=TwoWay}">
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=notifications_max_amount, Mode=TwoWay}">
                                 <ComboBox.ItemsSource>
                                     <x:Array Type="{x:Type sys:Int32}">
                                         <sys:Int32>1</sys:Int32>
@@ -118,7 +117,8 @@
 
                             <Label Content="Warn me when a post is " Grid.Row="0" Grid.Column="0" />
                             <ComboBox Name="ComboBoxPostLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
-                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" />
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=posts_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -159,7 +159,8 @@
 
                             <Label Content="Warn me when a private message is " Grid.Row="0" Grid.Column="0" />
                             <ComboBox Name="ComboBoxPmLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
-                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" />
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=messages_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -201,7 +202,8 @@
 
                             <Label Content="Warn me when a comment is " Grid.Row="0" Grid.Column="0" />
                             <ComboBox Name="ComboBoxCommentLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
-                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" />
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=comments_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -220,7 +222,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" Width="120" Grid.Column="0" Margin="0,10,0,0">clear credentials</Button>
-                        <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" Width="120" Grid.Row="1" Margin="13,5,9,5">reset to default</Button>
+                        <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" Width="120" Grid.Row="1" Margin="0,10,0,0">reset to default</Button>
                     </Grid>
                 </TabItem>
                 
@@ -229,7 +231,7 @@
 
         <DockPanel  x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" Width="Auto">
             <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}">Save</Button>
-            <Button Name="ButtonCancel" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}">Cancel</Button>
+            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}">Close</Button>
         </DockPanel>
     </StackPanel>
 

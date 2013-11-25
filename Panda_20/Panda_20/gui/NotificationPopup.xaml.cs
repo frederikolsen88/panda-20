@@ -26,6 +26,7 @@ namespace Panda_20.gui
     {
         private string nid;
         private PandaNotification pn;
+        private long shownUnixTS;
         public NotificationPopup(PandaNotification pn)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace Panda_20.gui
             SetType(pn.GetType().ToString());
             SetUserFriends(Convert.ToString(Convert.ToInt32(pn.Owner.FriendCount) + Convert.ToInt32(pn.Owner.SubscriberCount)));
             this.Nid = pn.Nid;
-            changetopColor(255, 11, 15);
+            this.shownUnixTS = Misc.UnixTimeNow(0);
         }
 
         public string Nid
@@ -54,6 +55,12 @@ namespace Panda_20.gui
         {
             get { return pn; }
             set { pn = value; }
+        }
+
+        public long ShownUnixTs
+        {
+            get { return shownUnixTS; }
+            set { shownUnixTS = value; }
         }
 
         private int GetTaskbarHeight()
@@ -106,7 +113,7 @@ namespace Panda_20.gui
             DismissButton_OnClick(this, null);
         }
 
-        private void changetopColor(byte r, byte g, byte b)
+        public void changetopColor(byte r, byte g, byte b)
         {
             ColorRectangle.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(r, g, b));
             DismissButton.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(r, g, b));
@@ -168,5 +175,6 @@ namespace Panda_20.gui
             //Doesn't fucking work
             this.Top = GetTopOffset(order);
         }
+
     }
 }

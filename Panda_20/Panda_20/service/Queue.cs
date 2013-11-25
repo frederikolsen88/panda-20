@@ -123,5 +123,23 @@ namespace Panda_20.service
             Service.QueueShown = false;
         }
 
+        public static void CheckColoursAndVisibility()
+        {
+            foreach (NotificationPopup displayedNotification in DisplayedNotifications)
+            {
+                // Tjek setting om farver er slået til
+                Int64 timeInFutureHalf = Convert.ToInt64(Service.ReadFromConfig("posts_time_limit"))*30 + Convert.ToInt64(displayedNotification.Pn.CreatedTime);
+                Int64 timeInFuture = Convert.ToInt64(Service.ReadFromConfig("posts_time_limit"))*60 + Convert.ToInt64(displayedNotification.Pn.CreatedTime);
+                if (Misc.UnixTimeNow(0) > timeInFutureHalf && Misc.UnixTimeNow(0) < timeInFuture)
+                {
+                    displayedNotification.changetopColor(255, 128, 0);
+                }
+                else if (Misc.UnixTimeNow(0) > timeInFuture)
+                {
+                    displayedNotification.changetopColor(255, 11, 15);
+                }
+            }
+        }
+
     }
 }

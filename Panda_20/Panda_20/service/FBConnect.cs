@@ -17,13 +17,27 @@ namespace Panda_20.service
 
         private static ArrayList oldNotifications = new ArrayList();
         private static PandaUser defaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
+        private static int count = 0;
 
         public static void OneMinuteTimer()
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(GetFacebookUpdates);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 20);
+            dispatcherTimer.Tick += new EventHandler(TimerDoStuff);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
+        }
+
+        public static void TimerDoStuff(object sender, EventArgs e)
+        {
+            if (count == 2)
+            {
+                GetFacebookUpdates();
+                count = 0;
+            }
+
+            Queue.CheckColoursAndVisibility();
+
+            count++;
         }
 
         //-----------------------------------------------------------
@@ -31,7 +45,7 @@ namespace Panda_20.service
         //-----------------------------------------------------------
         // Ask Facebook what's up! Method needs to run asynchronously to work.
 
-        public static async void GetFacebookUpdates(object sender, EventArgs e)
+        public static async void GetFacebookUpdates()
         {
             Console.WriteLine("UpdateFBMethod");
 
@@ -55,6 +69,8 @@ namespace Panda_20.service
                                 "SELECT fromid, text, time, id, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
                                 Service.SelectedPage["id"] + "' LIMIT 100) AND time > '" + timestamp + "' ORDER BY time ASC LIMIT 1000",
                             comments_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT fromid FROM #comments)",
+                            //comments_ownposts = "SELECT actor_id, post_id FROM stream WHERE source_id = '" +
+                            //Service.SelectedPage["id"] + "' AND created_time > '" + timestamp + "' AND post_id IN (SELECT post_id FROM #comments) LIMIT 100",
                             posts =
                                 "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +
                                 Service.SelectedPage["id"] + "' AND created_time > '" + timestamp + "' ORDER BY created_time ASC LIMIT 100",
@@ -193,15 +209,40 @@ namespace Panda_20.service
                 {
 
                     // Tjek for egne posts + kommentarer på egne posts
-                    //if (Service.ReadFromConfig(""))
                     if (pn.GetType().ToString() == "Panda_20.model.PandaPost")
                     {
-                        if (pn.Owner.Uid == (string)Service.SelectedPage["id"])
+                        if (Service.ReadFromConfig("posts_display_own") == "False")
                         {
-
+                            if (pn.Owner.Uid != (string) Service.SelectedPage["id"])
+                            {
+                                Service.CreateNotification(pn);
+                            }
+                        }
+                        else
+                        {
+                            Service.CreateNotification(pn);
                         }
                     }
-                    Service.CreateNotification(pn);;
+                    else if (pn.GetType().ToString() == "Panda_20.model.PandaComment")
+                    {
+                        if (Service.ReadFromConfig("comments_display_own") == "False")
+                        {
+                            if (pn.Owner.Uid != (string)Service.SelectedPage["id"])
+                            {
+                                Service.CreateNotification(pn);
+                            }
+                        }
+                        else
+                        {
+                            Service.CreateNotification(pn);
+                        }
+                    }
+                    else
+                    {
+                        Service.CreateNotification(pn);
+                    }
+                    
+                    
                 }
             }
 

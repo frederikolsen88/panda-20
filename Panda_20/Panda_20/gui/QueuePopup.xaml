@@ -30,8 +30,9 @@
         <TextBlock Name="UserName" Foreground="White" HorizontalAlignment="Left" Margin="25,4,0,85" TextWrapping="Wrap" Width="245"/>
         <Image Name="IconImage" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="10" RenderTransformOrigin="0.969,0.469" Margin="6,8,0,0"/>
         
-        <Button Content="Clear visible" HorizontalAlignment="Left" Margin="85,65,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}" Height="35" Click="ClearVisible_Click"/>
-        <Button Content="Clear all" HorizontalAlignment="Left" Margin="195,65,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}" Height="35" Click="ClearAll_Click"/>
+        <Button HorizontalAlignment="Left" Margin="85,65,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}" Height="35" Click="ClearVisible_Click"><AccessText>Clear _visible</AccessText></Button>
+        <Button HorizontalAlignment="Left" Margin="195,65,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}" Height="35" Click="ClearAll_Click"><AccessText>Clear _all</AccessText>
+        </Button>
     </Grid>
 </Window>
 

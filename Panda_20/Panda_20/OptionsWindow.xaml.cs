@@ -58,5 +58,11 @@ namespace Panda_20
             this.Close();
         }
 
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.Show();
+        }
+
     }
 }

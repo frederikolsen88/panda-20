@@ -209,11 +209,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\read.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="resources\Entypo-license.txt" />
   </ItemGroup>
   <ItemGroup>

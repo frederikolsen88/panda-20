@@ -196,7 +196,9 @@ namespace Panda_20
         {
             Console.WriteLine("TYPE: " + pn.GetType().ToString());
             Console.WriteLine(soundPlayer.SoundLocation);
-            soundPlayer.Play();
+
+            if(Settings.Default.notifications_play_sound)
+                soundPlayer.Play();
 
             if (Queue.DisplayedNotifications.Count < 4)
             {

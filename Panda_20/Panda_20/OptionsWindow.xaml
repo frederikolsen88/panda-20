@@ -197,7 +197,7 @@
 
         <WrapPanel DockPanel.Dock="Bottom" x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}" Click="ButtonSave_Click"><AccessText>_Save</AccessText></Button>
-            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw"><AccessText>_Cancel</AccessText></Button>
+            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWindow"><AccessText>_Cancel</AccessText></Button>
         </WrapPanel>
     </DockPanel>
 

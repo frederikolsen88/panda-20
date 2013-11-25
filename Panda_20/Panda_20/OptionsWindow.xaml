@@ -7,7 +7,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         WindowStyle="None"
         ResizeMode="CanMinimize"
-        Title="Options" Height="475" Width="650"
+        Title="Options" Height="475" Width="665"
         Icon="resources/panda.ico">
 
     <Window.Resources>
@@ -125,7 +125,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="messages">
+                <TabItem Header="private messages">
                     <Grid MaxHeight="400" MaxWidth="800">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

@@ -30,6 +30,7 @@ namespace Panda_20
         public PageList()
         {        
             InitializeComponent();
+            ShowInTaskbar = false;
             InitPageList();
         }
 

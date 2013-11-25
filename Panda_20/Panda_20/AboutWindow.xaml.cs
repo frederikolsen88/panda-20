@@ -23,6 +23,13 @@ namespace Panda_20
         public AboutWindow()
         {
             InitializeComponent();
+            Topmost = true;
+            ShowInTaskbar = false;
+        }
+
+        private void MetroWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Panda_20.service
             // NOTIFICATIONS GENERALLY
             sd.notifications_max_amount = 4;
             sd.notifications_play_sound = true;
+            sd.notifactions_time_limit = 5;
 
             // POSTS
             sd.posts_display_notifications = true;
@@ -37,9 +38,15 @@ namespace Panda_20.service
             sd.posts_play_sound = true;
             sd.posts_time_limit = 5;
 
-            // OTHERS
+            // Startup
             sd.start_with_windows = false;
+            Service.ConfigureRegistryKeyForStartup(false);
+
+            
             sd.Save();
+
+
+            //Startup
 
 
         }

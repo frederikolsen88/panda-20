@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Panda_20.gui;
 using Panda_20.service;
 using Application = System.Windows.Application;
@@ -35,6 +37,7 @@ namespace Panda_20
         {
             
             InitializeComponent();
+
             WindowState = System.Windows.WindowState.Minimized;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -80,7 +83,6 @@ namespace Panda_20
             menuItemOptions.Index = 1;
             menuItemOptions.Text = "O&ptions";
             menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
-            
 
             // Initialize menuItemEixt 
             menuItemExit.Index = 2;

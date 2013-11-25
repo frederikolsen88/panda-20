@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Media;
+using System.Windows;
 using System.Xml.Linq;
 using Facebook;
+using Microsoft.Win32;
 using Panda_20.gui;
 using Panda_20.model;
 using Panda_20.Properties;
@@ -18,7 +21,6 @@ namespace Panda_20
 
     public static class Service
     {
-        // TODO Redundans; vi skal bruge XML'en alligevel
         private const String AppID = "470029853116845";
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
         private static string GrantType { get; set; }
@@ -274,6 +276,43 @@ namespace Panda_20
 
             return element.Value;
         }
+
+
+
+
+        public static void ConfigureRegistryKeyForStartup(bool isSuposedToStartWithWindows)
+        {
+
+            string appName = Settings.Default.RegistryValueName;
+
+            RegistryKey runKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (runKey == null)
+            {
+                throw new Exception("Run key somehow does not exist in the registry. This cannot happen... Congratulations, you basically broke Windows.");
+            }
+
+            String value = (String) runKey.GetValue(appName, null);
+
+            if (isSuposedToStartWithWindows && value == null) //supposed to start and key doesn't exist (in other words, need to create the key)
+            {
+
+                String exePath = "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"";
+                runKey.SetValue(appName, exePath);
+
+            }
+            else if (!isSuposedToStartWithWindows) // not supposed to start (in other words, needs to delete the key)
+            {
+                runKey.DeleteValue(appName, false);
+            } 
+        }
+
+
+
+
+
+
+
 
         //-------------------------------------------------------------------
         //--------------<GENERAL WRITE XML VALUE>--------------- Author: TRR 

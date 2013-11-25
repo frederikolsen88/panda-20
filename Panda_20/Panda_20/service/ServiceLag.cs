@@ -24,7 +24,7 @@ namespace Panda_20
         private static string GrantType { get; set; }
         private static Object XmlWriteLock = new Object();
         private static bool queueShown = false;
-        private static SoundPlayer soundPlayer = new SoundPlayer(@"resources/notify.wav");
+        private static SoundPlayer soundPlayer = new SoundPlayer(Properties.Resources.notify);
 
         private static String _facebookToken;
 
@@ -195,7 +195,8 @@ namespace Panda_20
         public static void CreateNotification(PandaNotification pn)
         {
             Console.WriteLine("TYPE: " + pn.GetType().ToString());
-            //soundPlayer.Play();
+            Console.WriteLine(soundPlayer.SoundLocation);
+            soundPlayer.Play();
 
             if (Queue.DisplayedNotifications.Count < 4)
             {

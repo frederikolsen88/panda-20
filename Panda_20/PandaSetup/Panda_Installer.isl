@@ -344,6 +344,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{CB74C099-293C-4EDF-A5CF-8B72C6DD7E84}</td><td>SOURCE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{E815D3EE-6EA5-41AD-B0F7-F0EE0BE5C984}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Panda_20.Primary_output</td><td>{3D116F18-3F24-4028-8AC2-2E3687CD41B0}</td><td>INSTALLDIR</td><td>2</td><td/><td>panda_20.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Panda_20.Primary_output1</td><td>{E2DDB77D-FA8F-4E6D-AC6B-8E1A1046E26F}</td><td>INSTALLDIR</td><td>2</td><td/><td>panda_20.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Panda_20.Source_Files</td><td>{E4A1BBC0-B154-43D7-A6FD-63946A06B35F}</td><td>SOURCE</td><td>2</td><td/><td>panda_20.source_files</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1153,7 +1154,7 @@
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
-		<row><td>MY_PRODUCT_NAME</td><td>FHMTT</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
+		<row><td>MY_PRODUCT_NAME</td><td>FHMTT</td><td>Panda2</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
 		<row><td>NetHoodFolder</td><td>TARGETDIR</td><td>.:NetHood</td><td/><td>0</td><td/></row>
 		<row><td>PersonalFolder</td><td>TARGETDIR</td><td>.:Personal</td><td/><td>0</td><td/></row>
@@ -1872,6 +1873,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>Panda_20.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Panda_20.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>Panda_20.Source_Files</td></row>
 	</table>
 
@@ -1887,6 +1889,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>panda_20.primary_output</td><td>Panda_20.Primary_output1</td><td>Panda_20.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Panda_20&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2035,6 +2038,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_642EDE12_0063_4100_B026_D5648ECDD7F6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_BFCB9881_E37E_4CD1_859A_D66D3AEFC474_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Panda_20.Primary_output</td><td/><td/><td>_0F959568_555A_4098_BFA2_038CCC7DA79F_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Panda_20.Primary_output1</td><td/><td/><td>_C8FAF0D3_4178_44C6_B8EF_734CFCD1F5D0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Panda_20.Source_Files</td><td/><td/><td>_0EA6C9E1_0A1B_46C2_AC93_A3032C6E5350_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2653,7 +2657,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>FHMTT</td><td>0</td><td/><td>-845039573</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>FHMTT</td><td>0</td><td/><td>-845086190</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-845053248</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-845053248</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-845065440</td></row>
@@ -3756,8 +3760,8 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-845053248</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-845053248</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-845051200</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.FHMTT.com</td><td>0</td><td/><td>-845039573</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>FHMTT</td><td>0</td><td/><td>-845039573</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.FHMTT.com</td><td>0</td><td/><td>-845086190</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>FHMTT</td><td>0</td><td/><td>-845086190</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-845026368</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-845053248</td></row>
 	</table>

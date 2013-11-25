@@ -23,9 +23,9 @@ namespace Panda_20.service
             sd.comments_time_limit = 5;
 
             // MESSAGES
-            sd.messages_display_notifications = true;
-            sd.messages_play_sound = true;
-            sd.messages_time_limit = 5;
+            sd.pm_display_notifications = true;
+            sd.pm_play_sound = true;
+            sd.pm_time_limit = 5;
             
             // NOTIFICATIONS GENERALLY
             sd.notifications_max_amount = 4;

@@ -25,7 +25,7 @@
 
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
-            <Button Content="about" />
+            <Button Name="ButtonAbout" Content="about" Click="ButtonAbout_Click" />
         </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
 
@@ -141,10 +141,10 @@
 
                         <Label Content="Private message notification settings" FontSize="18" Grid.Row="0"/>
                         <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" 
-                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_display_notifications, Mode=TwoWay}"/>
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_display_notifications, Mode=TwoWay}"/>
 
                         <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play sound on new message" Grid.Row="2" 
-                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_play_sound, Mode=TwoWay}"/>
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
 
@@ -161,7 +161,7 @@
                             <Label Content="Warn me when a private message is " Grid.Row="0" Grid.Column="0" />
                             <ComboBox Name="ComboBoxPmLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
                                       ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
-                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=messages_time_limit, Mode=TwoWay}"/>
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=pm_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>

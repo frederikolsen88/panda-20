@@ -76,7 +76,7 @@
                                     </x:Array>
                                 </ComboBox.ItemsSource>
                             </ComboBox>
-                            <Label Content=" at a time." Grid.Column="2" Grid.Row="1"/>
+                            <Label Content=" notifications at a time." Grid.Column="2" Grid.Row="1"/>
                         </Grid>
                     </Grid>
                 </TabItem>

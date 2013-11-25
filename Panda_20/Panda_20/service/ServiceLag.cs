@@ -195,7 +195,7 @@ namespace Panda_20
         public static void CreateNotification(PandaNotification pn)
         {
             Console.WriteLine("TYPE: " + pn.GetType().ToString());
-            soundPlayer.Play();
+            //soundPlayer.Play();
 
             if (Queue.DisplayedNotifications.Count < 4)
             {

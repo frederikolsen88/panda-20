@@ -251,5 +251,17 @@ namespace Panda_20.Properties {
                 return ((int[])(this["time_limit_values"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool comments_display_comments_on_own_post {
+            get {
+                return ((bool)(this["comments_display_comments_on_own_post"]));
+            }
+            set {
+                this["comments_display_comments_on_own_post"] = value;
+            }
+        }
     }
 }

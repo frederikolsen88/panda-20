@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using MahApps.Metro.Controls;
+using Panda_20.gui;
 using Panda_20.Properties;
+using Panda_20.service;
 
 namespace Panda_20
 {
@@ -28,10 +17,46 @@ namespace Panda_20
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void ButtonRevertToDefault(object sender, RoutedEventArgs e)
         {
-            Settings.Default.Save(); //  TODO This saves any changes made to the app-wide settings; if anything else is being done, that has to be handled as well.
+            BackToDefaults.DefaultSettings();
 
         }
+
+        private void ButtonClearCredentials_Click(object sender, RoutedEventArgs e)
+        {
+            ConfirmClearCredentials.Visibility = Visibility.Visible;
+            ButtonClearCredentials.IsEnabled = false;
+        }
+
+       
+
+        private void ButtonYesClear(object sender, RoutedEventArgs e)
+        {
+            BackToDefaults.DefaultFacebookValues();
+            TerminationAssistant.ShutItDown();
+        }
+
+        private void ButtonNoClear(object sender, RoutedEventArgs e)
+        {
+            ConfirmClearCredentials.Visibility = Visibility.Hidden;
+            ButtonClearCredentials.IsEnabled = true;
+        }
+
+
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.Default.Save();
+            //  TODO This saves any changes made to the app-wide settings; if anything else is being done, that has to be handled as well.
+            CloseOptionsWinodw(null, null);
+
+        }
+
+        private void CloseOptionsWinodw(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

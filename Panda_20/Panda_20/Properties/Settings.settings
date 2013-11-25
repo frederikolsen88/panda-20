@@ -67,5 +67,8 @@
   &lt;int&gt;30&lt;/int&gt;
 &lt;/ArrayOfInt&gt;</Value>
     </Setting>
+    <Setting Name="comments_display_comments_on_own_post" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

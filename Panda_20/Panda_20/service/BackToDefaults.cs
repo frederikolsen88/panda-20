@@ -7,21 +7,48 @@ namespace Panda_20.service
 {
     static class BackToDefaults
     {
+        private static Settings sd = Settings.Default;
 
         public static void DefaultSettings()
         {
             //TODO metode der resetter værdierne i Settings.Default
+            // Remember to UPDATE this method every once in a while.
 
-    
 
-            Settings.Default.notifications_max_amount = 4;
+            // COMMENTS
+            sd.comments_display_comments_on_own_post = false;
+            sd.comments_display_notifications = true;
+            sd.comments_display_own = false;
+            sd.comments_play_sound = true;
+            sd.comments_time_limit = 5;
+
+            // MESSAGES
+            sd.messages_display_notifications = true;
+            sd.messages_play_sound = true;
+            sd.messages_time_limit = 5;
+            
+            // NOTIFICATIONS GENERALLY
+            sd.notifications_max_amount = 4;
+            sd.notifications_play_sound = true;
+
+            // POSTS
+            sd.posts_display_notifications = true;
+            sd.posts_display_own = false;
+            sd.posts_play_sound = true;
+            sd.posts_time_limit = 5;
+
+            // OTHERS
+            sd.start_with_windows = false;
+            sd.Save();
+
 
         }
 
         public static void DefaultFacebookValues()
         {
-            Settings.Default.fb_token = "";
-            Settings.Default.fb_token_expires_in = "";
+            sd.fb_token = "";
+            sd.fb_token_expires_in = "";
+            sd.Save();
         }
 
         public static void ResetEverything()

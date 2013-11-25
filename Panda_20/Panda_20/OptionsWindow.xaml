@@ -29,7 +29,7 @@
         </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
 
-    <DockPanel x:Name="MainContentStackPanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
+    <DockPanel x:Name="MainContentStackPanel" Background="White" >
         <StackPanel DockPanel.Dock="Top" Name="StackForTabs" Margin="10,5">
             <TabControl>
                 <TabItem Header="general">
@@ -239,7 +239,7 @@
 
         <WrapPanel DockPanel.Dock="Bottom" x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}" Click="ButtonSave_Click">Save</Button>
-            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw">Close</Button>
+            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw">Cancel</Button>
         </WrapPanel>
     </DockPanel>
 

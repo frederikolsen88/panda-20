@@ -1,0 +1,17 @@
+﻿<controls:MetroWindow x:Class="Panda_20.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="About Panda" Height="300" Width="573.134" Icon="resources/panda.ico">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/resources/bigPanda.png" Height="128" Width="128" Grid.Column="0" />
+        <Label Content="Panda was brought to you by:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,-381,0" VerticalAlignment="Top" Height="249" Width="416"/>
+
+    </Grid>
+</controls:MetroWindow>

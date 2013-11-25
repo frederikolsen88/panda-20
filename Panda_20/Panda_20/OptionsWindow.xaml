@@ -25,7 +25,7 @@
 
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
-            <Button Content="about" />
+            <Button Name="ButtonAbout" Content="about" Click="ButtonAbout_Click" />
         </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
 

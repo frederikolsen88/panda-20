@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="About Panda" Height="256.717" Width="358.508" Icon="resources/panda.ico" ResizeMode="NoResize" MouseLeftButtonUp="MetroWindow_MouseLeftButtonUp">
+        Title="About Panda" Height="294.717" Width="358.508" Icon="resources/panda.ico" ResizeMode="NoResize">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -16,14 +16,14 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid MouseUp="Grid_MouseUp">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Image Source="/resources/bigPanda.png" Height="128" Width="128" Margin="5,0,0,0" Grid.Column="0" />
-        <Label Content="Panda was brought to you by:&#xA;&#xA;Frederik Olsen&#xA;Hjalte Thor&#xA;Michael Skaanning Rasmussen&#xA;Tobias Roland&#xA;Toke Vejlby Albrechtsen&#xA;&#xA;Panda icon by Lone Merete Jensen&#xD;&#xA;&#xD;&#xA;Please see the attached README.txt&#xD;&#xA;for licensing information." Grid.Column="1" Margin="10,10,-208,10"/>
+        <Label Content="Panda was brought to you by:&#xA;&#xA;Frederik Olsen&#xA;Hjalte Thor&#xA;Michael Skaanning Rasmussen&#xA;Tobias Roland&#xA;Toke Vejlby Albrechtsen&#xA;&#xA;Panda icon by Lone Merete Jensen&#xA;&#xA;Notification sound by Corsica__S&#xA;&#xA;Please see the attached README.txt&#xA;for licensing information." Grid.Column="1" Margin="10,10,-208,10"/>
 
     </Grid>
 </controls:MetroWindow>

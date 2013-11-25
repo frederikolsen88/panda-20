@@ -27,7 +27,7 @@ namespace Panda_20
             ShowInTaskbar = false;
         }
 
-        private void MetroWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Close();
         }

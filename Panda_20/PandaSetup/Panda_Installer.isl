@@ -344,8 +344,9 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{CB74C099-293C-4EDF-A5CF-8B72C6DD7E84}</td><td>SOURCE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{E815D3EE-6EA5-41AD-B0F7-F0EE0BE5C984}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Panda_20.Primary_output</td><td>{3D116F18-3F24-4028-8AC2-2E3687CD41B0}</td><td>INSTALLDIR</td><td>2</td><td/><td>panda_20.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Panda_20.Primary_output1</td><td>{E2DDB77D-FA8F-4E6D-AC6B-8E1A1046E26F}</td><td>INSTALLDIR</td><td>2</td><td/><td>panda_20.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Panda_20.Primary_output1</td><td>{C1D7159D-EBAB-4868-ACB1-B91E4A0E29A4}</td><td>INSTALLDIR</td><td>2</td><td/><td>panda_20.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Panda_20.Source_Files</td><td>{E4A1BBC0-B154-43D7-A6FD-63946A06B35F}</td><td>SOURCE</td><td>2</td><td/><td>panda_20.source_files</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Panda_20.Source_Files1</td><td>{9E67F95B-B416-4783-9F82-D666EFD6C4C1}</td><td>SOURCE</td><td>2</td><td/><td>panda_20.source_files</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1875,6 +1876,7 @@
 		<row><td>AlwaysInstall</td><td>Panda_20.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>Panda_20.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>Panda_20.Source_Files</td></row>
+		<row><td>AlwaysInstall</td><td>Panda_20.Source_Files1</td></row>
 	</table>
 
 	<table name="File">
@@ -1890,6 +1892,7 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>panda_20.primary_output</td><td>Panda_20.Primary_output1</td><td>Panda_20.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Panda_20&gt;|Built</td><td>3</td><td/></row>
+		<row><td>panda_20.source_files</td><td>Panda_20.Source_Files1</td><td>Panda_20.Source Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Panda_20&gt;|SourceFiles</td><td>3</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2038,8 +2041,9 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_642EDE12_0063_4100_B026_D5648ECDD7F6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_BFCB9881_E37E_4CD1_859A_D66D3AEFC474_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Panda_20.Primary_output</td><td/><td/><td>_0F959568_555A_4098_BFA2_038CCC7DA79F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Panda_20.Primary_output1</td><td/><td/><td>_C8FAF0D3_4178_44C6_B8EF_734CFCD1F5D0_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Panda_20.Primary_output1</td><td/><td/><td>_FDA50BE2_6702_4646_BF86_B2FB631EE2B6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Panda_20.Source_Files</td><td/><td/><td>_0EA6C9E1_0A1B_46C2_AC93_A3032C6E5350_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Panda_20.Source_Files1</td><td/><td/><td>_4C01DA98_7C51_4C06_9EAB_4DFBF1C95DE4_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">

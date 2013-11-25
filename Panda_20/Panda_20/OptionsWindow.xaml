@@ -188,8 +188,11 @@
                             <Label FontWeight="Bold" FontSize="13">Clearing credentials will log the application out of facebook and exit.</Label>
                             <Label HorizontalAlignment="Center" Grid.Row="1" FontWeight="Bold" FontSize="13">Continue?</Label>
                             <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" >
-                                <Button Name="YesClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Click="ButtonYesClear" Margin="10,10">Yes</Button>
-                                <Button Name="NoClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Click="ButtonNoClear" Margin="10,10">No</Button>
+                                <Button Name="YesClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Click="ButtonYesClear" Margin="10,10">
+                                    <AccessText>_Yes</AccessText></Button>
+                                <Button Name="NoClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Click="ButtonNoClear" Margin="10,10">
+                                    <AccessText>_No</AccessText>
+                                </Button>
                             </StackPanel>
                         </Grid>
                     </StackPanel>

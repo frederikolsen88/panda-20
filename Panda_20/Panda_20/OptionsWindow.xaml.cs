@@ -54,7 +54,7 @@ namespace Panda_20
             Queue.RemoveDisplayedPopups();
         }
 
-        private void CloseOptionsWinodw(object sender, RoutedEventArgs e)
+        private void CloseOptionsWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -105,7 +105,10 @@ namespace Panda_20.service
                         string post_id = Convert.ToString(comment["post_id"]);
                         PandaNotification pn = new PandaComment(fromid, time, text, id, post_id);
                         Console.WriteLine("TILFØJET: " + pn.Message);
-                        newNotifications.Add(pn);
+                        if (Service.ReadFromConfig("comments_display_notifications") == "True")
+                        {
+                            newNotifications.Add(pn);
+                        }
                     }
                 }
                 else if (data["name"].Equals("posts"))
@@ -117,7 +120,10 @@ namespace Panda_20.service
                         string message = Convert.ToString(post["message"]);
                         string post_id = Convert.ToString(post["post_id"]);
                         PandaNotification pn = new PandaPost(actor_id, created_time, message, post_id);
-                        newNotifications.Add(pn);
+                        if (Service.ReadFromConfig("posts_display_notifications") == "True")
+                        {
+                            newNotifications.Add(pn);
+                        }
                     }
                 }
                 else if (data["name"].Equals("private_messages"))
@@ -129,7 +135,10 @@ namespace Panda_20.service
                         string body = Convert.ToString(private_message["body"]);
                         string message_id = Convert.ToString(private_message["message_id"]);
                         PandaNotification pn = new PandaPrivateMessage(author_id, created_time, body, message_id);
-                        newNotifications.Add(pn);
+                        if (Service.ReadFromConfig("pm_display_notifications") == "True")
+                        {
+                            newNotifications.Add(pn);
+                        }
                     }
                 }
                 else
@@ -182,6 +191,16 @@ namespace Panda_20.service
                 }
                 if (!duplicate)
                 {
+
+                    // Tjek for egne posts + kommentarer på egne posts
+                    //if (Service.ReadFromConfig(""))
+                    if (pn.GetType().ToString() == "Panda_20.model.PandaPost")
+                    {
+                        if (pn.Owner.Uid == (string)Service.SelectedPage["id"])
+                        {
+
+                        }
+                    }
                     Service.CreateNotification(pn);;
                 }
             }

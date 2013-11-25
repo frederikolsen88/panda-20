@@ -198,7 +198,7 @@ namespace Panda_20
             Console.WriteLine(soundPlayer.SoundLocation);
             soundPlayer.Play();
 
-            if (Queue.DisplayedNotifications.Count < 4)
+            if (Queue.DisplayedNotifications.Count < Convert.ToInt32(Service.ReadFromConfig("notifications_max_amount")))
             {
                 NotificationPopup np;
                 if (pn.GetType().ToString() == "Panda_20.model.PandaComment")

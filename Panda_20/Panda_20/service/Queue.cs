@@ -84,10 +84,10 @@ namespace Panda_20.service
 
         public static void InsertPopupsFromQueue()
         {
-            if (DisplayedNotifications.Count < 4 && QueueNotifications.Count > 0)
+            if (DisplayedNotifications.Count < Convert.ToInt32(Service.ReadFromConfig("notifications_max_amount")) && QueueNotifications.Count > 0)
             {
                 // Get amount to insert into DisplayedNotifications
-                int free = Math.Abs(DisplayedNotifications.Count - 4); // WHAT? det er jo bare   4 - displayed.Count???
+                int free = Math.Abs(DisplayedNotifications.Count - Convert.ToInt32(Service.ReadFromConfig("notifications_max_amount"))); // WHAT? det er jo bare   4 - displayed.Count???
                 int countToInsert = Math.Min(QueueNotifications.Count, free);
                 for (int i = 0; i < countToInsert; i++)
                 {

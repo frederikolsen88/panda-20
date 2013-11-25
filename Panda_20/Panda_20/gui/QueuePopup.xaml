@@ -29,9 +29,7 @@
         <TextBlock Name="Message" Margin="61,27,5,40" Background="White" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
         <TextBlock Name="UserName" Foreground="White" HorizontalAlignment="Left" Margin="25,4,0,85" TextWrapping="Wrap" Width="245"/>
         <Image Name="IconImage" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="10" RenderTransformOrigin="0.969,0.469" Margin="6,8,0,0"/>
-        <Button Name="DismissButton" Background="#41B1E1" Padding="4,4,4,4"  Grid.Row="0" Width="25" Click="DismissButton_OnClick" HorizontalAlignment="Left" Margin="275,0,0,80" MouseEnter="DismissButton_MouseEnter" MouseLeave="DismissButton_MouseLeave">
-            <Image Source="../resources/closeButton.png"/>
-        </Button>
+        
         <Button Content="Clear visible" HorizontalAlignment="Left" Margin="85,65,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}" Height="35" Click="ClearVisible_Click"/>
         <Button Content="Clear all" HorizontalAlignment="Left" Margin="195,65,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}" Height="35" Click="ClearAll_Click"/>
     </Grid>

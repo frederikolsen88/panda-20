@@ -44,9 +44,9 @@ namespace Panda_20.gui
             return Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.WorkingArea.Height;
         }
 
-        private double GetTopOffset()
+        public double GetTopOffset()
         {
-            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight()+5 - ((5 + this.Height) * (5)) ; //1 skal være størrelsen af notification arrayet.
+            return SystemParameters.PrimaryScreenHeight - GetTaskbarHeight() + 5 - ((5 + this.Height) * (Convert.ToInt32(Service.ReadFromConfig("notifications_max_amount"))+1)); //1 skal være størrelsen af notification arrayet.
         }
 
 
@@ -94,12 +94,6 @@ namespace Panda_20.gui
                 ((Button) sender).Background = new SolidColorBrush((Color) convertFromString);
         }
 
-        public void RepositionMe()
-        {
-            // Doesn't fucking work
-            //this.Top = GetTopOffset();
-        }
-
         private void ClearVisible_Click(object sender, RoutedEventArgs e)
         {
             Queue.RemoveDisplayedPopups();
@@ -113,6 +107,12 @@ namespace Panda_20.gui
         private void ClearAll_Click(object sender, RoutedEventArgs e)
         {
             Queue.RemoveDisplayedAndQueuePopups();
+        }
+
+        public void RepositionMe()
+        {
+            //Doesn't fucking work
+            this.Top = GetTopOffset();
         }
     }
 }

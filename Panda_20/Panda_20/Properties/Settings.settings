@@ -35,13 +35,13 @@
     <Setting Name="posts_time_limit" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="messages_display_notifications" Type="System.Boolean" Scope="User">
+    <Setting Name="pm_display_notifications" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="messages_play_sound" Type="System.Boolean" Scope="User">
+    <Setting Name="pm_play_sound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="messages_time_limit" Type="System.Int32" Scope="User">
+    <Setting Name="pm_time_limit" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="comments_display_notifications" Type="System.Boolean" Scope="User">
@@ -69,30 +69,6 @@
     </Setting>
     <Setting Name="comments_display_comments_on_own_post" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="run_on_startup" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="allow_sound_post" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="allow_notifications_pm" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="allow_sound_pm" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="allow_sound_comments" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="alert_time_post" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="alert_time_pm" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
-    <Setting Name="alert_time_comment" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20</Value>
     </Setting>
   </Settings>
 </SettingsFile>

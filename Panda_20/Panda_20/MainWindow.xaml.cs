@@ -31,7 +31,7 @@ namespace Panda_20
         private ContextMenu contextMenu;
         private MenuItem menuItemExit;
         private MenuItem menuItemOptions;
-        private MenuItem menuItemRemoveAll;
+        private MenuItem menuItemClearAll;
 
         public MainWindow()
         {
@@ -67,17 +67,17 @@ namespace Panda_20
             contextMenu = new ContextMenu();
             menuItemExit = new MenuItem();
             menuItemOptions = new MenuItem();
-            menuItemRemoveAll = new MenuItem();
+            menuItemClearAll = new MenuItem();
             
 
             // Initialize contextMenu
             contextMenu.MenuItems.AddRange(
-                    new System.Windows.Forms.MenuItem[] { this.menuItemRemoveAll, this.menuItemOptions, this.menuItemExit });
+                    new System.Windows.Forms.MenuItem[] { this.menuItemClearAll, this.menuItemOptions, this.menuItemExit });
 
             // Initialize menuRemoveAll
-            menuItemRemoveAll.Index = 0;
-            menuItemRemoveAll.Text = "R&emove All";
-            menuItemRemoveAll.Click += new System.EventHandler(this.menuItemRemoveAll_Click);
+            menuItemClearAll.Index = 0;
+            menuItemClearAll.Text = "C&lear all";
+            menuItemClearAll.Click += new System.EventHandler(this.menuItemRemoveAll_Click);
 
             // Initialize menuItemOptions 
             menuItemOptions.Index = 1;

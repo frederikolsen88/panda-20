@@ -25,7 +25,7 @@
 
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
-            <Button Name="ButtonAbout" Content="about" Click="ButtonAbout_Click" />
+            <Button Name="ButtonAbout" Click="ButtonAbout_Click"><AccessText>_about</AccessText></Button>
         </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
 
@@ -215,8 +215,8 @@
 
                 <TabItem Header="advanced">
                     <StackPanel>
-                        <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" Width="150" Margin="0,10,0,0" Click="ButtonRevertToDefault">default settings</Button>
-                        <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" Width="150" Margin="0,10,0,0" Click="ButtonClearCredentials_Click">clear credentials</Button>
+                        <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" Width="150" Margin="0,10,0,0" Click="ButtonRevertToDefault"><AccessText>_Default settings</AccessText></Button>
+                        <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" Width="150" Margin="0,10,0,0" Click="ButtonClearCredentials_Click"><AccessText>C_lear credentials</AccessText></Button>
 
 
                         <Grid Name="ConfirmClearCredentials" HorizontalAlignment="Center" Margin="70, 10" Visibility="Hidden">
@@ -238,8 +238,8 @@
         </StackPanel>
 
         <WrapPanel DockPanel.Dock="Bottom" x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}" Click="ButtonSave_Click">Save</Button>
-            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw">Cancel</Button>
+            <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}" Click="ButtonSave_Click"><AccessText>_Save</AccessText></Button>
+            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw"><AccessText>_Cancel</AccessText></Button>
         </WrapPanel>
     </DockPanel>
 

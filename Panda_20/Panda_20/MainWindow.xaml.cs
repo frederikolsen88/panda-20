@@ -80,6 +80,7 @@ namespace Panda_20
             menuItemOptions.Index = 1;
             menuItemOptions.Text = "O&ptions";
             menuItemOptions.Click += new System.EventHandler(this.menuItemOption_Click);
+            
 
             // Initialize menuItemEixt 
             menuItemExit.Index = 2;

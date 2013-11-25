@@ -127,7 +127,7 @@ namespace Panda_20.service
         {
             foreach (NotificationPopup displayedNotification in DisplayedNotifications)
             {
-                // Tjek setting om farver er slået til
+                // TODO Tjek setting om farver er slået til
                 Int64 timeInFutureHalf = Convert.ToInt64(Service.ReadFromConfig("posts_time_limit"))*30 + Convert.ToInt64(displayedNotification.Pn.CreatedTime);
                 Int64 timeInFuture = Convert.ToInt64(Service.ReadFromConfig("posts_time_limit"))*60 + Convert.ToInt64(displayedNotification.Pn.CreatedTime);
                 if (Misc.UnixTimeNow(0) > timeInFutureHalf && Misc.UnixTimeNow(0) < timeInFuture)
@@ -138,6 +138,49 @@ namespace Panda_20.service
                 {
                     displayedNotification.changetopColor(255, 11, 15);
                 }
+
+                //if (displayedNotification.Pn.GetType().ToString() == "Panda_20.model.PandaComment")
+                //{
+                //    if (Service.ReadFromConfig("comments_time_popdown_enabled") == "True")
+                //    {
+                //        Int64 shownUnixTS = displayedNotification.ShownUnixTs;
+                //        Int64 currentTS = Misc.UnixTimeNow(0);
+                //        int popdowntime = Convert.ToInt32(Service.ReadFromConfig("comments_time_popdown"));
+
+                //        if ((currentTS - shownUnixTS) > popdowntime)
+                //        {
+                //            displayedNotification.DismissButton_OnClick(displayedNotification, null);
+                //        }
+                //    }
+                //}
+                //else if (displayedNotification.Pn.GetType().ToString() == "Panda_20.model.PandaPost")
+                //{
+                //    if (Service.ReadFromConfig("posts_time_popdown_enabled") == "True")
+                //    {
+                //        Int64 shownUnixTS = displayedNotification.ShownUnixTs;
+                //        Int64 currentTS = Misc.UnixTimeNow(0);
+                //        int popdowntime = Convert.ToInt32(Service.ReadFromConfig("posts_time_popdown"));
+
+                //        if ((currentTS - shownUnixTS) > popdowntime)
+                //        {
+                //            displayedNotification.DismissButton_OnClick(displayedNotification, null);
+                //        }
+                //    }
+                //}
+                //else if (displayedNotification.Pn.GetType().ToString() == "Panda_20.model.PandaPrivateMessage")
+                //{
+                //    if (Service.ReadFromConfig("pm_time_popdown_enabled") == "True")
+                //    {
+                //        Int64 shownUnixTS = displayedNotification.ShownUnixTs;
+                //        Int64 currentTS = Misc.UnixTimeNow(0);
+                //        int popdowntime = Convert.ToInt32(Service.ReadFromConfig("pm_time_popdown"));
+
+                //        if ((currentTS - shownUnixTS) > popdowntime)
+                //        {
+                //            displayedNotification.DismissButton_OnClick(displayedNotification, null);
+                //        }
+                //    }
+                //}
             }
         }
 

@@ -74,7 +74,7 @@ namespace Panda_20.gui
         }
 
 
-        private void DismissButton_OnClick(object sender, RoutedEventArgs e)
+        public void DismissButton_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
             //PandaNotification thisNotification = null;

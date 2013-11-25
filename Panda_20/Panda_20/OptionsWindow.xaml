@@ -75,8 +75,7 @@
                                         <sys:Int32>4</sys:Int32>
                                         <sys:Int32>5</sys:Int32>
                                         <sys:Int32>6</sys:Int32>
-                                        <system:Int32>7</system:Int32>
-                                        <system:Int32>8</system:Int32>
+                                    
                                     </x:Array>
                                 </ComboBox.ItemsSource>
                             </ComboBox>

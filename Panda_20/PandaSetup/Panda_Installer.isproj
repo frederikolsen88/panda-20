@@ -28,10 +28,5 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2013Limited\InstallShield.targets"/>
-	<ItemGroup>
-		<ProjectReference Include="..\Panda_20\Panda_20.csproj">
-			<Name>Panda_20</Name>
-			<Project>{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}</Project>
-		</ProjectReference>
-	</ItemGroup>
+	<ItemGroup/>
 </Project>

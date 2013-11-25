@@ -356,5 +356,17 @@ namespace Panda_20.Properties {
                 return ((string)(this["RegistryValueName"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long NumberOfTimesRun {
+            get {
+                return ((long)(this["NumberOfTimesRun"]));
+            }
+            set {
+                this["NumberOfTimesRun"] = value;
+            }
+        }
     }
 }

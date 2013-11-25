@@ -14,22 +14,60 @@
     <Setting Name="fbUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://www.facebook.com/dialog/oauth?client_id=470029853116845&amp;redirect_uri=https://www.facebook.com/connect/login_success.html&amp;scope=read_stream,manage_pages,read_mailbox,read_page_mailboxes,offline_access&amp;response_type=token</Value>
     </Setting>
-    <Setting Name="allow_notifications_comments_from_self" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="allow_notifications_posts_from_self" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="allow_notifications_posts_from_others" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="allow_notifications_comments_from_others" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="notifications_max_amount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4</Value>
     </Setting>
-    <Setting Name="allow_notifications_comments_on_self_posts" Type="System.Boolean" Scope="User">
+    <Setting Name="start_with_windows" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="notifications_play_sound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="posts_display_notifications" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="posts_display_own" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="posts_play_sound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="posts_time_limit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="messages_display_notifications" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="messages_play_sound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="messages_time_limit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="comments_display_notifications" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="comments_display_own" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="comments_play_sound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="comments_time_limit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="time_limit_values" Type="System.Int32[]" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfInt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;int&gt;5&lt;/int&gt;
+  &lt;int&gt;10&lt;/int&gt;
+  &lt;int&gt;15&lt;/int&gt;
+  &lt;int&gt;20&lt;/int&gt;
+  &lt;int&gt;25&lt;/int&gt;
+  &lt;int&gt;30&lt;/int&gt;
+&lt;/ArrayOfInt&gt;</Value>
+    </Setting>
+    <Setting Name="comments_display_comments_on_own_post" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="run_on_startup" Type="System.Boolean" Scope="User">

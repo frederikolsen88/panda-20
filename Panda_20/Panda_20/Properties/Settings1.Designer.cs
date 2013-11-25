@@ -69,54 +69,6 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_comments_from_self {
-            get {
-                return ((bool)(this["allow_notifications_comments_from_self"]));
-            }
-            set {
-                this["allow_notifications_comments_from_self"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_posts_from_self {
-            get {
-                return ((bool)(this["allow_notifications_posts_from_self"]));
-            }
-            set {
-                this["allow_notifications_posts_from_self"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool allow_notifications_posts_from_others {
-            get {
-                return ((bool)(this["allow_notifications_posts_from_others"]));
-            }
-            set {
-                this["allow_notifications_posts_from_others"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool allow_notifications_comments_from_others {
-            get {
-                return ((bool)(this["allow_notifications_comments_from_others"]));
-            }
-            set {
-                this["allow_notifications_comments_from_others"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public int notifications_max_amount {
             get {
@@ -130,12 +82,185 @@ namespace Panda_20.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool allow_notifications_comments_on_self_posts {
+        public bool start_with_windows {
             get {
-                return ((bool)(this["allow_notifications_comments_on_self_posts"]));
+                return ((bool)(this["start_with_windows"]));
             }
             set {
-                this["allow_notifications_comments_on_self_posts"] = value;
+                this["start_with_windows"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool notifications_play_sound {
+            get {
+                return ((bool)(this["notifications_play_sound"]));
+            }
+            set {
+                this["notifications_play_sound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool posts_display_notifications {
+            get {
+                return ((bool)(this["posts_display_notifications"]));
+            }
+            set {
+                this["posts_display_notifications"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool posts_display_own {
+            get {
+                return ((bool)(this["posts_display_own"]));
+            }
+            set {
+                this["posts_display_own"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool posts_play_sound {
+            get {
+                return ((bool)(this["posts_play_sound"]));
+            }
+            set {
+                this["posts_play_sound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int posts_time_limit {
+            get {
+                return ((int)(this["posts_time_limit"]));
+            }
+            set {
+                this["posts_time_limit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool messages_display_notifications {
+            get {
+                return ((bool)(this["messages_display_notifications"]));
+            }
+            set {
+                this["messages_display_notifications"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool messages_play_sound {
+            get {
+                return ((bool)(this["messages_play_sound"]));
+            }
+            set {
+                this["messages_play_sound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int messages_time_limit {
+            get {
+                return ((int)(this["messages_time_limit"]));
+            }
+            set {
+                this["messages_time_limit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool comments_display_notifications {
+            get {
+                return ((bool)(this["comments_display_notifications"]));
+            }
+            set {
+                this["comments_display_notifications"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool comments_display_own {
+            get {
+                return ((bool)(this["comments_display_own"]));
+            }
+            set {
+                this["comments_display_own"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool comments_play_sound {
+            get {
+                return ((bool)(this["comments_play_sound"]));
+            }
+            set {
+                this["comments_play_sound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int comments_time_limit {
+            get {
+                return ((int)(this["comments_time_limit"]));
+            }
+            set {
+                this["comments_time_limit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfInt xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <int>5</int>
+  <int>10</int>
+  <int>15</int>
+  <int>20</int>
+  <int>25</int>
+  <int>30</int>
+</ArrayOfInt>")]
+        public int[] time_limit_values {
+            get {
+                return ((int[])(this["time_limit_values"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool comments_display_comments_on_own_post {
+            get {
+                return ((bool)(this["comments_display_comments_on_own_post"]));
+            }
+            set {
+                this["comments_display_comments_on_own_post"] = value;
             }
         }
         

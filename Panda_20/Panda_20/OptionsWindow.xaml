@@ -1,11 +1,13 @@
 ﻿<controls:MetroWindow x:Class="Panda_20.OptionsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:properties="clr-namespace:Panda_20.Properties"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         WindowStyle="None"
         ResizeMode="CanMinimize"
-        Title="Options" Height="404" Width="641"
+        Title="Options" Height="475" Width="650"
         Icon="resources/panda.ico">
 
     <Window.Resources>
@@ -20,14 +22,15 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-<controls:MetroWindow.WindowCommands>
-    <controls:WindowCommands>
-        <Button Content="about" />
-    </controls:WindowCommands>
+
+    <controls:MetroWindow.WindowCommands>
+        <controls:WindowCommands>
+            <Button Content="about" />
+        </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
 
-    <StackPanel x:Name="MainContentStackPanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
-        <StackPanel Margin="10,5">
+    <DockPanel x:Name="MainContentStackPanel" Background="White" >
+        <StackPanel DockPanel.Dock="Top" Name="StackForTabs" Margin="10,5">
             <TabControl>
                 <TabItem Header="general">
 
@@ -40,8 +43,11 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="General settings" FontSize="18" Grid.Column="0" Grid.Row="0" />
-                        <controls:ToggleSwitch Name="SwitchStartUp" Header="Start Panda when Windows starts" Grid.Row="1" Grid.Column="0"/>
-                        <controls:ToggleSwitch Name="SwitchSound" Header="Sound" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0"/>
+                        <controls:ToggleSwitch Name="SwitchStartUp" Header="Start Panda when Windows starts" Grid.Row="1" Grid.Column="0"  
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=start_with_windows, Mode=TwoWay}"/>
+
+                        <controls:ToggleSwitch Name="SwitchSound" Header="Sound" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0"
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifications_play_sound, Mode=TwoWay}"/>
                         <Grid Name="TowerHeightGrid" Row="3" Margin="0,10,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -56,8 +62,22 @@
 
                             <Label Content="Notification settings" FontSize="18" Grid.Row="0"/>
                             <Label Content="Display a maximum of " Grid.Column="0" Grid.Row="1"/>
-                            <ComboBox Name="ComboBoxTowerHeight" Width="75" Grid.Column="1" Grid.Row="1"/>
-                            <Label Content=" at a time." Grid.Column="2" Grid.Row="1"/>
+                            <ComboBox Name="ComboBoxTowerHeight" Width="75" Grid.Column="1" Grid.Row="1" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=notifications_max_amount, Mode=TwoWay}">
+                                <ComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type sys:Int32}">
+                                        <sys:Int32>1</sys:Int32>
+                                        <sys:Int32>2</sys:Int32>
+                                        <sys:Int32>3</sys:Int32>
+                                        <sys:Int32>4</sys:Int32>
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>6</sys:Int32>
+                                        <system:Int32>7</system:Int32>
+                                        <system:Int32>8</system:Int32>
+                                    </x:Array>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Label Content=" notifications at a time." Grid.Column="2" Grid.Row="1"/>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -77,9 +97,12 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Post notification settings" FontSize="18" Grid.Row="0"/>
-                        <controls:ToggleSwitch Name="SwitchNotifyPosts"  Header="Display notifications" Grid.Row="1" />
-                        <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Show own posts" Grid.Row="2" />
-                        <controls:ToggleSwitch Name="SwitchPostSounds" Header="Play a sound on notifications" Grid.Row="3" />
+                        <controls:ToggleSwitch Name="SwitchNotifyPosts"  Header="Display notifications" Grid.Row="1" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_notifications, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Display notification when page posts" Grid.Row="2" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_own, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchPostSounds" Header="Play sound on new post" Grid.Row="3" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
 
@@ -94,13 +117,15 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Warn me when a post is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxPostLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." />
+                            <ComboBox Name="ComboBoxPostLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=posts_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="private messages">
+                <TabItem Header="messages">
                     <Grid MaxHeight="400" MaxWidth="800">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -115,9 +140,11 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Private message notification settings" FontSize="18" Grid.Row="0"/>
-                        <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" />
+                        <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_display_notifications, Mode=TwoWay}"/>
 
-                        <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play a sound on notifications" Grid.Row="2" />
+                        <controls:ToggleSwitch Name="SwitchPmSounds" Header="Play sound on new message" Grid.Row="2" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=messages_play_sound, Mode=TwoWay}"/>
 
                         <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
 
@@ -132,7 +159,9 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Warn me when a private message is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxPmLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."></ComboBox>
+                            <ComboBox Name="ComboBoxPmLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=messages_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -153,13 +182,19 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Comment notification settings" FontSize="18" Grid.Row="0"/>
-                        <controls:ToggleSwitch Name="SwitchNotifyComment"  Header="Display notifications" Grid.Row="1" />
-                        <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show comments on own posts" Grid.Row="2" />
-                        <controls:ToggleSwitch Name="SwitchCommentSounds" Header="Play a sound on notifications" Grid.Row="3" />
 
-                        <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
+                        <controls:ToggleSwitch Name="SwitchNotifyComment"  Header="Display notifications" Grid.Row="1" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_notifications, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="Switch"  Header="Show notification when page comments on something" Grid.Row="2" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_own, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show notification when people comments on posts by page" Grid.Row="3" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_comments_on_own_post, Mode=TwoWay}"/>
+                        <controls:ToggleSwitch Name="SwitchCommentSounds" Header="Play sound on new comment" Grid.Row="4" 
+                                               IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_play_sound, Mode=TwoWay}"/>
 
-                        <Grid Name="CommentTimeLimitGrid" Grid.Row="5">
+                        <Label Content="Time limit settings" FontSize="18" Grid.Row="5"/>
+
+                        <Grid Name="CommentTimeLimitGrid" Grid.Row="6">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -170,31 +205,44 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Warn me when a comment is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxCommentLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."></ComboBox>
+                            <ComboBox Name="ComboBoxCommentLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed."
+                                      ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=comments_time_limit, Mode=TwoWay}"/>
                             <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" />
                         </Grid>
                     </Grid>
                 </TabItem>
-                
-                <TabItem Header="privacy">
-                    <Grid MaxHeight="400" MaxWidth="800">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        
-                        <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Grid.Column="0" Margin="0,10,0,0">clear credentials</Button>
-                        <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Grid.Column="1" Margin="20,10,0,0">reset to default</Button>
-                    </Grid>
+
+                <TabItem Header="advanced">
+                    <StackPanel>
+                        <Button Name="ButtonDefaults" Style="{DynamicResource SquareButtonStyle}" Width="150" Margin="0,10,0,0" Click="ButtonRevertToDefault">default settings</Button>
+                        <Button Name="ButtonClearCredentials" Style="{DynamicResource SquareButtonStyle}" Width="150" Margin="0,10,0,0" Click="ButtonClearCredentials_Click">clear credentials</Button>
+
+
+                        <Grid Name="ConfirmClearCredentials" HorizontalAlignment="Center" Margin="70, 10" Visibility="Hidden">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label FontWeight="Bold" FontSize="13">Clearing credentials will log the application out of facebook and exit.</Label>
+                            <Label HorizontalAlignment="Center" Grid.Row="1" FontWeight="Bold" FontSize="13">Continue?</Label>
+                            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" >
+                                <Button Name="YesClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Click="ButtonYesClear" Margin="10,10">Yes</Button>
+                                <Button Name="NoClearCredentials" Style="{DynamicResource SquareButtonStyle}" MinWidth="93" Click="ButtonNoClear" Margin="10,10">No</Button>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
                 </TabItem>
-                
             </TabControl>
         </StackPanel>
 
-        <DockPanel  x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" Width="Auto">
-            <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}">Save</Button>
-            <Button Name="ButtonCancel" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}">Cancel</Button>
-        </DockPanel>
-    </StackPanel>
+        <WrapPanel DockPanel.Dock="Bottom" x:Name="SaveButtons" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Name="ButtonSave" HorizontalAlignment="Right"  MinWidth="93"  Style="{DynamicResource SquareButtonStyle}" Click="ButtonSave_Click">Save</Button>
+            <Button Name="ButtonClose" HorizontalAlignment="Right"  MaxWidth="93" Margin="10,0,0,0" Width="120" Style="{DynamicResource SquareButtonStyle}" Click="CloseOptionsWinodw">Cancel</Button>
+        </WrapPanel>
+    </DockPanel>
+
+
 
 </controls:MetroWindow>

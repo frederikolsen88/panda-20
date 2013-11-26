@@ -19,6 +19,7 @@ namespace Panda_20.service
 
         private static ArrayList oldNotifications = new ArrayList();
         private static PandaUser defaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
+        private static ArrayList commentsOwnPosts = new ArrayList();
         private static int count = 0;
         private static bool connected = true;
 
@@ -87,8 +88,8 @@ namespace Panda_20.service
                                 "SELECT fromid, text, time, id, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
                                 Service.SelectedPage["id"] + "' LIMIT 100) AND time > '" + timestamp + "' ORDER BY time ASC LIMIT 1000",
                             comments_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT fromid FROM #comments)",
-                            //comments_ownposts = "SELECT actor_id, post_id FROM stream WHERE source_id = '" +
-                            //Service.SelectedPage["id"] + "' AND created_time > '" + timestamp + "' AND post_id IN (SELECT post_id FROM #comments) LIMIT 100",
+                            comments_ownposts = "SELECT post_id FROM stream WHERE source_id = '" +
+                            Service.SelectedPage["id"] + "' AND post_id IN (SELECT post_id FROM #comments) LIMIT 100",
                             posts =
                                 "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +
                                 Service.SelectedPage["id"] + "' AND created_time > '" + timestamp + "' ORDER BY created_time ASC LIMIT 100",
@@ -175,6 +176,15 @@ namespace Panda_20.service
                         }
                     }
                 }
+                else if (data["name"].Equals("comments_ownposts"))
+                {
+                    foreach (JsonObject ownposts in (JsonArray)data["fql_result_set"])
+                    {
+                        string post_id = Convert.ToString(ownposts["post_id"]);
+                        string[] pizza = post_id.Split('_');
+                        commentsOwnPosts.Add(pizza);
+                    }
+                }
                 else
                 {
                     foreach (JsonObject author in (JsonArray) data["fql_result_set"])
@@ -192,7 +202,7 @@ namespace Panda_20.service
             }
 
             // Join dem
-            for (int i = 0; i < newNotifications.Count; i++)
+            for (int i = newNotifications.Count - 1; i >= 0; i--)
             {
                 string uid = "";
                 PandaNotification pn = (PandaNotification) newNotifications[i];
@@ -203,6 +213,18 @@ namespace Panda_20.service
                     if (newUser.Uid.Equals(uid))
                     {
                         pn.Owner = newUser;
+                    }
+                }
+
+                if (pn.GetType().ToString() == "Panda_20.model.PandaComment" && Service.ReadFromConfig("comments_display_comments_on_own_post") == "False")
+                {
+                    foreach (string[] ownPost in commentsOwnPosts)
+                    {
+                        PandaComment pc = (PandaComment) pn;
+                        if (pc.PostId == ownPost[1] && ownPost[0] == Service.SelectedPage["id"])
+                        {
+                            newNotifications.Remove(pc);
+                        }
                     }
                 }
             }

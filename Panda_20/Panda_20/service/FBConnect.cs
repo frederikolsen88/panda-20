@@ -27,13 +27,13 @@ namespace Panda_20.service
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(TimerDoStuff);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
             dispatcherTimer.Start();
         }
 
         public static void TimerDoStuff(object sender, EventArgs e)
         {
-            if (count == 2)
+            if (count == 5)
             {
                 if (Misc.CheckConnection())
                 {

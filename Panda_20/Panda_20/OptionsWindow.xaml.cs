@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
@@ -57,6 +58,14 @@ namespace Panda_20
 
             // Note: Special case with this one
             IsStartWithWindowsSetToOn = Settings.Default.start_with_windows;
+
+            // Et grimt, men nødvendigt hack. MahApps ToggleSwitch'ene er buggy
+            // når settings'ene resettes, men de vises korrekt igen i en ny instans
+            // af vinduet.
+
+            Close();
+            OptionsWindow newOpt = new OptionsWindow();
+            newOpt.Show();
         }
 
         /// <summary>

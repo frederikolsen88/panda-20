@@ -172,7 +172,6 @@ namespace Panda_20
         {
            TerminationAssistant.ShowClosingPopUp(this, e);
         }
-
        
     }
 }

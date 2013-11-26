@@ -33,6 +33,9 @@ namespace Panda_20.service
 
         public static void TimerDoStuff(object sender, EventArgs e)
         {
+
+            Queue.CheckColoursAndVisibility();
+
             if (count == 5)
             {
                 if (Misc.CheckConnection())
@@ -53,8 +56,6 @@ namespace Panda_20.service
                     
                 count = 0;    
             }
-
-            Queue.CheckColoursAndVisibility();
 
             count++;
         }

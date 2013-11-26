@@ -87,7 +87,7 @@ namespace Panda_20.service
                                 "SELECT fromid, text, time, id, post_id FROM comment WHERE post_id in (SELECT post_id FROM stream WHERE source_id='" +
                                 Service.SelectedPage["id"] + "' LIMIT 100) AND time > '" + timestamp + "' ORDER BY time ASC LIMIT 1000",
                             comments_authors = "SELECT uid, name, friend_count, subscriber_count, pic_square FROM user WHERE uid IN (SELECT fromid FROM #comments)",
-                            comments_ownposts = "SELECT post_id FROM stream WHERE source_id = '" +
+                            comments_ownposts = "SELECT actor_id, post_id FROM stream WHERE source_id = '" +
                             Service.SelectedPage["id"] + "' AND post_id IN (SELECT post_id FROM #comments) LIMIT 100",
                             posts =
                                 "SELECT actor_id, created_time, message, post_id FROM stream WHERE source_id = '" +
@@ -179,8 +179,11 @@ namespace Panda_20.service
                 {
                     foreach (JsonObject ownposts in (JsonArray)data["fql_result_set"])
                     {
+                        string[] pizza = new string[2];
                         string post_id = Convert.ToString(ownposts["post_id"]);
-                        string[] pizza = post_id.Split('_');
+                        string actor_id = Convert.ToString(ownposts["actor_id"]);
+                        pizza[0] = post_id;
+                        pizza[1] = actor_id;
                         commentsOwnPosts.Add(pizza);
                     }
                 }
@@ -220,7 +223,7 @@ namespace Panda_20.service
                     foreach (string[] ownPost in commentsOwnPosts)
                     {
                         PandaComment pc = (PandaComment) pn;
-                        if (pc.PostId == ownPost[1] && ownPost[0] == Service.SelectedPage["id"])
+                        if (pc.PostId == ownPost[0] && ownPost[1] == (string)Service.SelectedPage["id"])
                         {
                             newNotifications.Remove(pc);
                         }

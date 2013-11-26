@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStyle="None"
         ResizeMode="CanMinimize"         
-        Title="Options" x:Name="OptioMetroWindow" Height="475" Width="665"
+        Title="Options" x:Name="OptionMetroWindow" Height="475" Width="665"
         Icon="resources/panda.ico">
 
     <Window.Resources>
@@ -45,7 +45,7 @@
 
                         <Label Content="General settings" FontSize="18" Grid.Column="0" Grid.Row="0" />
                         <controls:ToggleSwitch Name="SwitchStartUp" Header="Start Panda when Windows starts" Grid.Row="1" Grid.Column="0"  
-                                               IsChecked="{Binding ElementName=OptioMetroWindow, Path=IsStartWithWindowsSetToOn}"
+                                               IsChecked="{Binding ElementName=OptionMetroWindow, Path=IsStartWithWindowsSetToOn}"
                                                />
 
                         <controls:ToggleSwitch Name="SwitchSound" Header="Play sound on notifications" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0"

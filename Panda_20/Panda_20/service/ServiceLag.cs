@@ -257,32 +257,11 @@ namespace Panda_20
             return likes;
         }
 
-
-        //-------------------------------------------------------------------
-        //--------------<GENERAL READ XML VALUE>---------------- Author: TRR 
-        //-------------------------------------------------------------------
-        
-        // DEPRECATED - USE Settings.Default.NAMEOFYOURSETTING
-        public static String ReadXmlValue(string elementName, string filePath)
-        {   
-            XDocument document = XDocument.Load(filePath);
-            XElement element = document.Root.Element(elementName);
-
-            if (element == null)
-            {
-                throw new Exception("Element <" + elementName + "> not found in XML-file <" + filePath +">.");
-            }
-
-            return element.Value;
-        }
-
-
-
         /// <summary>
         /// Method that adds (isSupposedToStartWithWindoes == true) or removes ( == false) a registry value to the RUN registry (in the HKEY_CURRENT_USRE/SOFTWARE/Microsoft/Windows/CurrentVersion/Run
         /// </summary>
-        /// <param name="isSuposedToStartWithWindows"></param>
-        public static void ConfigureRegistryKeyForStartup(bool isSuposedToStartWithWindows)
+        /// <param name="isSupposedToStartWithWindows"></param>
+        public static void ConfigureRegistryKeyForStartup(bool isSupposedToStartWithWindows)
         {
 
             string appName = Settings.Default.RegistryValueName;
@@ -296,7 +275,7 @@ namespace Panda_20
 
             String value = (String) runKey.GetValue(appName, null);
 
-            if (isSuposedToStartWithWindows) //supposed to start and key doesn't exist (in other words, need to create the key)
+            if (isSupposedToStartWithWindows) //supposed to start and key doesn't exist (in other words, need to create the key)
             {
 
                 String exePath = "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"";
@@ -314,44 +293,7 @@ namespace Panda_20
         }
 
 
-        //-------------------------------------------------------------------
-        //--------------<GENERAL WRITE XML VALUE>--------------- Author: TRR 
-        //-------------------------------------------------------------------
-        // Note - ALL write-operations to XML-files should be done through
-        // the use of this method, since it drastically lowers the odds for of write-operations
-        // doing the dirty stuff at the same time. Won't happen often, but it would 
-        // crash the program horribly if or when it happened.
-
-        // DEPRECATED - USE:
-        // Settings.Default.NAMEOFYOURSETTING = yourValue
-        // Settings.Default.Save();
-        // ...instead. See how in actual use in BrowserHelper-class.
-       
-        public static void WriteXmlValue(string elementName, string newValue, string filePath)
-        {
-            XDocument document = XDocument.Load(filePath);
-            XElement retrievedElement = document.Root.Element(elementName);
-
-            if (retrievedElement == null)
-            {
-                //All elements must exist in the XML-file prior to writing them 
-                // - doing otherwise is dangerous.
-                throw new Exception("No such XML element (" + elementName +") exists in the file <" + filePath + ">. Check your spelling - and add it manually if needed before trying to write to it");
-            } 
-            
-            if (retrievedElement.Value.Equals(newValue))
-            {
-                //Don't initiate costly IO-operation if the value already is what it's supposed to be
-            } else
-            {
-                //Locked so it's threadsafe to write to the file.
-                lock (XmlWriteLock)
-                {
-                    retrievedElement.SetValue(newValue);
-                    document.Save(@"service\AppValues.xml");
-                }
-            }
-        }
+        
 
         /**
          * Skriver en værdi til programmets settings, såfremt vi forsøger

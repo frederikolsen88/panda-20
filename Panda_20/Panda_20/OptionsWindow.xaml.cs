@@ -112,8 +112,8 @@ namespace Panda_20
 
         private void OptionMetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is currently running.", ToolTipIcon.Info);
+            MainWindow.OptionsShowing = false;
+            MainWindow.NotifyIcon.ContextMenu.MenuItems[1].Enabled = true;
         }
-
     }
 }

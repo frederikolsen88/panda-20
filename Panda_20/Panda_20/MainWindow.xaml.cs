@@ -29,6 +29,8 @@ namespace Panda_20
         private MenuItem menuItemExit;
         private MenuItem menuItemOptions;
         private MenuItem menuItemClearAll;
+        private OptionsWindow opWindow;
+        public static bool OptionsShowing = false;
 
         public MainWindow()
         {
@@ -152,8 +154,13 @@ namespace Panda_20
         /// </summary>
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
-            OptionsWindow opWindow = new OptionsWindow();
-            opWindow.Show();
+            if (!OptionsShowing)
+            {
+                opWindow = new OptionsWindow();
+                opWindow.Show();
+                menuItemOptions.Enabled = false;
+                OptionsShowing = true;
+            }   
         }
 
         private void menuItemRemoveAll_Click(object Sender, System.EventArgs e)

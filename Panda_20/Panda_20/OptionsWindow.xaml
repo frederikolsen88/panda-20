@@ -94,7 +94,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <controls:ToggleSwitch Name="ColourSwitch" Header="Colour-based warning system" Grid.ColumnSpan="3" Margin="0,0,-218,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=colour_warnings, Mode=TwoWay}" IsCheckedChanged="ColourSwitch_IsCheckedChanged"/>
+                            <controls:ToggleSwitch Name="ColourSwitch" Header="Colour-based warning system" Grid.ColumnSpan="3" Margin="0,0,-299,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=colour_warnings, Mode=TwoWay}" IsCheckedChanged="ColourSwitch_IsCheckedChanged"/>
                             <Label Name ="TimeLimitLabel1" Content="Warn me when a notification is " Grid.Row="1" Grid.Column="0" />
                             <ComboBox Name="ComboBoxTimeLimit" Grid.Row="1" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
                                       ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 

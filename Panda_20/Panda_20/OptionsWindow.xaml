@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStyle="None"
         ResizeMode="CanMinimize"         
-        Title="Options" x:Name="OptionMetroWindow" Height="475" Width="665"
+        Title="Options" x:Name="OptionMetroWindow" Height="568" Width="665"
         Icon="resources/panda.ico" Closing="OptionMetroWindow_Closing">
 
     <Window.Resources>
@@ -89,6 +89,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -96,12 +97,13 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Warn me when a notification is " Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxTimeLimit" Grid.Row="0" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                            <controls:ToggleSwitch Name="ColourSwitch" Header="Colour-based warning system" Grid.ColumnSpan="3" Margin="0,0,-218,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=colour_warnings, Mode=TwoWay}" IsCheckedChanged="ColourSwitch_IsCheckedChanged"/>
+                            <Label Name ="TimeLimitLabel1" Content="Warn me when a notification is " Grid.Row="1" Grid.Column="0" />
+                            <ComboBox Name="ComboBoxTimeLimit" Grid.Row="1" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
                                       ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
                                       SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=notifactions_time_limit, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="30,0,55,0"/>
-                            <Label Content=" minutes old." Grid.Row="0" Grid.Column="2" Margin="66,0,-66,0" />
-                            <Label Content="Changing this will remove currently displayed messages." FontSize="10" TextElement.Foreground="DimGray" Grid.Column="0" Grid.Row="1"/>
+                            <Label Name="TimeLimitLabel2" Content=" minutes old." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
+                            <Label Name="TimeLimitDisclaimer" Content="Changing this will remove currently displayed messages." FontSize="10" TextElement.Foreground="DimGray" Grid.Column="0" Grid.Row="2"/>
                         </Grid>
 
                     </Grid>

@@ -368,5 +368,17 @@ namespace Panda_20.Properties {
                 this["NumberOfTimesRun"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool colour_warnings {
+            get {
+                return ((bool)(this["colour_warnings"]));
+            }
+            set {
+                this["colour_warnings"] = value;
+            }
+        }
     }
 }

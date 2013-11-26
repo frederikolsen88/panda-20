@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Media;
 using MahApps.Metro.Controls;
 using Panda_20.gui;
 using Panda_20.Properties;
@@ -114,6 +115,26 @@ namespace Panda_20
         {
             MainWindow.OptionsShowing = false;
             MainWindow.NotifyIcon.ContextMenu.MenuItems[1].Enabled = true;
+        }
+
+        private void ColourSwitch_IsCheckedChanged(object sender, EventArgs e)
+        {
+            bool status = ColourSwitch.IsChecked.Value;
+            ComboBoxTimeLimit.IsEnabled = status;
+
+            if (!status)
+            {
+                TimeLimitLabel1.Foreground = new SolidColorBrush(Colors.DimGray);
+                TimeLimitLabel2.Foreground = new SolidColorBrush(Colors.DimGray);
+                TimeLimitDisclaimer.Visibility = Visibility.Hidden;
+            }
+
+            else
+            {
+                TimeLimitLabel1.Foreground = new SolidColorBrush(Colors.Black);
+                TimeLimitLabel2.Foreground = new SolidColorBrush(Colors.Black);
+                TimeLimitDisclaimer.Visibility = Visibility.Visible;
+            }
         }
     }
 }

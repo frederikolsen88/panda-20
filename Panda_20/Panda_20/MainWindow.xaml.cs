@@ -38,7 +38,7 @@ namespace Panda_20
 
         
         // Mutex for allowing checking for a single isntance.
-        // A named mutex allows for stack synchronization across threads and processes, whih is just what we need - think of it as a lock.
+        // A named mutex allows for stack synchronization across threads and processes - a lock, basically..
         // The name of it is just a random generated GUID from createguid.com, it could be "BatmanRules" if we wanted it to, but this should be unique (hopefully).
         static Mutex singleInstanceMutex = new Mutex(true, "PANDA : {F8830A8E-8081-48CD-A280-B3C9BF7E7F5F}"); 
 
@@ -46,16 +46,16 @@ namespace Panda_20
         {
             // First parameter - Timespan.Zero = mutex waits 0 milliseconds to see if it can gain access to the mutex (so immideately returns false if mutex is locked).
             // Second parameter - exitContext set to true, meaning we can escape the synchronization context before we try to aquire a lock on it (in case we don't get it right away, ie. when it's in use) 
-
             try
             {
                 if (singleInstanceMutex.WaitOne(TimeSpan.Zero, true))
                 {
+                    MessageBox.Show("Successfully aquired mutex!");
                     //This wraps the application startup
                     InitiateMainWindow();
-
                     //when app is shut down, the mutex should be released.
                     singleInstanceMutex.ReleaseMutex();
+                    MessageBox.Show("Released mutex!");
                 }
                 else
                 {
@@ -63,12 +63,11 @@ namespace Panda_20
                     // We could simply choose not to display anything. For now, a messagebox will do.
                     MessageBox.Show("This program is already running.");
                 }
-
-            
             }
             // In case the mutex was abandoned; in case the previous instance of the program terminated unexpectedly.
             catch (AbandonedMutexException)
             {
+                MessageBox.Show("ABANDONED MUTEX, releasing it and starting over.");
                 singleInstanceMutex.ReleaseMutex();
                 MainWindow mw = new MainWindow();
             }

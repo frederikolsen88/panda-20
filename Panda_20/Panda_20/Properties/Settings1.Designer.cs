@@ -278,7 +278,7 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool comments_time_popdown_enabled {
             get {
                 return ((bool)(this["comments_time_popdown_enabled"]));
@@ -302,7 +302,7 @@ namespace Panda_20.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool posts_time_popdown_enabled {
             get {
                 return ((bool)(this["posts_time_popdown_enabled"]));

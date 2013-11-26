@@ -7,7 +7,7 @@
         WindowStyle="None"
         ResizeMode="CanMinimize"         
         Title="Options" x:Name="OptionMetroWindow" Height="568" Width="665"
-        Icon="resources/panda.ico" Closing="OptionMetroWindow_Closing">
+        Icon="resources/panda.ico" Closing="OptionMetroWindow_Closing" Loaded="OptionMetroWindow_Loaded">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -124,7 +124,41 @@
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_notifications, Mode=TwoWay}"/>
                         <controls:ToggleSwitch Name="SwitchOwnPosts" Header="Display notification when page posts" Grid.Row="2" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_display_own, Mode=TwoWay}"/>
+                        
+                        <Grid Name="PostDisappearGrid" Grid.Row="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <controls:ToggleSwitch Name="PostDisappearSwitch" Header="Remove notifications automatically" Grid.ColumnSpan="3" Margin="0,0,-320,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=posts_time_popdown_enabled, Mode=TwoWay}" IsCheckedChanged="PostDisappearSwitch_IsCheckedChanged"/>
+                            <Label Name ="PostDisappearLabel1" Content="Remove a notification after " Grid.Row="1" Grid.Column="0" />
+                            <ComboBox Name="ComboBoxPostDisappear" Grid.Row="1" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=posts_time_popdown, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="30,0,55,0">
+                                <ComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type sys:Int32}">
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>10</sys:Int32>
+                                        <sys:Int32>15</sys:Int32>
+                                        <sys:Int32>20</sys:Int32>
+                                        <sys:Int32>25</sys:Int32>
+                                        <sys:Int32>30</sys:Int32>
+                                        <sys:Int32>45</sys:Int32>
+                                        <sys:Int32>60</sys:Int32>
+                                    </x:Array>
+                                </ComboBox.ItemsSource>
+                                </ComboBox>
+                                <Label Name="PostDisappearLabel2" Content=" seconds." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
+                        </Grid>
                     </Grid>
+
+                    
+
                 </TabItem>
 
                 <TabItem Header="private messages" HorizontalAlignment="Right" Width="212">
@@ -144,6 +178,36 @@
                         <Label Content="Private message notification settings" FontSize="18" Grid.Row="0"/>
                         <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Display notifications" Grid.Row="1" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_display_notifications, Mode=TwoWay}"/>
+                        <Grid Name="PmDisappearGrid" Grid.Row="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <controls:ToggleSwitch Name="PmDisappearSwitch" Header="Remove notifications automatically" Grid.ColumnSpan="3" Margin="0,0,-320,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_time_popdown_enabled, Mode=TwoWay}" IsCheckedChanged="PmDisappearSwitch_IsCheckedChanged"/>
+                            <Label Name ="PmDisappearLabel1" Content="Remove a notification after " Grid.Row="1" Grid.Column="0" />
+                            <ComboBox Name="ComboBoxPmDisappear" Grid.Row="1" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=pm_time_popdown, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="30,0,55,0">
+                                <ComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type sys:Int32}">
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>10</sys:Int32>
+                                        <sys:Int32>15</sys:Int32>
+                                        <sys:Int32>20</sys:Int32>
+                                        <sys:Int32>25</sys:Int32>
+                                        <sys:Int32>30</sys:Int32>
+                                        <sys:Int32>45</sys:Int32>
+                                        <sys:Int32>60</sys:Int32>
+                                    </x:Array>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Label Name="PmDisappearLabel2" Content=" seconds." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
+                        </Grid>
                     </Grid>
                 </TabItem>
 
@@ -169,6 +233,38 @@
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_own, Mode=TwoWay}"/>
                         <controls:ToggleSwitch Name="SwitchCommentsOwnPosts" Header="Show notification when people comments on posts by page" Grid.Row="3" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_display_comments_on_own_post, Mode=TwoWay}"/>
+
+                        <Grid Name="CommentDisappearGrid" Grid.Row="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <controls:ToggleSwitch Name="CommentDisappearSwitch" Header="Remove notifications automatically" Grid.ColumnSpan="3" Margin="0,0,-320,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=comments_time_popdown_enabled, Mode=TwoWay}" IsCheckedChanged="CommentDisappearSwitch_IsCheckedChanged"/>
+                            <Label Name ="CommentDisappearLabel1" Content="Remove a notification after " Grid.Row="1" Grid.Column="0" />
+                            <ComboBox Name="ComboBoxCommentDisappear" Grid.Row="1" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                                      SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=comments_time_popdown, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="30,0,55,0">
+                                <ComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type sys:Int32}">
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>10</sys:Int32>
+                                        <sys:Int32>15</sys:Int32>
+                                        <sys:Int32>20</sys:Int32>
+                                        <sys:Int32>25</sys:Int32>
+                                        <sys:Int32>30</sys:Int32>
+                                        <sys:Int32>45</sys:Int32>
+                                        <sys:Int32>60</sys:Int32>
+                                    </x:Array>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Label Name="CommentDisappearLabel2" Content=" seconds." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
+                        </Grid>
+
                     </Grid>
                 </TabItem>
 

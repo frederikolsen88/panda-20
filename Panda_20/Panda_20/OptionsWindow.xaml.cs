@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
@@ -54,6 +55,10 @@ namespace Panda_20
 
             // Note: Special case with this one
             IsStartWithWindowsSetToOn = Settings.Default.start_with_windows;
+
+            Close();
+            OptionsWindow newOpt = new OptionsWindow();
+            newOpt.Show();
         }
 
         /// <summary>

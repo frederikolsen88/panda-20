@@ -16,6 +16,8 @@ namespace Panda_20
     {
         //--------------------------------------------------
         // If we want the system to start with windows or not
+        private int stackVal = 0;
+
         public bool IsStartWithWindowsSetToOn
         {
             get { return (bool)GetValue(IsStartWithWindowsSetToOnDependencyProperty); }
@@ -39,6 +41,7 @@ namespace Panda_20
         {
             IsStartWithWindowsSetToOn = Settings.Default.start_with_windows;
             InitializeComponent();
+            stackVal = Convert.ToInt32(Service.ReadFromConfig("notifications_max_amount"));
         }
 
 
@@ -96,9 +99,13 @@ namespace Panda_20
             {
                 Service.ConfigureRegistryKeyForStartup(IsStartWithWindowsSetToOn);
             }
-
-            Queue.Qp.RepositionMe();
-            Queue.RemoveDisplayedPopups();
+            Console.WriteLine(stackVal);
+            Console.WriteLine(Convert.ToInt32(ComboBoxTowerHeight.SelectedValue));
+            if (stackVal != Convert.ToInt32(ComboBoxTowerHeight.SelectedValue)) 
+            {
+                Queue.Qp.RepositionMe();
+                Queue.RemoveDisplayedPopups();
+            }
             this.Close();
         }
 

@@ -57,6 +57,8 @@ namespace Panda_20.service
                 count = 0;    
             }
 
+            
+            Console.WriteLine("DOSTUFF: " + count);
             count++;
         }
 

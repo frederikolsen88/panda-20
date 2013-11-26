@@ -134,5 +134,67 @@ namespace Panda_20
                 TimeLimitLabel2.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
+
+        private void PostDisappearSwitch_IsCheckedChanged(object sender, EventArgs e)
+        {
+            bool status = PostDisappearSwitch.IsChecked.Value;
+            ComboBoxPostDisappear.IsEnabled = status;
+
+            if (!status)
+            {
+                PostDisappearLabel1.Foreground = new SolidColorBrush(Colors.DimGray);
+                PostDisappearLabel2.Foreground = new SolidColorBrush(Colors.DimGray);
+            }
+
+            else
+            {
+                PostDisappearLabel1.Foreground = new SolidColorBrush(Colors.Black);
+                PostDisappearLabel2.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void PmDisappearSwitch_IsCheckedChanged(object sender, EventArgs e)
+        {
+            bool status = PmDisappearSwitch.IsChecked.Value;
+            ComboBoxPmDisappear.IsEnabled = status;
+
+            if (!status)
+            {
+                PmDisappearLabel1.Foreground = new SolidColorBrush(Colors.DimGray);
+                PmDisappearLabel2.Foreground = new SolidColorBrush(Colors.DimGray);
+            }
+
+            else
+            {
+                PmDisappearLabel1.Foreground = new SolidColorBrush(Colors.Black);
+                PmDisappearLabel2.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void CommentDisappearSwitch_IsCheckedChanged(object sender, EventArgs e)
+        {
+            bool status = CommentDisappearSwitch.IsChecked.Value;
+            ComboBoxCommentDisappear.IsEnabled = status;
+
+            if (!status)
+            {
+                CommentDisappearLabel1.Foreground = new SolidColorBrush(Colors.DimGray);
+                CommentDisappearLabel2.Foreground = new SolidColorBrush(Colors.DimGray);
+            }
+
+            else
+            {
+                CommentDisappearLabel1.Foreground = new SolidColorBrush(Colors.Black);
+                CommentDisappearLabel2.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void OptionMetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            ColourSwitch_IsCheckedChanged(ColourSwitch, null);
+            PostDisappearSwitch_IsCheckedChanged(PostDisappearSwitch, null);
+            PmDisappearSwitch_IsCheckedChanged(PmDisappearSwitch, null);
+            CommentDisappearSwitch_IsCheckedChanged(CommentDisappearSwitch, null);
+        }
     }
 }

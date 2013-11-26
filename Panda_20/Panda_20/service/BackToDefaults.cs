@@ -21,22 +21,29 @@ namespace Panda_20.service
             sd.comments_display_own = false;
             sd.comments_play_sound = true;
             sd.comments_time_limit = 5;
+            sd.comments_time_popdown_enabled = false;
+            sd.comments_time_popdown = 5;
 
             // MESSAGES
             sd.pm_display_notifications = true;
             sd.pm_play_sound = true;
             sd.pm_time_limit = 5;
+            sd.pm_time_popdown_enabled = false;
+            sd.pm_time_popdown = 10;
             
             // NOTIFICATIONS GENERALLY
             sd.notifications_max_amount = 4;
             sd.notifications_play_sound = true;
             sd.notifactions_time_limit = 5;
+            sd.colour_warnings = true;
 
             // POSTS
             sd.posts_display_notifications = true;
             sd.posts_display_own = false;
             sd.posts_play_sound = true;
             sd.posts_time_limit = 5;
+            sd.posts_time_popdown_enabled = false;
+            sd.posts_time_popdown = 15;
 
             // Startup
             sd.start_with_windows = false;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Forms;
 using MahApps.Metro.Controls;
 using Panda_20.gui;
 using Panda_20.Properties;
@@ -107,6 +108,11 @@ namespace Panda_20
         {
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.Show();
+        }
+
+        private void OptionMetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is currently running.", ToolTipIcon.Info);
         }
 
     }

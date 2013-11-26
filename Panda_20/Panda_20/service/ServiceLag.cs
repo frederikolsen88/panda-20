@@ -24,7 +24,6 @@ namespace Panda_20
         private const String AppID = "470029853116845";
         private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
         private static string GrantType { get; set; }
-        private static Object XmlWriteLock = new Object();
         private static bool queueShown = false;
         private static SoundPlayer soundPlayer = new SoundPlayer(Properties.Resources.notify);
 

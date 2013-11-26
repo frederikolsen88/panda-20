@@ -7,7 +7,7 @@
         WindowStyle="None"
         ResizeMode="CanMinimize"         
         Title="Options" x:Name="OptionMetroWindow" Height="475" Width="665"
-        Icon="resources/panda.ico">
+        Icon="resources/panda.ico" Closing="OptionMetroWindow_Closing">
 
     <Window.Resources>
         <ResourceDictionary>

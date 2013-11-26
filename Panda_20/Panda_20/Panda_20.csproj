@@ -113,7 +113,6 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="model\ModelLag.cs" />
     <Compile Include="model\PandaComment.cs" />
     <Compile Include="model\PandaNotification.cs" />
     <Compile Include="model\PandaPost.cs" />

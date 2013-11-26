@@ -241,7 +241,6 @@ namespace Panda_20
         //-----------------------------------------------------------
         //--------------<RETURN PAGE LIKES>---------------Author: FOL 
         //-----------------------------------------------------------
-
         public static Int32 GetLikes(string id)
         {
             Int32 likes = 0;
@@ -279,7 +278,10 @@ namespace Panda_20
 
 
 
-
+        /// <summary>
+        /// Method that adds (isSupposedToStartWithWindoes == true) or removes ( == false) a registry value to the RUN registry (in the HKEY_CURRENT_USRE/SOFTWARE/Microsoft/Windows/CurrentVersion/Run
+        /// </summary>
+        /// <param name="isSuposedToStartWithWindows"></param>
         public static void ConfigureRegistryKeyForStartup(bool isSuposedToStartWithWindows)
         {
 
@@ -294,24 +296,22 @@ namespace Panda_20
 
             String value = (String) runKey.GetValue(appName, null);
 
-            if (isSuposedToStartWithWindows && value == null) //supposed to start and key doesn't exist (in other words, need to create the key)
+            if (isSuposedToStartWithWindows) //supposed to start and key doesn't exist (in other words, need to create the key)
             {
 
                 String exePath = "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"";
                 runKey.SetValue(appName, exePath);
+                Settings.Default.start_with_windows = true;
+                Settings.Default.Save();
 
             }
-            else if (!isSuposedToStartWithWindows) // not supposed to start (in other words, needs to delete the key)
+            else // not supposed to start (in other words, needs to delete the key)
             {
                 runKey.DeleteValue(appName, false);
+                Settings.Default.start_with_windows = false;
+                Settings.Default.Save();
             } 
         }
-
-
-
-
-
-
 
 
         //-------------------------------------------------------------------

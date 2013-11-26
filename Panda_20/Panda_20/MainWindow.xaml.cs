@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
-using Microsoft.Win32;
 using Panda_20.gui;
+using Panda_20.Properties;
 using Panda_20.service;
-using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Panda_20
@@ -35,11 +32,54 @@ namespace Panda_20
 
         public MainWindow()
         {
+            // SetupRoutine to check if this is first time and other fun stuff. FIRST THING THAT SHOULD HAPPEN IS THIS
+            SetupRoutine();
+            
             
             InitializeComponent();
 
             WindowState = System.Windows.WindowState.Minimized;
         }
+
+        /// <summary>
+        ///  Invokes the method to handle first time run, if it is in deed the first time this application has been run, and
+        ///  increases the appwide setting telling how many times the application has been run.
+        /// </summary>
+        private void SetupRoutine()
+        {
+            if (Settings.Default.NumberOfTimesRun == 0)
+            {
+                FirstTimeRun();
+            }
+            Settings.Default.NumberOfTimesRun++; 
+            Settings.Default.Save();
+        }
+
+
+        /// <summary>
+        /// Displays a dialog, prompting the user to choose whether or not the application should start with windows or not
+        /// </summary>
+        private void FirstTimeRun()
+        {
+            // Configuration of Message Box
+            String messageBoxText = "This program can launch automatically as soon as Windows starts." + "\n\n" +
+                                    "HINT: You can change the settings yourself in the Options menu of the application at a later time" + "\n\n" +
+                                    "Would you like to set the application to start automatically?";
+            String caption = "Panda: Start application automatically?";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxImage icon = MessageBoxImage.Question;
+
+            // Display the message box
+            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                // actual configuration of that happens here
+                Service.ConfigureRegistryKeyForStartup(true);
+            }
+        }
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
@@ -106,11 +146,12 @@ namespace Panda_20
             Close();
         }
 
+
+        /// <summary>
+        ///  Creates and shows a new options window
+        /// </summary>
         private void menuItemOption_Click(object Sender, System.EventArgs e)
         {
-            // TODO Option Logic 
-            // ROLAND BE WORKING ON THIS!
-            // More Like done?
             OptionsWindow opWindow = new OptionsWindow();
             opWindow.Show();
         }

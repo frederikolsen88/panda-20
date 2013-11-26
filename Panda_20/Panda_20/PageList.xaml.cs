@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -104,12 +105,18 @@ namespace Panda_20
 
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service.SelectedPage = Service.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
-            Service.SetPageFacebookClient((string)Service.SelectedPage["access_token"]);
-            connectedToPageToolTip();
-            Close();
+            if (Misc.CheckConnection())
+            {
+                Service.SelectedPage = Service.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
+                Service.SetPageFacebookClient((string) Service.SelectedPage["access_token"]);
+                connectedToPageToolTip();
+                Close();
+            }
 
-            // TODO ... og så sker der ellers ting og sager.
+            else
+            {
+                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable to connect you to the chosen page. Click OK to close the program.");
+            }          
         }
 
         private void connectedToPageToolTip()

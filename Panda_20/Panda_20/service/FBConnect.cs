@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Threading;
 using Facebook;
 using Panda_20.model;
@@ -19,6 +20,7 @@ namespace Panda_20.service
         private static PandaUser defaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
         private static ArrayList commentsOwnPosts = new ArrayList();
         private static int count = 0;
+        private static bool connected = true;
 
         public static void OneMinuteTimer()
         {
@@ -32,8 +34,23 @@ namespace Panda_20.service
         {
             if (count == 2)
             {
-                GetFacebookUpdates();
-                count = 0;
+                if (Misc.CheckConnection())
+                {
+                    if (!connected)
+                        MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda has restored the connection.", ToolTipIcon.Info);
+                    
+                    GetFacebookUpdates();
+
+                    connected = true;
+                }
+
+                else
+                {
+                    MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda was unable to connect to Facebook. Retrying...", ToolTipIcon.Info);
+                    connected = false;
+                }
+                    
+                count = 0;    
             }
 
             Queue.CheckColoursAndVisibility();

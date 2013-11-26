@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStyle="None"
         ResizeMode="CanMinimize"         
-        Title="Options" x:Name="OptionMetroWindow" Height="464" Width="665"
+        Title="Options" x:Name="OptionMetroWindow" Height="480" Width="665"
         Icon="resources/panda.ico" Closing="OptionMetroWindow_Closing" Loaded="OptionMetroWindow_Loaded">
 
     <Window.Resources>

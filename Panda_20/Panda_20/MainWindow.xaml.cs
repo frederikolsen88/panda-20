@@ -46,20 +46,34 @@ namespace Panda_20
         {
             // First parameter - Timespan.Zero = mutex waits 0 milliseconds to see if it can gain access to the mutex (so immideately returns false if mutex is locked).
             // Second parameter - exitContext set to true, meaning we can escape the synchronization context before we try to aquire a lock on it (in case we don't get it right away, ie. when it's in use) 
-            if (singleInstanceMutex.WaitOne(TimeSpan.Zero, true))
-            {
-                //This wraps the application startup
-                InitiateMainWindow();
 
-                //when app is shut down, the mutex should be released.
-                singleInstanceMutex.ReleaseMutex();
-            }
-            else
+            try
             {
-                // we could make the app "jump up" from minimized state here and show a main window, if we actually had one... which we don't so that's pointless.
-                // We could simply choose not to display anything. For now, a messagebox will do.
-                MessageBox.Show("This program is already running.");
+                if (singleInstanceMutex.WaitOne(TimeSpan.Zero, true))
+                {
+                    //This wraps the application startup
+                    InitiateMainWindow();
+
+                    //when app is shut down, the mutex should be released.
+                    singleInstanceMutex.ReleaseMutex();
+                }
+                else
+                {
+                    // we could make the app "jump up" from minimized state here and show a main window, if we actually had one... which we don't so that's pointless.
+                    // We could simply choose not to display anything. For now, a messagebox will do.
+                    MessageBox.Show("This program is already running.");
+                }
+
+            
             }
+            // In case the mutex was abandoned; in case the previous instance of the program terminated unexpectedly.
+            catch (AbandonedMutexException)
+            {
+                singleInstanceMutex.ReleaseMutex();
+                MainWindow mw = new MainWindow();
+            }
+            
+           
         }
 
         /// <summary>

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using Facebook;
+using Panda_20.gui;
 using Panda_20.model;
 
 namespace Panda_20.service
@@ -100,8 +101,8 @@ namespace Panda_20.service
             }
             catch (FacebookOAuthException)
             {
-                // TODO Håndter fejl
                 successfullconnect = false;
+                TerminationAssistant.ShowErrorPopUp(null, "Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
 
             }
 

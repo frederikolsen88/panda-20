@@ -126,14 +126,12 @@ namespace Panda_20
             {
                 TimeLimitLabel1.Foreground = new SolidColorBrush(Colors.DimGray);
                 TimeLimitLabel2.Foreground = new SolidColorBrush(Colors.DimGray);
-                TimeLimitDisclaimer.Visibility = Visibility.Hidden;
             }
 
             else
             {
                 TimeLimitLabel1.Foreground = new SolidColorBrush(Colors.Black);
                 TimeLimitLabel2.Foreground = new SolidColorBrush(Colors.Black);
-                TimeLimitDisclaimer.Visibility = Visibility.Visible;
             }
         }
     }

@@ -83,11 +83,8 @@
                             <Label Content="Changing this will remove currently displayed messages." FontSize="10" TextElement.Foreground="DimGray" Grid.Column="0" Grid.Row="2"/>
                         </Grid>
 
-                        <Label Content="Time limit settings" FontSize="18" Grid.Row="4"/>
-
                         <Grid Name="TimeLimitGrid" Grid.Row="5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -103,7 +100,6 @@
                                       ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
                                       SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=notifactions_time_limit, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="30,0,55,0"/>
                             <Label Name="TimeLimitLabel2" Content=" minutes old." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
-                            <Label Name="TimeLimitDisclaimer" Content="Changing this will remove currently displayed messages." FontSize="10" TextElement.Foreground="DimGray" Grid.Column="0" Grid.Row="2"/>
                         </Grid>
 
                     </Grid>

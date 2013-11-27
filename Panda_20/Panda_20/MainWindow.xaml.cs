@@ -35,10 +35,6 @@ namespace Panda_20
         private OptionsWindow opWindow;
         public static bool OptionsShowing = false;
 
-
-        
-       
-
         public MainWindow()
         {
             if (InstanceService.IsSingleInstance)

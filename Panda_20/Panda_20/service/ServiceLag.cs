@@ -21,8 +21,8 @@ namespace Panda_20
 
     public static class Service
     {
-        private const String AppID = "470029853116845";
-        private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
+        //private const String AppID = "470029853116845";
+        //private const String AppSecret = "5a62c1030284cbe12d06c79934fc7aea";
         private static string GrantType { get; set; }
         private static bool queueShown = false;
         private static SoundPlayer soundPlayer = new SoundPlayer(Properties.Resources.notify);
@@ -111,21 +111,21 @@ namespace Panda_20
         //as an offline app (selected on Facebook), but I will leave 
         // it here for now.
 
-        public static String GetLongLivedAccessToken(string shortLivedAccessToken)
-        {
-            JsonObject appData = new JsonObject();
+        //public static String GetLongLivedAccessToken(string shortLivedAccessToken)
+        //{
+        //    JsonObject appData = new JsonObject();
 
-            appData.Add("grant_type", "fb_exchange_token");
-            appData.Add("client_id", AppID);
-            appData.Add("client_secret", AppSecret);
-            appData.Add("fb_exchange_token", shortLivedAccessToken);
+        //    appData.Add("grant_type", "fb_exchange_token");
+        //    appData.Add("client_id", AppID);
+        //    appData.Add("client_secret", AppSecret);
+        //    appData.Add("fb_exchange_token", shortLivedAccessToken);
 
-            JsonObject result = (JsonObject) _loginClient.Get("/oauth/access_token", appData);
+        //    JsonObject result = (JsonObject) _loginClient.Get("/oauth/access_token", appData);
 
-            string extendedToken = (string) result["access_token"];
+        //    string extendedToken = (string) result["access_token"];
 
-            return extendedToken;
-        }
+        //    return extendedToken;
+        //}
 
         //-----------------------------------------------------------
         //--------------<SET FACEBOOK TOKEN>--------------Author: TRR 

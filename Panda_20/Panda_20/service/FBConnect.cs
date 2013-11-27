@@ -76,6 +76,7 @@ namespace Panda_20.service
             Console.WriteLine("unix before: " + unix_time);
 
             bool successfullconnect = true;
+            int connectionAttempts = 0;
             long timestamp = Service.LastSuccessfullFacebookUpdate-5;
             JsonObject result = new JsonObject();
 
@@ -105,7 +106,8 @@ namespace Panda_20.service
             catch (FacebookOAuthException)
             {
                 successfullconnect = false;
-                TerminationAssistant.ShowErrorPopUp(null, "Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
+                connectionAttempts++;
+                MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is experiencing problems connecting to Facebook. Resolving...", ToolTipIcon.Info);
 
             }
 
@@ -114,6 +116,17 @@ namespace Panda_20.service
             if (successfullconnect)
             {
                 Service.LastSuccessfullFacebookUpdate = unix_timeAfter;
+                connectionAttempts = 0;
+                MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Connection to Facebook restored.", ToolTipIcon.Info);
+            }
+
+            else
+            {
+                // Det burde være legalt at brokke sig og lukke efter tre forsøg, no?
+                if (connectionAttempts == 3)
+                {
+                    TerminationAssistant.ShowErrorPopUp(null, "Panda was unable to restore the connection to Facebook. Click OK to wipe your credentials and close the program.");
+                }
             }
 
             Console.WriteLine("FQL result: " + result.ToString());

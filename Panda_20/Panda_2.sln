@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panda_20", "Panda_20\Panda_20.csproj", "{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaTests", "PandaTests\PandaTests.csproj", "{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}"

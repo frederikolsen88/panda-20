@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using Panda_20.Properties;
 
 namespace Panda_20
 {
@@ -23,6 +24,7 @@ namespace Panda_20
         public AboutWindow()
         {
             InitializeComponent();
+            Version.Content = "Panda, version " + Settings.Default.version;
             Topmost = true;
             ShowInTaskbar = false;
         }

@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject></subject>
+		<subject>Panda</subject>
 		<author>##ID_STRING3##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -3764,7 +3764,7 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-845053248</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-845053248</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-845051200</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.FHMTT.com</td><td>0</td><td/><td>-845086190</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.hjalte.com/panda</td><td>0</td><td/><td>-576647957</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>FHMTT</td><td>0</td><td/><td>-845086190</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-845026368</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-845053248</td></row>
@@ -4386,8 +4386,8 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]Panda_20.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{44B0399F-5E76-48BD-9D50-5E5D89C113A6}</td><td/></row>
-		<row><td>ProductName</td><td>PandaSetup</td><td/></row>
-		<row><td>ProductVersion</td><td>1.9.0000</td><td/></row>
+		<row><td>ProductName</td><td>Panda</td><td/></row>
+		<row><td>ProductVersion</td><td>2.0</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

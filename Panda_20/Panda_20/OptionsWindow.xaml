@@ -186,7 +186,7 @@
                         <Label Content="Private message notification settings" FontSize="18" Grid.Row="0" Grid.ColumnSpan="2"/>
                         <controls:ToggleSwitch Name="SwitchNotifyPm"  Header="Show notifications" Grid.Row="1" 
                                                IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_display_notifications, Mode=TwoWay}" Grid.ColumnSpan="2"/>
-                        <Grid Name="PmDisappearGrid" Grid.Row="5" Grid.ColumnSpan="2">
+                        <Grid Name="PmDisappearGrid" Grid.Row="6" Grid.ColumnSpan="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -216,7 +216,7 @@
                             </ComboBox>
                             <Label Name="PmDisappearLabel2" Content=" seconds." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
                         </Grid>
-                        <controls:ToggleSwitch Name="PmDisplayOwnStSwitch" Header="Show private messages from page" Grid.Row="6" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_display_own, Mode=TwoWay}" Grid.ColumnSpan="2"/>
+                        <controls:ToggleSwitch Name="PmDisplayOwnStSwitch" Header="Show private messages from page" Grid.Row="5" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=pm_display_own, Mode=TwoWay}" Grid.ColumnSpan="2"/>
                     </Grid>
                 </TabItem>
 

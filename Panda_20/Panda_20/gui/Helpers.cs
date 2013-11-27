@@ -129,6 +129,8 @@ namespace Panda_20.gui
         {
             MainWindow.NotifyIcon.Dispose();
             Misc.DisposeWebClient();
+            // release mutex, so other instances can be created.
+            InstanceService.releaseMutex();
             Environment.Exit(0);
         }
         

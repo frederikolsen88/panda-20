@@ -86,7 +86,7 @@ namespace Panda_20
         {
             // Configuration of Message Box
             String messageBoxText = "Would you like the application to start automatically when Windows starts?";
-            String caption = "Panda: Start application automatically?";
+            String caption = "Panda";
             MessageBoxButton button = MessageBoxButton.YesNo;
             MessageBoxImage icon = MessageBoxImage.Question;
 

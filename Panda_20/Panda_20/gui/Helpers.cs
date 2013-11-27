@@ -77,6 +77,7 @@ namespace Panda_20.gui
 
                     Settings.Default.fb_token = token;
                     Settings.Default.fb_token_expires_in = expiresIn;
+                    Settings.Default.Save();
                 }
             }
 

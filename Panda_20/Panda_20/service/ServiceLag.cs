@@ -291,23 +291,6 @@ namespace Panda_20
             } 
         }
 
-
-        
-
-        /**
-         * Skriver en værdi til programmets settings, såfremt vi forsøger
-         * at skrive til en property, der rent faktisk findes.
-         */
-
-        public static void WriteToConfig(string name, string value)
-        {
-            if (Settings.Default.Properties[name] != null)
-            {
-                Settings.Default[name] = value;
-                Settings.Default.Save();
-            }
-        }
-
         /**
          * Henter værdien af en given property i settings, såfremt
          * den findes. Bemærk, at vi kun returnere som en string.

@@ -75,8 +75,8 @@ namespace Panda_20.gui
 
                     string expiresIn = uriString.Substring(expiresInStart, uriString.Length - expiresInStart);
 
-                    Service.WriteToConfig("fb_token", token);
-                    Service.WriteToConfig("fb_token_expires_in", expiresIn);
+                    Settings.Default.fb_token = token;
+                    Settings.Default.fb_token_expires_in = expiresIn;
                 }
             }
 

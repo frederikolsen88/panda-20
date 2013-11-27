@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStyle="None"
         ResizeMode="CanMinimize"         
-        Title="Options" x:Name="OptionMetroWindow" Height="480" Width="665"
+        Title="Options" x:Name="OptionMetroWindow" Height="497.727" Width="665"
         Icon="resources/panda.ico" Closing="OptionMetroWindow_Closing" Loaded="OptionMetroWindow_Loaded">
 
     <Window.Resources>
@@ -87,6 +87,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -96,10 +97,11 @@
 
                             <controls:ToggleSwitch Name="ColourSwitch" Header="Colour-based warning system" Grid.ColumnSpan="3" Margin="0,0,-299,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=colour_warnings, Mode=TwoWay}" IsCheckedChanged="ColourSwitch_IsCheckedChanged"/>
                             <Label Name ="TimeLimitLabel1" Content="Warn me when a notification is " Grid.Row="1" Grid.Column="0" />
-                            <ComboBox Name="ComboBoxTimeLimit" Grid.Row="1" Grid.Column="1" Width="75" ToolTip="Panda will notify you when half the time has passed." 
+                            <ComboBox Name="ComboBoxTimeLimit" Grid.Row="1" Grid.Column="1" Width="75" 
                                       ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=time_limit_values, Mode=OneWay}" 
                                       SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=notifactions_time_limit, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="30,0,55,0"/>
                             <Label Name="TimeLimitLabel2" Content=" minutes old." Grid.Row="1" Grid.Column="2" Margin="66,0,-66,0" />
+                            <Label Content="Panda will also warn you when half the time has passed." FontSize="10" Foreground="DimGray" Grid.Row="2" Grid.ColumnSpan="3"/>
                         </Grid>
 
                     </Grid>

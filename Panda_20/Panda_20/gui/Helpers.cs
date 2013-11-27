@@ -118,8 +118,7 @@ namespace Panda_20.gui
             // for good measure in case they've somehow been corrupted.
             if (result == MessageBoxResult.OK)
             {
-                Service.WriteToConfig("fb_token", "");
-                Service.WriteToConfig("fb_token_expires_in", "0");
+                BackToDefaults.DefaultFacebookValues();
                 ShutItDown();
             }
         }

@@ -33,6 +33,7 @@ namespace Panda_20
         private MenuItem menuItemOptions;
         private MenuItem menuItemClearAll;
         private OptionsWindow opWindow;
+        private bool isRunning;
         public static bool OptionsShowing = false;
 
 
@@ -48,6 +49,7 @@ namespace Panda_20
             else
             {
                 MessageBox.Show("The application is already running!");
+                isRunning = true;
             }
 
         }
@@ -61,6 +63,7 @@ namespace Panda_20
             TimesRunStartupRoutine();
             InitializeComponent();
             WindowState = System.Windows.WindowState.Minimized;
+            
         }
         
 
@@ -103,12 +106,15 @@ namespace Panda_20
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            Hide();
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = Properties.Resources.panda;
-
+            if (isRunning)
+            {
+                TerminationAssistant.ShutItDown();
+            }
             ContextMenuSetup();
-            Hide();
+            
 
             
             if (BrowserHelper.HasToken())

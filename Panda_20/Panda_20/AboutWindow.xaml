@@ -21,8 +21,13 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Image Source="/resources/bigPanda.png" Height="128" Width="128" Margin="5,0,0,0" Grid.Column="0" />
+        <Image Source="/resources/bigPanda.png" Height="128" Width="128" Margin="5,0,0,0" Grid.Column="0" Grid.Row="0" />
+        <Label Name="Version" HorizontalContentAlignment="Center" Grid.Column="0" Margin="0,205,0,38"/>
         <Label Content="Panda was brought to you by:&#xA;&#xA;Frederik Olsen&#xA;Hjalte Thor&#xA;Michael Skaanning Rasmussen&#xA;Tobias Roland&#xA;Toke Vejlby Albrechtsen&#xA;&#xA;Panda icon by Lone Merete Jensen&#xA;&#xA;Notification sound by Corsica__S&#xA;&#xA;Please see the attached README.txt&#xA;for licensing information." Grid.Column="1" Margin="10,10,-208,10"/>
 
     </Grid>

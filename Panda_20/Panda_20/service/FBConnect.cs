@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -128,7 +129,7 @@ namespace Panda_20.service
             else
             {
                 if (_connectionAttempts > 2)         
-                    MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is experiencing problems connecting to Facebook. Resolving...", ToolTipIcon.Info);
+                    MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is experiencing problems connecting to Facebook. Trying again...", ToolTipIcon.Info);
             }
 
             Console.WriteLine("FQL result: " + result.ToString());

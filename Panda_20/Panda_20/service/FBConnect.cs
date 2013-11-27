@@ -14,15 +14,19 @@ using Panda_20.model;
 
 namespace Panda_20.service
 {
-    static class FBConnect
+    /**
+     * Class for maintaining the connection to Facebook.
+     * 
+     * Author: Hjalte Thor & Michael Skaanning
+     */
+    static class FbConnect
     {
-
-        private static ArrayList oldNotifications = new ArrayList();
-        private static PandaUser defaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
-        private static ArrayList commentsOwnPosts = new ArrayList();
-        private static int count = 0;
-        private static int connectionAttempts = 0;
-        private static bool connected = true;
+        private static ArrayList _oldNotifications = new ArrayList();
+        private static readonly PandaUser DefaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
+        private static readonly ArrayList CommentsOwnPosts = new ArrayList();
+        private static int _count = 0;
+        private static int _connectionAttempts = 0;
+        private static bool _connected = true;
 
         public static void OneMinuteTimer()
         {
@@ -37,30 +41,30 @@ namespace Panda_20.service
 
             Queue.CheckColoursAndVisibility();
 
-            if (count == 5)
+            if (_count == 5)
             {
                 if (Misc.CheckConnection("http://www.facebook.com"))
                 {
-                    if (!connected)
+                    if (!_connected)
                         MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda has restored the connection.", ToolTipIcon.Info);
                     
                     GetFacebookUpdates();
 
-                    connected = true;
+                    _connected = true;
                 }
 
                 else
                 {
                     MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda was unable to connect to Facebook. Retrying...", ToolTipIcon.Info);
-                    connected = false;
+                    _connected = false;
                 }
                     
-                count = 0;    
+                _count = 0;    
             }
 
             
-            Console.WriteLine("DOSTUFF: " + count);
-            count++;
+            Console.WriteLine("DOSTUFF: " + _count);
+            _count++;
         }
 
         //-----------------------------------------------------------
@@ -106,7 +110,7 @@ namespace Panda_20.service
             catch (FacebookOAuthException)
             {
                 successfullconnect = false;
-                connectionAttempts++;
+                _connectionAttempts++;
             }
 
             // Here we save the current unix time BEFORE working with the data. This might be enough to ensure that we will never miss anything? Probably not though...
@@ -115,15 +119,15 @@ namespace Panda_20.service
             {
                 Service.LastSuccessfullFacebookUpdate = unix_timeAfter;
 
-                if (connectionAttempts > 2)
+                if (_connectionAttempts > 2)
                     MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Connection to Facebook restored.", ToolTipIcon.Info);
 
-                connectionAttempts = 0;
+                _connectionAttempts = 0;
             }
 
             else
             {
-                if (connectionAttempts > 2)         
+                if (_connectionAttempts > 2)         
                     MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is experiencing problems connecting to Facebook. Resolving...", ToolTipIcon.Info);
             }
 
@@ -139,7 +143,7 @@ namespace Panda_20.service
             
             ArrayList newNotifications = new ArrayList();
             ArrayList newUsers = new ArrayList();
-            newUsers.Add(defaultPagePandaUser);
+            newUsers.Add(DefaultPagePandaUser);
 
             foreach (JsonObject data in (JsonArray)fqlresult["data"])
             {
@@ -199,7 +203,7 @@ namespace Panda_20.service
                         string actor_id = Convert.ToString(ownposts["actor_id"]);
                         pizza[0] = post_id;
                         pizza[1] = actor_id;
-                        commentsOwnPosts.Add(pizza);
+                        CommentsOwnPosts.Add(pizza);
                     }
                 }
                 else
@@ -235,7 +239,7 @@ namespace Panda_20.service
 
                 if (pn.GetType().ToString() == "Panda_20.model.PandaComment" && Service.ReadFromConfig("comments_display_comments_on_own_post") == "False")
                 {
-                    foreach (string[] ownPost in commentsOwnPosts)
+                    foreach (string[] ownPost in CommentsOwnPosts)
                     {
                         PandaComment pc = (PandaComment) pn;
                         if (pc.PostId == ownPost[0] && ownPost[1] == (string)Service.SelectedPage["id"])
@@ -247,13 +251,13 @@ namespace Panda_20.service
             }
 
             Console.WriteLine(newNotifications.Count);
-            Console.WriteLine(oldNotifications.Count);
+            Console.WriteLine(_oldNotifications.Count);
 
             foreach (PandaNotification pn in newNotifications)
             {
                 Console.WriteLine("POPUP: " + pn.Message);
                 bool duplicate = false;
-                foreach (PandaNotification oldNotification in oldNotifications)
+                foreach (PandaNotification oldNotification in _oldNotifications)
                 {
                     if (pn.Nid.Equals(oldNotification.Nid))
                     {
@@ -317,7 +321,7 @@ namespace Panda_20.service
                 }
             }
 
-            oldNotifications = newNotifications;
+            _oldNotifications = newNotifications;
         }
 
     }

@@ -95,7 +95,7 @@ namespace Panda_20
                 Console.WriteLine("page access token: " + pageAccessToken);
                 FacebookClient pageFacebookClient = new FacebookClient(pageAccessToken);
                 PageClient = pageFacebookClient;
-                FBConnect.OneMinuteTimer();
+                FbConnect.OneMinuteTimer();
             }
             catch (FacebookOAuthException)
             {

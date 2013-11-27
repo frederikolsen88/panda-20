@@ -79,13 +79,13 @@ namespace Panda_20.service
          * Hvis ikke, er enten internettet eller Facebook nede.
          */
 
-        public static bool CheckConnection()
+        public static bool CheckConnection(string url)
         {
             WebClient client = new WebClient();
 
             try
             {
-                using (client.OpenRead("http://www.facebook.com"))
+                using (client.OpenRead(url))
                 {
 
                 }

@@ -105,7 +105,7 @@ namespace Panda_20
 
         private void PagesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (Misc.CheckConnection())
+            if (Misc.CheckConnection("http://www.facebook.com"))
             {
                 Service.SelectedPage = Service.Pages[((DisplayPage) PagesListBox.SelectedItem).Name];
                 Service.SetPageFacebookClient((string) Service.SelectedPage["access_token"]);

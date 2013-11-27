@@ -21,6 +21,7 @@ namespace Panda_20.service
         private static PandaUser defaultPagePandaUser = new PandaUser(Convert.ToString(Service.SelectedPage["id"]), Convert.ToString(Service.SelectedPage["name"]), "0", "0", "http://graph.facebook.com/" + Convert.ToString(Service.SelectedPage["id"]) + "/picture");
         private static ArrayList commentsOwnPosts = new ArrayList();
         private static int count = 0;
+        private static int connectionAttempts = 0;
         private static bool connected = true;
 
         public static void OneMinuteTimer()
@@ -38,7 +39,7 @@ namespace Panda_20.service
 
             if (count == 5)
             {
-                if (Misc.CheckConnection())
+                if (Misc.CheckConnection("http://www.facebook.com"))
                 {
                     if (!connected)
                         MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda has restored the connection.", ToolTipIcon.Info);
@@ -76,7 +77,6 @@ namespace Panda_20.service
             Console.WriteLine("unix before: " + unix_time);
 
             bool successfullconnect = true;
-            int connectionAttempts = 0;
             long timestamp = Service.LastSuccessfullFacebookUpdate-5;
             JsonObject result = new JsonObject();
 
@@ -107,8 +107,6 @@ namespace Panda_20.service
             {
                 successfullconnect = false;
                 connectionAttempts++;
-                MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is experiencing problems connecting to Facebook. Resolving...", ToolTipIcon.Info);
-
             }
 
             // Here we save the current unix time BEFORE working with the data. This might be enough to ensure that we will never miss anything? Probably not though...
@@ -116,17 +114,17 @@ namespace Panda_20.service
             if (successfullconnect)
             {
                 Service.LastSuccessfullFacebookUpdate = unix_timeAfter;
+
+                if (connectionAttempts > 2)
+                    MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Connection to Facebook restored.", ToolTipIcon.Info);
+
                 connectionAttempts = 0;
-                MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Connection to Facebook restored.", ToolTipIcon.Info);
             }
 
             else
             {
-                // Det burde være legalt at brokke sig og lukke efter tre forsøg, no?
-                if (connectionAttempts == 3)
-                {
-                    TerminationAssistant.ShowErrorPopUp(null, "Panda was unable to restore the connection to Facebook. Click OK to wipe your credentials and close the program.");
-                }
+                if (connectionAttempts > 2)         
+                    MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda is experiencing problems connecting to Facebook. Resolving...", ToolTipIcon.Info);
             }
 
             Console.WriteLine("FQL result: " + result.ToString());

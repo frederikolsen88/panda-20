@@ -294,6 +294,20 @@ namespace Panda_20.service
                             Service.CreateNotification(pn);
                         }
                     }
+                    else if (pn.GetType().ToString() == "Panda_20.model.PandaPrivateMessage")
+                    {
+                        if (Service.ReadFromConfig("pm_display_own") == "False")
+                        {
+                            if (pn.Owner.Uid != (string)Service.SelectedPage["id"])
+                            {
+                                Service.CreateNotification(pn);
+                            }
+                        }
+                        else
+                        {
+                            Service.CreateNotification(pn);
+                        }
+                    }
                     else
                     {
                         Service.CreateNotification(pn);

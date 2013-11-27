@@ -380,5 +380,17 @@ namespace Panda_20.Properties {
                 this["colour_warnings"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool pm_display_own {
+            get {
+                return ((bool)(this["pm_display_own"]));
+            }
+            set {
+                this["pm_display_own"] = value;
+            }
+        }
     }
 }

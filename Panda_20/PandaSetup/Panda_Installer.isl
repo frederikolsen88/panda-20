@@ -3874,7 +3874,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Panda_20\resources\panda.ico</td><td>0</td></row>
 		<row><td>_Built1_AEA81945E6984D729C5F64062EC96383.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Panda_20\resources\panda.ico</td><td>0</td></row>
 		<row><td>_Built_0AFFD340453C495797F43ACFCF0DF92F.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Panda_20\resources\panda.ico</td><td>0</td></row>
 	</table>

@@ -35,7 +35,7 @@ namespace Panda_20.service
                 // Second parameter - exitContext set to true, meaning we can escape the synchronization context before we try to aquire a lock on it (in case we don't get it right away, ie. when it's in use) 
                 if (singleInstanceMutex.WaitOne(TimeSpan.Zero, true))
                 {
-                    System.Windows.Forms.MessageBox.Show("Aquired mutex sucessfully");
+                    // System.Windows.Forms.MessageBox.Show("Aquired mutex sucessfully");
                     result = true;
                 }
             }
@@ -43,7 +43,7 @@ namespace Panda_20.service
             // Calls the method itself afterwards, to aquire the mutex (our lock, so to speak) again.
             catch (AbandonedMutexException)
             {
-                System.Windows.Forms.MessageBox.Show("Abandoned mutex - now released!");
+                // System.Windows.Forms.MessageBox.Show("Abandoned mutex - now released!");
                 singleInstanceMutex.ReleaseMutex();
                 result = isSingleInstance();
             }

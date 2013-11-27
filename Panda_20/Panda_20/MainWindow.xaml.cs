@@ -36,10 +36,6 @@ namespace Panda_20
         private bool isRunning;
         public static bool OptionsShowing = false;
 
-
-        
-       
-
         public MainWindow()
         {
             if (InstanceService.IsSingleInstance)

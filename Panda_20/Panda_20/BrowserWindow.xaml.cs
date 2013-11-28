@@ -59,7 +59,7 @@ namespace Panda_20
             
             else
             {
-                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable connect to the Internet! Click OK to close the program.");
+                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable connect to the Internet! Click OK to close the application.");
             }
 
             

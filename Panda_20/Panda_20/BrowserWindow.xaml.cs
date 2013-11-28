@@ -27,7 +27,6 @@ namespace Panda_20
     /// </summary>
     public partial class BrowserWindow : MetroWindow
     {
-
         private PageList _pageList;
  
 
@@ -67,8 +66,6 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Browser.Dispose();
-
             if (Service.ReadFromConfig("fb_token") == "")
             TerminationAssistant.ShowClosingPopUp(this, e);
         }

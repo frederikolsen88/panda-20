@@ -48,7 +48,7 @@ namespace Panda_20
 
                     if (BrowserHelper.FetchToken())
                     {
-                        _pageList = new PageList();
+                        _pageList = new PageList();     
                         Close();
                     }
                 }
@@ -67,6 +67,8 @@ namespace Panda_20
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Browser.Dispose();
+
             if (Service.ReadFromConfig("fb_token") == "")
             TerminationAssistant.ShowClosingPopUp(this, e);
         }

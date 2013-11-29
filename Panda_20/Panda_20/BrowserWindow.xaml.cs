@@ -27,7 +27,6 @@ namespace Panda_20
     /// </summary>
     public partial class BrowserWindow : MetroWindow
     {
-
         private PageList _pageList;
  
 
@@ -48,7 +47,7 @@ namespace Panda_20
 
                     if (BrowserHelper.FetchToken())
                     {
-                        _pageList = new PageList();
+                        _pageList = new PageList();     
                         Close();
                     }
                 }
@@ -59,7 +58,7 @@ namespace Panda_20
             
             else
             {
-                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable connect to the Internet! Click OK to close the program.");
+                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable connect to the Internet! Click OK to close the application.");
             }
 
             

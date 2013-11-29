@@ -84,7 +84,7 @@ namespace Panda_20.gui
             else
             {
                 // If a token couldn't be extracted, we may kill the program.
-                TerminationAssistant.ShowErrorPopUp(null, "Panda did not receive the neccessary permissions from Facebook. Click OK to close the program.");
+                TerminationAssistant.ShowErrorPopUp(null, "Panda did not receive the neccessary permissions from Facebook. Click OK to close the application.");
             }
 
             return hasToken;

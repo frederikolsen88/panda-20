@@ -52,7 +52,7 @@ namespace Panda_20
 
             if (PagesListBox.Items.Count == 0)
             {
-                const string message = "Panda requires that you are an administrator of at least one Facebook page. Click OK to close the program.";
+                const string message = "Panda requires that you are an administrator of at least one Facebook page. Click OK to close the application.";
                 const string caption = "No pages found";
                 const MessageBoxButton button = MessageBoxButton.OK;
                 const MessageBoxImage image = MessageBoxImage.Warning;
@@ -115,7 +115,7 @@ namespace Panda_20
 
             else
             {
-                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable to connect you to the chosen page. Click OK to close the program.");
+                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable to connect you to the chosen page. Click OK to close the application.");
             }          
         }
 

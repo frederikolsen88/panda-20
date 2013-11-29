@@ -12,5 +12,3 @@ and
 MODERN UI ICONS by Austin Andrews
 CC BY-ND 3.0
 http://modernuiicons.com/
-
-Panda icon by Lone Merete Jensen

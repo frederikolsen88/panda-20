@@ -99,7 +99,9 @@ namespace Panda_20
             }
         }
 
-
+        /// <summary>
+        /// TODO Write documentation
+        /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Hide();
@@ -125,6 +127,9 @@ namespace Panda_20
         }
 
         // Handles the Menu
+        /// <summary>
+        /// TODO Write documentation
+        /// </summary>
         public void ContextMenuSetup()
         {
             contextMenu = new ContextMenu();
@@ -164,6 +169,7 @@ namespace Panda_20
             _notifyIcon.Visible = true;
         }
     
+
         private void menuItemExit_Click(object Sender, System.EventArgs e)
         {
             Close();

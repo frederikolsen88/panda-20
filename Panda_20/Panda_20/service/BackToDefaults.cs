@@ -10,7 +10,7 @@ namespace Panda_20.service
      * 
      * Author: Tobias Roland Rasmussen
      */
-    static class BackToDefaults
+    public static class BackToDefaults
     {
 
         // Instance of the settings-file.

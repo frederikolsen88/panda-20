@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Net;
+using System.Runtime.Remoting.Channels;
 using System.Windows;
 using Panda_20.Properties;
 using Panda_20.service;
@@ -88,6 +91,23 @@ namespace Panda_20.gui
             }
 
             return hasToken;
+        }
+
+        public static bool IsConnectedToTheInternet()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (var stream = client.OpenRead("http://www.google.com"))
+                {
+                    return true;
+                }
+            }
+
+            catch
+            {
+                return false;
+            }
         }
     }
 

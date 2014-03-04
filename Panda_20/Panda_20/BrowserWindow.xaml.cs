@@ -39,8 +39,10 @@ namespace Panda_20
         private void Browser_Navigating(object sender, NavigatingCancelEventArgs e)
         {
 
-            if (!e.Uri.ToString().StartsWith("res://ieframe.dll"))
+            if (BrowserHelper.IsConnectedToTheInternet())
             {
+                MainWindow.NotifyIcon.Text = "Panda";
+
                 if (e.Uri != BrowserHelper.CurrentUri)
                 {
                     BrowserHelper.CurrentUri = e.Uri;
@@ -53,8 +55,9 @@ namespace Panda_20
                 }
             }
 
-            // Et URL, som begynder med "res://ieframe.dll" indikerer, at der er sket en
+            // Manglende forbindelse til Google indikerer, at der er sket en
             // forbindelsesfejl, hvorved vi terminerer programmet.
+            // Eller at Google er nede. Fat chance.
             
             else
             {

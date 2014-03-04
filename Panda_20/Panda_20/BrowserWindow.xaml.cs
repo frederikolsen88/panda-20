@@ -58,10 +58,23 @@ namespace Panda_20
             
             else
             {
-                TerminationAssistant.ShowErrorPopUp(this, "Panda was unable connect to the Internet! Click OK to close the application.");
-            }
+                // TerminationAssistant.ShowErrorPopUp(this, "Panda was unable connect to the Internet! Click OK to close the application.");
+                MainWindow.NotifyIcon.ShowBalloonTip(5000, "Panda status", "Panda was unable to connect to the internet. Retrying...", ToolTipIcon.Info);
+                MainWindow.NotifyIcon.Text = "Panda was unable to connect to the internet. Retrying...";
 
-            
+                Timer timer = new Timer();
+
+                timer.Tick += new EventHandler(timer_Tick);
+                timer.Interval = (10000)*(1);
+                timer.Enabled = true;
+                timer.Start();
+
+            }          
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            BrowserHelper.InitBrowser(Browser);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

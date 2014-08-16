@@ -1,14 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.21901.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panda_20", "Panda_20\Panda_20.csproj", "{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaTests", "PandaTests\PandaTests.csproj", "{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}"
-EndProject
-Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Panda_Installer", "PandaSetup\Panda_Installer.isproj", "{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D} = {C39A2AF4-1E44-48EE-B450-542DB9FEA92D}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,26 +24,6 @@ Global
 		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{C39A2AF4-1E44-48EE-B450-542DB9FEA92D}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{CF5EEC44-55BF-4F2B-9DDD-78E9EA10028C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.CD_ROM|Any CPU.Build.0 = CD_ROM
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.Debug|Any CPU.ActiveCfg = DVD-5
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.Debug|Any CPU.Build.0 = DVD-5
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.DVD-5|Any CPU.ActiveCfg = DVD-5
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.DVD-5|Any CPU.Build.0 = DVD-5
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.Release|Any CPU.ActiveCfg = SingleImage
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.Release|Any CPU.Build.0 = SingleImage
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.SingleImage|Any CPU.ActiveCfg = SingleImage
-		{C31BADB3-AA26-4F8B-816A-2EDED8F297E9}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

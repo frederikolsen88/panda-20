@@ -30,7 +30,7 @@
     <PublishDir>$(OutDir)\_PublishedWebsites\ClickOnceHostWeb</PublishDir>
     <UpdateUrl>http://panda-2.apphb.com</UpdateUrl>
     <GenerateBootstrapperSdkPath>$(MSBuildProjectDirectory)\..\Lib\v7.0A\Bootstrapper</GenerateBootstrapperSdkPath>
- 	<SdkToolsPath>$(MSBuildProjectDirectory)\..\Lib\v7.0A\Bin</SdkToolsPath>
+    <SdkToolsPath>$(MSBuildProjectDirectory)\..\Lib\v7.0A\Bin</SdkToolsPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
